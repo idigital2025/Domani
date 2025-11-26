@@ -40,7 +40,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         html, body {
-            overflow-x: hidden; /* CRÍTICO: Evita scroll horizontal indeseado */
+            overflow-x: hidden; 
             width: 100%;
             position: relative;
         }
@@ -75,7 +75,6 @@
         
         /* Alineaciones Mobile Específicas */
         @media (max-width: 768px) {
-            /* Alineación Izquierda General en Mobile */
             .text-left-mobile h2, 
             .text-left-mobile h3, 
             .text-left-mobile p,
@@ -83,25 +82,21 @@
             .branch-info,
             .section-final h2,
             .process-content h2, .process-content h3, .process-content p,
-            .section-awards h2,
-            .section-branches h2, .section-branches h3, /* Sucursales Izq */
-            .section-reviews h2, .section-reviews h3, .section-reviews .review-text /* Testimonios Izq */
+            .section-awards h2 
             { 
                 text-align: left !important; 
                 margin-left: 0 !important;
-                margin-right: auto !important;
             }
-            
-            /* Líneas rojas a la izquierda */
             .text-left-mobile h2::after,
             .section-final h2::after,
             .section-awards h2::after,
             .process-content h2::after,
-            .ingredients-text h2::after,
-            .contact-text-col h2::after,
-            .section-branches h2::after,
-            .section-reviews h2::after
+            .ingredients-text h2::after
             { margin: 15px 0 0 0 !important; }
+            
+            /* Testimonios a la DERECHA en mobile */
+            .section-reviews h2, .section-reviews h3 { text-align: right !important; margin-left: auto !important; margin-right: 0 !important; }
+            .section-reviews h2::after { margin: 15px 0 0 auto !important; }
         }
 
         .text-left h2::after, .ingredients-text h2::after, .process-content h2::after, .contact-text-col h2::after { margin: 15px 0 0 0; }
@@ -119,7 +114,7 @@
 
         /* --- UTILITIES --- */
         .container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
-        @media (max-width: 768px) { .container { padding: 0 20px; } }
+        @media (max-width: 768px) { .container { padding: 0 15px; } }
 
         .text-left { text-align: left !important; }
         .text-center { text-align: center; }
@@ -197,6 +192,15 @@
         .hero-subtitle-group p { color: #fff; margin: 0; }
         .hero-actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
+        /* AJUSTE HERO MOBILE (Padding Reducido) */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                min-height: 80vh; /* Permite ajuste dinámico */
+                padding: 70px 20px; /* Reducido como solicitado */
+            }
+        }
+
         /* Marquee */
         .marquee-container { background-color: #000; height: 35px; overflow: hidden; display: flex; align-items: center; width: 100%; }
         .marquee-content { display: flex; white-space: nowrap; animation: scroll 25s linear infinite; }
@@ -246,9 +250,9 @@
             width: 40px; height: 40px; background: #fff; border: 1px solid #ddd; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
             cursor: pointer; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
-            color: #000 !important; /* Forzar negro */
+            color: #000 !important;
         }
-        .nav-arrow svg { stroke: #000; } /* Asegurar SVG negro */
+        .nav-arrow svg { stroke: #000; }
         
         .nav-arrow:hover { background: var(--domani-red); border-color: var(--domani-red); color: #fff !important; }
         .nav-arrow:hover svg { stroke: #fff; }
@@ -289,14 +293,11 @@
 
         .awards-intro { max-width: 800px; margin: 0 auto 60px; font-size: 1.1rem; color: #FFFFFF !important; line-height: 1.6; font-weight: 500; }
         .awards-intro p { color: #FFFFFF !important; }
-        
         .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        
         @media (max-width: 768px) {
             .awards-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding-bottom: 20px; }
             .award-card { min-width: 85%; scroll-snap-align: center; }
         }
-
         .award-card { background-color: var(--domani-card-bg); padding: 40px 20px; border-radius: 8px; border: 1px solid #333; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .award-card:hover { transform: translateY(-5px); border-color: #444; }
         .award-logo-circle { width: 100px; height: 100px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; padding: 15px; }
@@ -311,7 +312,6 @@
         .gallery-item { height: 100%; width: 100%; overflow: hidden; position: relative; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .gallery-item:hover img { transform: scale(1.05); }
-        
         @media (max-width: 768px) { 
             .gallery-section { display: flex; width: 300%; animation: slideGallery 18s infinite linear; }
             .gallery-item { width: 33.33%; flex-shrink: 0; }
@@ -323,8 +323,13 @@
 
         /* Testimonios */
         .section-reviews { padding: var(--section-padding); background-color: #f9f9f9; text-align: center; position: relative; }
-        .reviews-container { max-width: 1000px; margin: 0 auto; overflow: hidden; position: relative; }
-        @media (max-width: 768px) { .reviews-container { width: 100%; padding: 0; } }
+        
+        /* Ajuste CRÍTICO: Padding bottom para evitar corte de flechas */
+        .reviews-container { 
+            max-width: 1000px; margin: 0 auto; overflow: hidden; position: relative; 
+            padding-bottom: 50px; /* Espacio seguro para flechas */
+        }
+        @media (max-width: 768px) { .reviews-container { width: 100%; } }
         
         .reviews-track { display: flex; transition: transform 0.5s ease-in-out; }
         .review-slide { min-width: 100%; box-sizing: border-box; padding: 20px 60px; }
@@ -343,16 +348,14 @@
         .review-prev { left: 0; }
         .review-next { right: 0; }
         
-        /* Ajuste crucial para testimonios en mobile */
+        /* Ajuste Testimonios Mobile: Ancho completo y Flechas abajo */
         @media(max-width: 768px) { 
-            /* Padding reducido para que el slide sea más ancho */
-            .review-slide { padding: 10px 10px; } 
+            .review-slide { padding: 0 10px; } /* Padding mínimo para aprovechar ancho */
             .review-card { padding: 30px 20px; }
             
-            /* Flechas visibles y posicionadas */
             .review-nav { 
-                display: flex; width: 30px; height: 30px; font-size: 0.8rem; 
-                top: auto; bottom: -10px; /* Mover abajo si molestan arriba */
+                display: flex; width: 35px; height: 35px; font-size: 0.9rem; 
+                top: auto; bottom: 5px; /* Posicionadas en el padding inferior del container */
                 transform: none;
             }
             .review-prev { left: 20px; }
