@@ -31,6 +31,7 @@
             
             --container-width: 1400px; 
             --section-padding: 80px 20px;
+            --header-height: 90px; /* Variable para altura header */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,6 +45,9 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
+
+        /* Scroll Margin para el Header Fijo */
+        section { scroll-margin-top: var(--header-height); }
 
         /* --- TIPOGRAFÍA --- */
         h1, h2, h3, h4 {
@@ -87,7 +91,8 @@
 
         .text-left h2::after, 
         .ingredients-text h2::after,
-        .process-content h2::after { margin: 15px 0 0 0; }
+        .process-content h2::after,
+        .contact-text-col h2::after { margin: 15px 0 0 0; } /* Alineación izquierda */
         
         h3 { 
             font-size: 1.25rem; 
@@ -176,7 +181,7 @@
         header {
             background-color: var(--domani-black);
             color: #fff;
-            height: 90px; 
+            height: var(--header-height); 
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -189,8 +194,13 @@
             justify-content: space-between; 
             align-items: center;
             width: 100%;
+            height: 100%;
         }
         
+        .logo {
+            display: flex;
+            align-items: center;
+        }
         .logo img {
             height: 50px;
             width: auto;
@@ -200,6 +210,7 @@
         .nav-desktop {
             display: flex;
             align-items: center;
+            height: 100%;
         }
 
         .nav-desktop ul { 
@@ -208,8 +219,17 @@
             margin: 0; 
             padding: 0; 
             list-style: none;
+            height: 100%;
+            align-items: center;
         }
         
+        .nav-desktop li {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            margin: 0; /* Reset margin */
+        }
+
         .nav-desktop a { 
             font-weight: 700; 
             font-size: 0.75rem; 
@@ -220,10 +240,10 @@
             align-items: center;
             height: 100%; 
             white-space: nowrap;
+            padding: 0 5px; /* Área clickeable mejorada */
         }
         .nav-desktop a:hover { color: var(--domani-red); }
         
-        /* Mobile Menu Button (Simple) */
         .mobile-menu-btn { display: none; color: #fff; font-size: 1.5rem; background: none; border: none; cursor: pointer; }
 
         @media (max-width: 1100px) { 
@@ -272,12 +292,33 @@
         .ingredients-img { width: 100%; height: 500px; object-fit: cover; }
         @media (max-width: 768px) { .ingredients-grid { grid-template-columns: 1fr; gap: 40px; } .ingredients-img { height: 300px; order: -1; } }
 
+        /* --- MENU (TABS RECTOS) --- */
         .section-menu { padding: var(--section-padding); background-color: var(--grey-light); position: relative; }
         .tabs-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
-        .tabs-container { background-color: var(--tab-bg); padding: 5px; border-radius: 8px; display: inline-flex; gap: 5px; }
-        .tab-btn { padding: 10px 40px; border: none; background: transparent; color: #666; cursor: pointer; font-weight: 600; font-family: var(--font-main); font-size: 1rem; border-radius: 6px; transition: 0.3s; }
-        .tab-btn.active { background-color: #fff; color: var(--domani-black); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .tab-btn:hover:not(.active) { color: var(--domani-black); }
+        
+        .tabs-container { 
+            background-color: var(--tab-bg); 
+            padding: 0; /* Sin padding extra */
+            display: inline-flex; 
+            gap: 2px; /* Pequeña separación */
+            border-radius: 0; /* PUNTAS RECTAS */
+        }
+        
+        .tab-btn { 
+            padding: 15px 40px; 
+            border: none; 
+            background: transparent; 
+            color: #666; 
+            cursor: pointer; 
+            font-weight: 700; /* Más peso */
+            font-family: var(--font-main); 
+            font-size: 0.95rem; 
+            text-transform: uppercase; /* MAYÚSCULAS */
+            border-radius: 0; /* PUNTAS RECTAS */
+            transition: 0.3s; 
+        }
+        .tab-btn.active { background-color: #fff; color: var(--domani-black); box-shadow: none; }
+        .tab-btn:hover:not(.active) { color: var(--domani-black); background-color: rgba(255,255,255,0.5); }
 
         .carousel-wrapper { position: relative; max-width: 1200px; margin: 0 auto; }
         .carousel-container { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 20px; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
@@ -352,100 +393,59 @@
         .final-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
         .slogan-final { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 1.5rem; font-style: italic; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* Formulario */
-        .section-contact { padding: var(--section-padding); background: #fff; }
+        /* --- FORMULARIO SPLIT LAYOUT --- */
+        .section-contact { padding: 0; background: #fff; } /* Sin padding para layout completo */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+        .contact-text-col {
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #fff;
+        }
+        .contact-text-col h2 { text-align: left; margin-left: 0; }
+        .contact-text-col h3 { text-align: left; margin-left: 0; max-width: 100%; }
+        
         .form-control { width: 100%; padding: 15px; border: 1px solid #ccc; margin-bottom: 20px; font-family: inherit; }
         
-        /* --- FOOTER ALINEADO --- */
-        footer {
-            background-color: #000;
-            color: #fff;
-            padding: 60px 0 20px;
+        .contact-image-col {
+            width: 100%;
+            height: 100%;
+            position: relative;
         }
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center; /* Alineación vertical centrada */
-            flex-wrap: wrap;
-            gap: 20px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #333;
-        }
-        
-        /* Grupo Izquierdo (Logo + Enlaces) */
-        .footer-left-group {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .footer-logo-box {
-            background-color: var(--domani-red);
-            padding: 10px 20px;
-            display: inline-block;
-            flex-shrink: 0;
-        }
-        .footer-logo-box img {
-            height: 40px;
-            width: auto;
+        .contact-image-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            filter: brightness(0) invert(1); 
         }
-        
-        .footer-links-inline {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .footer-link-item { 
-            color: #fff; 
-            font-weight: 700; 
-            font-size: 0.9rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            transition: 0.3s; 
-        }
-        .footer-link-item:hover { color: var(--domani-red); }
 
-        /* Grupo Derecho (Redes + Newsletter) */
-        .footer-right-group {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            flex-wrap: wrap;
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-text-col { padding: 60px 20px; order: 1; }
+            .contact-image-col { height: 300px; order: 2; } /* Imagen abajo en mobile */
         }
         
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            color: #fff;
-        }
+        /* Footer */
+        footer { background-color: #000; color: #fff; padding: 60px 0 20px; }
+        .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; padding-bottom: 40px; border-bottom: 1px solid #333; }
+        .footer-left-group { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+        .footer-logo-box { background-color: var(--domani-red); padding: 10px 20px; display: inline-block; flex-shrink: 0; }
+        .footer-logo-box img { height: 40px; width: auto; display: block; filter: brightness(0) invert(1); }
+        .footer-links-inline { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+        .footer-link-item { color: #fff; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .footer-link-item:hover { color: var(--domani-red); }
+        .footer-right-group { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+        .social-link { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; color: #fff; }
         .social-link:hover { color: var(--domani-red); }
         .social-link i { font-size: 1.5rem; }
-        
-        .newsletter-link {
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            border-bottom: 2px solid #fff;
-            padding-bottom: 5px;
-            letter-spacing: 0.5px;
-            color: #fff;
-        }
+        .newsletter-link { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; border-bottom: 2px solid #fff; padding-bottom: 5px; letter-spacing: 0.5px; color: #fff; }
         .newsletter-link:hover { color: var(--domani-red); border-color: var(--domani-red); }
-
-        .footer-copyright {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #ccc;
-            margin-top: 20px;
-        }
+        .footer-copyright { text-align: center; font-size: 0.8rem; color: #ccc; margin-top: 20px; }
         .footer-copyright a { color: var(--domani-red); font-weight: 600; }
 
         .mobile-sticky { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; display: none; }
@@ -479,7 +479,8 @@
             
             <nav class="nav-desktop">
                 <ul>
-                    <li><a href="#inicio">Pizza Napolitana</a></li>
+                    <!-- Cambio de Texto y Ancla Correcta -->
+                    <li><a href="#que-es">Tradición Napolitana</a></li>
                     <li><a href="#pizzas-destacadas">Pizzas Destacadas</a></li>
                     <li><a href="#reconocimientos">Reconocimientos</a></li>
                     <li><a href="#testimonios">Testimonios</a></li>
@@ -566,10 +567,10 @@
                 
                 <div class="tabs-wrapper">
                     <div class="tabs-container">
-                        <button class="tab-btn active" onclick="filterPizzas('all')">Todas</button>
-                        <button class="tab-btn" onclick="filterPizzas('clasicas')">Clásicas</button>
-                        <button class="tab-btn" onclick="filterPizzas('premium')">Premium</button>
-                        <button class="tab-btn" onclick="filterPizzas('vegetales')">Vegetales</button>
+                        <button class="tab-btn active" onclick="filterPizzas('all')">TODAS</button>
+                        <button class="tab-btn" onclick="filterPizzas('clasicas')">CLÁSICAS</button>
+                        <button class="tab-btn" onclick="filterPizzas('premium')">PREMIUM</button>
+                        <button class="tab-btn" onclick="filterPizzas('vegetales')">VEGETALES</button>
                     </div>
                 </div>
 
@@ -582,6 +583,7 @@
                     </button>
 
                     <div class="carousel-container" id="pizza-carousel">
+                        <!-- Items (Mismos) -->
                         <article class="pizza-card" data-category="clasicas">
                             <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=500&q=80" class="pizza-img" loading="lazy">
                             <div class="pizza-details">
@@ -660,7 +662,6 @@
                 </div>
                 
                 <div class="awards-grid">
-                    <!-- Card 1 -->
                     <div class="award-card">
                         <div class="award-logo-circle">
                              <img src="https://pizzeriadomani.cl/wp-content/uploads/2024/05/top-pizza.png" alt="50 Top Pizza">
@@ -669,8 +670,6 @@
                         <p class="award-desc">Top 20 mejores pizzerías</p>
                         <span class="award-year">2024</span>
                     </div>
-
-                    <!-- Card 2 -->
                     <div class="award-card">
                         <div class="award-logo-circle">
                              <img src="https://pizzeriadomani.cl/wp-content/uploads/2024/05/top-pizza.png" alt="50 Top Artisan">
@@ -679,8 +678,6 @@
                         <p class="award-desc">Ranking mundial de cadenas artesanales</p>
                         <span class="award-year">2024</span>
                     </div>
-
-                    <!-- Card 3 -->
                     <div class="award-card">
                         <div class="award-logo-circle">
                              <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg" alt="Tripadvisor" style="width: 80%;">
@@ -695,7 +692,7 @@
             </div>
         </section>
 
-        <!-- NUEVA GALERÍA (3 Imágenes) -->
+        <!-- GALERÍA -->
         <section class="gallery-section">
             <div class="gallery-item">
                 <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Ambiente Domani">
@@ -708,7 +705,7 @@
             </div>
         </section>
 
-        <!-- TESTIMONIOS (Recuperada) -->
+        <!-- TESTIMONIOS -->
         <section id="testimonios" class="section-reviews">
             <div class="container reviews-container">
                 <h2>Lo que dicen quienes ya la probaron</h2>
@@ -804,10 +801,7 @@
                 <p class="final-copy">Reserva tu mesa hoy, haz tu pedido o planifica tu próximo evento con nosotros. Llevamos la experiencia Domani hasta donde estés.</p>
                 
                 <div class="final-actions">
-                    <!-- Primary -->
                     <a href="#reservas" class="btn btn-primary" style="padding: 18px 40px;">Reservar ahora</a>
-                    
-                    <!-- Secondary Buttons (Borde Grueso Recto) -->
                     <a href="#delivery" class="btn btn-border-thick">PIDE POR DELIVERY</a>
                     <a href="#" class="btn btn-border-thick">REGALA DOMANI</a>
                 </div>
@@ -816,20 +810,27 @@
             </div>
         </section>
 
-        <!-- FORMULARIO -->
+        <!-- FORMULARIO SPLIT -->
         <section id="contacto" class="section-contact">
-            <div class="container" style="max-width: 600px;">
-                <h2 class="text-center">¿Aún tienes dudas?</h2>
-                <h3 class="text-center">Completa el formulario y nuestro equipo Domani te contactará a la brevedad.<br>Queremos que disfrutes la experiencia completa, desde el horno hasta tu mesa</h3>
-                <br>
-                <form>
-                    <input type="text" placeholder="Nombre" class="form-control" required>
-                    <input type="email" placeholder="Correo electrónico" class="form-control" required>
-                    <textarea rows="4" placeholder="¿En qué podemos ayudarte?" class="form-control" required></textarea>
-                    <div style="text-align: center;">
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar mensaje</button>
-                    </div>
-                </form>
+            <div class="contact-grid">
+                <!-- Columna Texto/Formulario -->
+                <div class="contact-text-col">
+                    <h2>¿Aún tienes dudas?</h2>
+                    <h3>Completa el formulario y nuestro equipo Domani te contactará a la brevedad.<br>Queremos que disfrutes la experiencia completa, desde el horno hasta tu mesa</h3>
+                    <br>
+                    <form>
+                        <input type="text" placeholder="Nombre" class="form-control" required>
+                        <input type="email" placeholder="Correo electrónico" class="form-control" required>
+                        <textarea rows="4" placeholder="¿En qué podemos ayudarte?" class="form-control" required></textarea>
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar mensaje</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Columna Imagen -->
+                <div class="contact-image-col">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="Experiencia Domani">
+                </div>
             </div>
         </section>
 
@@ -839,7 +840,6 @@
     <footer>
         <div class="container">
             <div class="footer-top">
-                <!-- Grupo Izquierda: Logo + Links -->
                 <div class="footer-left-group">
                     <div class="footer-logo-box">
                         <img src="domani-png-min-1024x263.png" alt="Domani">
@@ -853,7 +853,6 @@
                     </div>
                 </div>
 
-                <!-- Grupo Derecha: Redes -->
                 <div class="footer-right-group">
                     <a href="#" class="social-link">
                         SÍGUENOS
@@ -882,15 +881,14 @@
     </button>
 
     <script>
-        // Filtrado de Pizzas
         function filterPizzas(category) {
             const items = document.querySelectorAll('.pizza-card');
             const btns = document.querySelectorAll('.tab-btn');
             
             btns.forEach(btn => {
-                if(btn.textContent.toLowerCase() === category || (category === 'all' && btn.textContent === 'Todas')) {
+                if(btn.textContent.toLowerCase() === category || (category === 'all' && btn.textContent === 'TODAS')) {
                     btn.classList.add('active');
-                } else if (category === 'clasicas' && btn.textContent === 'Clásicas') {
+                } else if (category === 'clasicas' && btn.textContent === 'CLÁSICAS') {
                     btn.classList.add('active');
                 } else {
                     btn.classList.remove('active');
@@ -906,14 +904,12 @@
             });
         }
 
-        // Scroll Carrusel
         function scrollCarousel(direction) {
             const container = document.getElementById('pizza-carousel');
-            const scrollAmount = 300; // Ancho aprox de card
+            const scrollAmount = 300; 
             container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
         }
 
-        // Scroll Top Logic
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         
         window.addEventListener('scroll', () => {
