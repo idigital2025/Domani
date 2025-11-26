@@ -94,7 +94,6 @@
             .ingredients-text h2::after
             { margin: 15px 0 0 0 !important; }
             
-            /* Testimonios a la DERECHA en mobile */
             .section-reviews h2, .section-reviews h3 { text-align: right !important; margin-left: auto !important; margin-right: 0 !important; }
             .section-reviews h2::after { margin: 15px 0 0 auto !important; }
         }
@@ -187,12 +186,10 @@
             display: flex; align-items: center; justify-content: center; text-align: center;
             padding: 100px 20px;
         }
-        
-        /* FIX HERO MOBILE - Reducido 10px arriba y abajo */
         @media (max-width: 768px) {
             .hero {
                 min-height: 80vh; 
-                padding: 70px 20px; /* Ajustado a 70px como solicitado */
+                padding: 70px 20px; 
             }
         }
 
@@ -245,7 +242,7 @@
         .carousel-container { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 20px; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
         .carousel-container::-webkit-scrollbar { display: none; }
         
-        /* Flechas Carrusel NEGRAS */
+        /* Flechas Carrusel */
         .nav-arrow { 
             position: absolute; top: 40%; transform: translateY(-50%); 
             width: 40px; height: 40px; background: #fff; border: 1px solid #ddd; 
@@ -264,7 +261,13 @@
             .nav-next { right: 5px; }
         }
 
-        .pizza-card { min-width: 300px; background: #fff; scroll-snap-align: start; border-radius: 0; border: 1px solid #eee; display: flex; flex-direction: column; }
+        /* FIX PIZZA CARD - NO STRETCH */
+        .pizza-card { 
+            width: 340px; /* Ancho fijo para evitar estiramiento en desktop */
+            flex: 0 0 auto; /* No crecer, no encoger */
+            background: #fff; scroll-snap-align: start; border-radius: 0; border: 1px solid #eee; 
+            display: flex; flex-direction: column; 
+        }
         .pizza-img { height: 250px; width: 100%; object-fit: cover; }
         .pizza-details { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; }
         .pizza-details h4 { font-weight: 800; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 10px; }
@@ -305,23 +308,43 @@
         .award-year { font-weight: 700; font-size: 1rem; color: #fff; }
         .awards-footer { margin-top: 50px; font-weight: 600; font-size: 1.1rem; color: #fff; }
 
-        /* Galeria */
-        .gallery-section { display: grid; grid-template-columns: 1fr 1fr 1fr; height: 300px; width: 100%; overflow: hidden; }
-        .gallery-item { height: 100%; width: 100%; overflow: hidden; position: relative; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        @media (max-width: 768px) { 
-            .gallery-section { display: flex; width: 300%; animation: slideGallery 18s infinite linear; }
-            .gallery-item { width: 33.33%; flex-shrink: 0; }
+        /* GALERÍA ANIMADA (Desktop & Mobile) */
+        .gallery-section { 
+            display: flex; 
+            width: 100%; 
+            overflow: hidden; 
+            height: 300px;
         }
+        
+        /* Contenedor interno ancho para animación */
+        .gallery-track {
+            display: flex;
+            width: 200%; /* 6 imágenes */
+            animation: slideGallery 20s infinite linear;
+        }
+        
+        .gallery-item { 
+            width: 16.66%; /* 100% / 6 */
+            height: 100%; 
+            position: relative; 
+            flex-shrink: 0;
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        
         @keyframes slideGallery {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-66.66%); }
+            100% { transform: translateX(-50%); } /* Mueve 1 set completo (3 imagenes) */
+        }
+        
+        /* Ajuste mobile: la animación se ve bien igual, pero ajustamos velocidad si es necesario */
+        @media (max-width: 768px) {
+            .gallery-track { animation-duration: 15s; }
         }
 
         /* Testimonios */
         .section-reviews { padding: var(--section-padding); background-color: #f9f9f9; text-align: center; position: relative; }
         
-        /* FIX ANCHO MOBILE: Eliminado padding de sección en mobile para ganar ancho */
         @media (max-width: 768px) { 
             .section-reviews { padding-left: 0; padding-right: 0; }
         }
@@ -345,12 +368,11 @@
         .review-prev { left: 0; }
         .review-next { right: 0; }
         
-        /* AJUSTE MOBILE TESTIMONIOS - ANCHO MÁXIMO */
+        /* AJUSTE MOBILE TESTIMONIOS FIXED */
         @media(max-width: 768px) { 
-            .review-slide { padding: 0 15px; } /* Solo 15px padding lateral, tarjeta muy ancha */
+            .review-slide { padding: 0 10px; } /* PADDING REDUCIDO a 10px */
             .review-card { padding: 30px 20px; }
             
-            /* Títulos a la derecha dentro del contenedor padding */
             .section-reviews h2, .section-reviews h3 { padding-right: 20px; } 
 
             .reviews-container { padding-bottom: 60px; } 
@@ -699,6 +721,16 @@
             <div class="gallery-item">
                 <img src="img/galeria-03.jpg" alt="Compartiendo en Domani">
             </div>
+            <!-- ITEMS DUPLICADOS PARA LOOP DESKTOP & MOBILE -->
+            <div class="gallery-item">
+                <img src="img/galeria-01.jpg" alt="Ambiente Domani">
+            </div>
+            <div class="gallery-item">
+                <img src="img/galeria-02.jpg" alt="Pizzas al horno">
+            </div>
+            <div class="gallery-item">
+                <img src="img/galeria-03.jpg" alt="Compartiendo en Domani">
+            </div>
         </section>
 
         <!-- TESTIMONIOS (CARRUSEL) -->
@@ -728,6 +760,14 @@
                                     <div class="review-stars">★★★★★</div>
                                     <p class="review-text">"Sabor increíble, servicio rápido. Ya es mi favorita. Recomendadísimo para ir en familia."</p>
                                     <p class="review-author">— Juan P., Instagram</p>
+                                </div>
+                            </div>
+                            <!-- SLIDE 3 -->
+                            <div class="review-slide">
+                                <div class="review-card">
+                                    <div class="review-stars">★★★★★</div>
+                                    <p class="review-text">"La masa es de otro planeta, fermentación perfecta y ligera. Sin duda la mejor de Santiago."</p>
+                                    <p class="review-author">— Roberto M., TripAdvisor</p>
                                 </div>
                             </div>
                         </div>
@@ -893,7 +933,7 @@
             btns.forEach(btn => {
                 if(btn.textContent.toLowerCase() === category || (category === 'all' && btn.textContent === 'TODAS')) {
                     btn.classList.add('active');
-                } else if (category === btn.textContent.toLowerCase().split(' ')[0]) { // Simple match
+                } else if (category === btn.textContent.toLowerCase().split(' ')[0]) { 
                      btn.classList.add('active');
                 } else if (category === 'iconicas' && btn.textContent.includes('ICÓNICAS')) {
                      btn.classList.add('active');
@@ -913,7 +953,7 @@
 
         function scrollCarousel(direction) {
             const container = document.getElementById('pizza-carousel');
-            const scrollAmount = 320; 
+            const scrollAmount = 340; 
             container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
         }
 
@@ -944,7 +984,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Mobile Menu Logic
         function toggleMenu() {
             const menu = document.getElementById('mobileNav');
             menu.classList.toggle('active');
