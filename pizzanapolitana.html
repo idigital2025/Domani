@@ -75,7 +75,6 @@
         
         /* Alineaciones Mobile Específicas */
         @media (max-width: 768px) {
-            /* Todo alineado a la izquierda en mobile */
             .text-left-mobile h2, 
             .text-left-mobile h3, 
             .text-left-mobile p,
@@ -83,25 +82,21 @@
             .branch-info,
             .section-final h2,
             .process-content h2, .process-content h3, .process-content p,
-            .section-awards h2,
-            .section-branches h2, .section-branches h3,
-            .section-reviews h2, .section-reviews h3, .section-reviews p /* Testimonios Izq */
+            .section-awards h2 
             { 
                 text-align: left !important; 
                 margin-left: 0 !important;
-                margin-right: auto !important;
             }
-            
-            /* Líneas rojas a la izquierda */
             .text-left-mobile h2::after,
             .section-final h2::after,
             .section-awards h2::after,
             .process-content h2::after,
-            .ingredients-text h2::after,
-            .contact-text-col h2::after,
-            .section-branches h2::after,
-            .section-reviews h2::after
+            .ingredients-text h2::after
             { margin: 15px 0 0 0 !important; }
+            
+            /* Testimonios a la DERECHA en mobile */
+            .section-reviews h2, .section-reviews h3 { text-align: right !important; margin-left: auto !important; margin-right: 0 !important; }
+            .section-reviews h2::after { margin: 15px 0 0 auto !important; }
         }
 
         .text-left h2::after, .ingredients-text h2::after, .process-content h2::after, .contact-text-col h2::after { margin: 15px 0 0 0; }
@@ -188,12 +183,19 @@
         /* --- HERO --- */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/bg-hero-principal.jpg');
-            background-size: cover; background-position: center; height: auto; min-height: 90vh; /* Ajustado min-height */
+            background-size: cover; background-position: center; height: auto; min-height: 90vh;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            padding: 100px 20px; /* Padding vertical seguro */
+            padding: 100px 20px;
         }
-        @media (max-width: 768px) { .hero { min-height: 80vh; padding: 80px 20px; } } /* Menos padding mobile */
         
+        /* FIX HERO MOBILE - Reducido 10px arriba y abajo */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 80vh; 
+                padding: 70px 20px; /* Ajustado a 70px como solicitado */
+            }
+        }
+
         .hero-content { max-width: 900px; color: #fff; }
         .hero h1 { margin-bottom: 30px; }
         .hero-subtitle-group { font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 500; margin-bottom: 40px; line-height: 1.4; }
@@ -251,12 +253,9 @@
             cursor: pointer; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
             color: #000 !important;
         }
-        /* SVG Stroke forced to black */
         .nav-arrow svg { stroke: #000 !important; } 
-        
         .nav-arrow:hover { background: var(--domani-red); border-color: var(--domani-red); color: #fff !important; }
         .nav-arrow:hover svg { stroke: #fff !important; }
-        
         .nav-prev { left: -10px; }
         .nav-next { right: -10px; }
         @media(max-width: 768px) { 
@@ -319,27 +318,23 @@
             100% { transform: translateX(-66.66%); }
         }
 
-        /* TESTIMONIOS - RECONSTRUIDO PARA MOBILE */
+        /* Testimonios */
         .section-reviews { padding: var(--section-padding); background-color: #f9f9f9; text-align: center; position: relative; }
         
-        .reviews-container { 
-            max-width: 1000px; margin: 0 auto; overflow: hidden; position: relative; 
+        /* FIX ANCHO MOBILE: Eliminado padding de sección en mobile para ganar ancho */
+        @media (max-width: 768px) { 
+            .section-reviews { padding-left: 0; padding-right: 0; }
         }
+
+        .reviews-container { max-width: 1000px; margin: 0 auto; overflow: hidden; position: relative; padding-bottom: 50px; }
         
-        /* Contenedor de slides */
         .reviews-track { display: flex; transition: transform 0.5s ease-in-out; }
-        
-        /* Cada slide ocupa 100% del ancho */
         .review-slide { min-width: 100%; box-sizing: border-box; padding: 20px 60px; }
-        
-        /* Tarjeta del testimonio */
         .review-card { background: #fff; padding: 50px; border: 1px solid #eee; box-shadow: 0 5px 25px rgba(0,0,0,0.05); }
-        
         .review-stars { color: #FFC107; font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 3px; }
         .review-text { font-size: 1rem; font-style: italic; color: #444; line-height: 1.6; margin-bottom: 25px; font-weight: 400; }
         .review-author { font-weight: 800; color: var(--domani-black); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* Flechas de navegación */
         .review-nav {
             position: absolute; top: 50%; transform: translateY(-50%);
             width: 40px; height: 40px; background: transparent; border: 2px solid var(--domani-black);
@@ -350,22 +345,22 @@
         .review-prev { left: 0; }
         .review-next { right: 0; }
         
-        /* AJUSTE MOBILE TESTIMONIOS */
+        /* AJUSTE MOBILE TESTIMONIOS - ANCHO MÁXIMO */
         @media(max-width: 768px) { 
-            .review-slide { 
-                padding: 0 10px; /* Eliminado padding lateral grande, dejando solo margen seguro */
-            } 
-            .review-card { padding: 30px 20px; } /* Padding interno tarjeta reducido */
+            .review-slide { padding: 0 15px; } /* Solo 15px padding lateral, tarjeta muy ancha */
+            .review-card { padding: 30px 20px; }
             
-            /* Ajuste para flechas en mobile: Debajo del slide */
-            .reviews-container { padding-bottom: 60px; } /* Espacio abajo para flechas */
+            /* Títulos a la derecha dentro del contenedor padding */
+            .section-reviews h2, .section-reviews h3 { padding-right: 20px; } 
+
+            .reviews-container { padding-bottom: 60px; } 
             
             .review-nav { 
                 top: auto; bottom: 0; 
-                transform: none; /* Reset center vertical */
+                transform: none; 
                 border-color: #333;
             }
-            .review-prev { left: calc(50% - 50px); } /* Centradas abajo */
+            .review-prev { left: calc(50% - 50px); } 
             .review-next { right: calc(50% - 50px); }
         }
 
