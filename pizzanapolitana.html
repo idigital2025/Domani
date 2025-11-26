@@ -9,10 +9,13 @@
     <meta name="description" content="Pizza napolitana auténtica en Santiago. Masa ligera, ingredientes italianos y horno napolitano. Reserva, pide con retiro o despacho. Delivery 13:30–21:30.">
     <link rel="canonical" href="https://pizzeriadomani.cl/pizza-napolitana-santiago">
     
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" sizes="20x20" href="favicon.png">
+    
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,800;1,900&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -31,7 +34,7 @@
             
             --container-width: 1400px; 
             --section-padding: 80px 20px;
-            --header-height: 90px;
+            --header-height: 90px; 
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,13 +55,13 @@
         h1, h2, h3, h4 { line-height: 1.2; margin-bottom: 1rem; color: var(--domani-black); }
 
         h1 { 
-            font-weight: 900; font-size: clamp(2.5rem, 5vw, 4.5rem); 
+            font-weight: 900; font-size: clamp(2.2rem, 5vw, 4.5rem); /* Ajustado min para mobile */
             text-transform: uppercase; letter-spacing: -1px; color: #fff; line-height: 1.1;
         }
         h1 em { font-style: italic; font-family: "Montserrat", sans-serif; display: block; }
 
         h2 { 
-            font-weight: 800; font-size: clamp(2rem, 4vw, 2.5rem); 
+            font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.5rem); /* Ajustado min para mobile */
             text-transform: uppercase; margin-bottom: 1.5rem; text-align: center; 
             position: relative; padding-bottom: 15px;
         }
@@ -66,6 +69,30 @@
             content: ''; display: block; width: 80px; height: 4px; 
             background-color: var(--domani-red); margin: 15px auto 0 auto;
         }
+        
+        /* Alineaciones Mobile Específicas */
+        @media (max-width: 768px) {
+            .text-left-mobile h2, 
+            .text-left-mobile h3, 
+            .text-left-mobile p,
+            .awards-intro, /* Reconocimientos */
+            .branch-info, /* Sucursales */
+            .final-copy, /* CTA Final */
+            .section-final h2
+            { 
+                text-align: left !important; 
+                margin-left: 0 !important;
+            }
+            .text-left-mobile h2::after,
+            .section-final h2::after,
+            .section-awards h2::after
+            { margin: 15px 0 0 0 !important; }
+            
+            /* Testimonios a la derecha en mobile */
+            .text-right-mobile h2, .text-right-mobile h3 { text-align: right !important; margin-right: 0 !important; margin-left: auto !important; }
+            .text-right-mobile h2::after { margin: 15px 0 0 auto !important; }
+        }
+
         .text-left h2::after, .ingredients-text h2::after, .process-content h2::after, .contact-text-col h2::after { margin: 15px 0 0 0; }
         
         h3 { 
@@ -81,6 +108,9 @@
 
         /* --- UTILITIES --- */
         .container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
+        /* Ajuste padding container mobile */
+        @media (max-width: 768px) { .container { padding: 0 15px; } }
+
         .text-left { text-align: left !important; }
         .text-center { text-align: center; }
         
@@ -91,6 +121,9 @@
             border-radius: 0; cursor: pointer; border: 2px solid transparent;
             font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center;
         }
+        /* Ajuste botón mobile para "Ver Menú Completo" en una línea */
+        @media (max-width: 400px) { .btn { padding: 14px 20px; font-size: 0.8rem; } }
+
         .btn-primary { background-color: var(--domani-red); color: #fff; border-color: var(--domani-red); }
         .btn-primary:hover { background-color: var(--domani-black); border-color: var(--domani-black); }
         
@@ -125,10 +158,24 @@
             white-space: nowrap; transition: color 0.3s;
         }
         .nav-desktop a:hover { color: var(--domani-red); }
+        
         .mobile-menu-btn { display: none; color: #fff; font-size: 1.5rem; background: none; border: none; cursor: pointer; }
-        @media (max-width: 1100px) { .nav-desktop { display: none; } .mobile-menu-btn { display: block; } }
+        
+        /* Menú Móvil Desplegable */
+        .mobile-nav-overlay {
+            display: none; position: fixed; top: var(--header-height); left: 0; width: 100%; 
+            background: rgba(26, 26, 26, 0.98); padding: 20px; border-top: 1px solid #333;
+            flex-direction: column; gap: 15px; text-align: center;
+        }
+        .mobile-nav-overlay.active { display: flex; }
+        .mobile-nav-overlay a { color: #fff; font-weight: 700; font-size: 1rem; padding: 10px; display: block; }
 
-        /* --- SECCIONES PRINCIPALES --- */
+        @media (max-width: 1100px) { 
+            .nav-desktop { display: none; } 
+            .mobile-menu-btn { display: block; }
+        }
+
+        /* --- HERO --- */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/bg-hero-principal.jpg');
             background-size: cover; background-position: center; height: 90vh;
@@ -153,15 +200,31 @@
         .ingredients-text h2 { text-align: left; margin-left: 0; }
         .ingredients-text h3 { text-align: left; margin-left: 0; margin-right: 0; max-width: 100%; }
         .ingredients-list li { display: flex; align-items: center; margin-bottom: 20px; font-weight: 600; font-size: 1.1rem; }
-        .ingredients-list svg { width: 30px; height: 30px; margin-right: 15px; stroke: var(--domani-black); stroke-width: 1.5; flex-shrink: 0; fill: none; }
+        .ingredients-list svg { width: 35px; height: 35px; margin-right: 15px; flex-shrink: 0; fill: var(--domani-black); }
         .ingredients-img { width: 100%; height: 500px; object-fit: cover; }
         @media (max-width: 768px) { .ingredients-grid { grid-template-columns: 1fr; gap: 40px; } .ingredients-img { height: 300px; order: -1; } }
 
         /* Menu */
         .section-menu { padding: var(--section-padding); background-color: var(--grey-light); position: relative; }
         .tabs-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
-        .tabs-container { background-color: var(--tab-bg); padding: 0; display: inline-flex; gap: 2px; border-radius: 0; }
-        .tab-btn { padding: 15px 40px; border: none; background: transparent; color: #666; cursor: pointer; font-weight: 700; font-family: var(--font-main); font-size: 0.95rem; text-transform: uppercase; border-radius: 0; transition: 0.3s; }
+        
+        /* TABS SCROLLABLE MOBILE */
+        .tabs-container { 
+            background-color: var(--tab-bg); padding: 0; display: inline-flex; gap: 2px; border-radius: 0; 
+            /* Ajuste Mobile */
+            @media (max-width: 768px) {
+                display: flex; overflow-x: auto; width: 100%; justify-content: flex-start;
+                scrollbar-width: none; -webkit-overflow-scrolling: touch;
+            }
+        }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        
+        .tab-btn { 
+            padding: 15px 40px; border: none; background: transparent; color: #666; cursor: pointer; 
+            font-weight: 700; font-family: var(--font-main); font-size: 0.95rem; text-transform: uppercase; 
+            border-radius: 0; transition: 0.3s; white-space: nowrap;
+            @media (max-width: 768px) { padding: 12px 20px; font-size: 0.85rem; flex-shrink: 0; }
+        }
         .tab-btn.active { background-color: #fff; color: var(--domani-black); box-shadow: none; }
         .tab-btn:hover:not(.active) { color: var(--domani-black); background-color: rgba(255,255,255,0.5); }
 
@@ -174,7 +237,7 @@
         .nav-next { right: -25px; }
         @media(max-width: 768px) { .nav-arrow { display: none; } }
 
-        .pizza-card { min-width: 320px; background: #fff; scroll-snap-align: start; border-radius: 0; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .pizza-card { min-width: 300px; background: #fff; scroll-snap-align: start; border-radius: 0; border: 1px solid #eee; display: flex; flex-direction: column; }
         .pizza-img { height: 250px; width: 100%; object-fit: cover; }
         .pizza-details { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; }
         .pizza-details h4 { font-weight: 800; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 10px; }
@@ -186,17 +249,33 @@
         .process-content { padding: 80px; display: flex; flex-direction: column; justify-content: center; }
         .process-content h2 { color: #fff; text-align: left; }
         .process-content h3 { color: #fff; text-align: left; margin-left: 0; margin-bottom: 20px; font-weight: 500; }
-        .process-content p { color: #fff; text-align: left; font-weight: 400; opacity: 0.9; }
+        /* Texto más legible en mobile */
+        .process-content p { color: #fff; text-align: left; font-weight: 400; opacity: 0.9; font-size: 1.05rem; line-height: 1.7; }
         .process-image-col { background: url('img/bg-proceso-horno.jpg') center/cover no-repeat; }
-        @media (max-width: 768px) { .section-process-split { grid-template-columns: 1fr; } }
+        
+        @media (max-width: 768px) { 
+            .section-process-split { grid-template-columns: 1fr; display: flex; flex-direction: column; }
+            .process-content { padding: 60px 20px; }
+            .process-image-col { height: 400px; width: 100%; display: block; } /* Imagen visible al final */
+        }
 
-        /* Awards */
+        /* Awards (Carrusel Mobile) */
         .section-awards { padding: 100px 20px; background-color: #000; background-image: url('img/fondo-suelo-textura-madera-marron-3.png'); background-size: cover; background-repeat: no-repeat; background-position: center; text-align: center; color: #fff; }
         .section-awards h2 { color: #fff; font-size: 2.2rem; margin-bottom: 10px; }
         .section-awards h2::after { background-color: var(--domani-red); width: 60px; height: 3px; margin-top: 20px; }
         .awards-intro { max-width: 800px; margin: 0 auto 60px; font-size: 1.1rem; color: #FFFFFF !important; line-height: 1.6; font-weight: 500; }
         .awards-intro p { color: #FFFFFF !important; }
+        
         .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        
+        /* Ajuste Carrusel Mobile Awards */
+        @media (max-width: 768px) {
+            .awards-grid { 
+                display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding-bottom: 20px; 
+            }
+            .award-card { min-width: 85%; scroll-snap-align: center; }
+        }
+
         .award-card { background-color: var(--domani-card-bg); padding: 40px 20px; border-radius: 8px; border: 1px solid #333; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .award-card:hover { transform: translateY(-5px); border-color: #444; }
         .award-logo-circle { width: 100px; height: 100px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; padding: 15px; }
@@ -206,21 +285,37 @@
         .award-year { font-weight: 700; font-size: 1rem; color: #fff; }
         .awards-footer { margin-top: 50px; font-weight: 600; font-size: 1.1rem; color: #fff; }
 
-        /* Galeria */
+        /* Galeria (Animación Automática Mobile) */
         .gallery-section { display: grid; grid-template-columns: 1fr 1fr 1fr; height: 300px; width: 100%; overflow: hidden; }
         .gallery-item { height: 100%; width: 100%; overflow: hidden; position: relative; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
         .gallery-item:hover img { transform: scale(1.05); }
-        @media (max-width: 768px) { .gallery-section { display: flex; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; height: 300px; scrollbar-width: none; } .gallery-item { min-width: 100%; scroll-snap-align: center; } }
+        
+        @media (max-width: 768px) { 
+            .gallery-section { 
+                display: flex; width: 300%; /* 3 slides */
+                animation: slideGallery 15s infinite linear;
+            }
+            .gallery-item { width: 33.33%; }
+        }
+        @keyframes slideGallery {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-33.33%); }
+            66% { transform: translateX(-66.66%); }
+            100% { transform: translateX(0); }
+        }
 
-        /* --- TESTIMONIOS (CARRUSEL UN SLIDE) --- */
+        /* Testimonios */
         .section-reviews { padding: var(--section-padding); background-color: #f9f9f9; text-align: center; position: relative; }
         .reviews-container { max-width: 900px; margin: 0 auto; overflow: hidden; position: relative; }
+        /* Ajuste ancho mobile testimonios */
+        @media (max-width: 768px) { .reviews-container { width: 100%; padding: 0; } }
+        
         .reviews-track { display: flex; transition: transform 0.5s ease-in-out; }
         .review-slide { min-width: 100%; box-sizing: border-box; padding: 20px 60px; }
         .review-card { background: #fff; padding: 50px; border: 1px solid #eee; box-shadow: 0 5px 25px rgba(0,0,0,0.05); }
         .review-stars { color: #FFC107; font-size: 1.5rem; margin-bottom: 20px; letter-spacing: 3px; }
-        .review-text { font-size: 1.3rem; font-style: italic; color: #444; line-height: 1.6; margin-bottom: 25px; font-weight: 500; }
+        .review-text { font-size: 1rem; font-style: italic; color: #444; line-height: 1.6; margin-bottom: 25px; font-weight: 400; }
         .review-author { font-weight: 800; color: var(--domani-black); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
         
         .review-nav {
@@ -232,25 +327,35 @@
         .review-nav:hover { background: var(--domani-black); color: #fff; }
         .review-prev { left: 0; }
         .review-next { right: 0; }
-        @media(max-width: 768px) { .review-slide { padding: 20px 0; } .review-nav { display: none; } }
+        @media(max-width: 768px) { 
+            .review-slide { padding: 10px 0; } 
+            .review-nav { display: none; } 
+            .review-card { padding: 30px 20px; } /* Menos padding interno */
+        }
 
-        /* Sucursales */
         .section-branches { padding: var(--section-padding); background-color: var(--grey-light); }
-        .branches-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
-        .branch-card { background: #fff; border: 1px solid #ddd; padding: 0; display: flex; flex-direction: column; }
-        .branch-info { padding: 30px; }
+        .branches-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; } /* Ajustado minmax */
+        .branch-card { background: #fff; border: 1px solid #ddd; padding: 0; display: flex; flex-direction: column; max-width: 100%; }
+        .branch-info { padding: 30px; text-align: left; } /* Alinear izq */
         .branch-info h4 { font-weight: 800; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 20px; }
         .info-row { display: flex; align-items: flex-start; margin-bottom: 15px; font-size: 0.9rem; }
         .info-row svg { width: 20px; height: 20px; margin-right: 15px; flex-shrink: 0; stroke: var(--domani-black); }
         .branch-actions { padding: 0 30px 30px; margin-top: auto; }
         .branch-actions .btn { width: 100%; }
-        .map-wrapper { height: 200px; background: #eee; width: 100%; }
+        .map-wrapper { height: 200px; background: #eee; width: 100%; overflow: hidden; }
+        .map-wrapper iframe { width: 100%; max-width: 100%; } /* Prevenir desborde */
 
-        /* Final CTA */
         .section-final { padding: 100px 20px; background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('img/bg-cta-final.jpg') center/cover; text-align: center; color: #fff; }
         .section-final h2 { color: #fff; margin-bottom: 20px; }
         .final-copy { font-size: 1.1rem; max-width: 700px; margin: 0 auto 40px; color: #ddd; }
         .final-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+        /* Alineacion Izq Mobile */
+        @media(max-width: 768px) { 
+            .section-final { text-align: left; padding: 80px 20px; }
+            .final-actions { justify-content: flex-start; }
+            .final-copy { margin: 0 0 40px 0; }
+            .slogan-final { text-align: left; }
+        }
         .slogan-final { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 1.5rem; font-style: italic; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
 
         /* Formulario */
@@ -282,20 +387,21 @@
         .footer-copyright { text-align: center; font-size: 0.8rem; color: #ccc; margin-top: 20px; }
         .footer-copyright a { color: var(--domani-red); font-weight: 600; }
 
-        .mobile-sticky { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; display: none; }
-        .mobile-sticky .btn { width: 100%; }
+        /* Mobile Sticky Eliminado (User Request) */
+        /* .mobile-sticky { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; display: none; } */
+        
         .scroll-top-btn { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--domani-red); color: #fff; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .scroll-top-btn.visible { opacity: 1; visibility: visible; }
         .scroll-top-btn:hover { transform: translateY(-5px); background-color: #d60515; }
 
-        @media(max-width: 1100px) { 
-            .footer-top { flex-direction: column; text-align: center; gap: 30px; }
-            .footer-left-group { justify-content: center; width: 100%; flex-direction: column; gap: 20px; }
-            .footer-right-group { width: 100%; justify-content: center; }
-        }
+        /* Ajustes Footer Mobile Vertical */
         @media(max-width: 768px) { 
-            .mobile-sticky { display: block; }
-            .scroll-top-btn { bottom: 80px; right: 20px; }
+            .footer-top { flex-direction: column; align-items: flex-start; gap: 40px; }
+            .footer-left-group { flex-direction: column; align-items: flex-start; gap: 30px; width: 100%; }
+            .footer-links-inline { flex-direction: column; align-items: flex-start; gap: 20px; width: 100%; }
+            .footer-right-group { flex-direction: column; align-items: flex-start; gap: 30px; width: 100%; }
+            .footer-copyright { text-align: left; }
+            .scroll-top-btn { bottom: 20px; right: 20px; }
         }
 
     </style>
@@ -305,11 +411,12 @@
     <header>
         <div class="container header-inner">
             <a href="https://pizzeriadomani.cl/" aria-label="Domani Home" class="logo">
-                <img src="domani-png-min-1024x263.png" alt="Domani Pizzería">
+                <img src="img/logo-header.png" alt="Domani Pizzería">
             </a>
             
-            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
             
+            <!-- Menu Desktop -->
             <nav class="nav-desktop">
                 <ul>
                     <li><a href="#que-es">TRADICIÓN NAPOLITANA</a></li>
@@ -320,6 +427,16 @@
                     <li><a href="#contacto">CONTACTO</a></li>
                 </ul>
             </nav>
+
+            <!-- Menu Overlay Mobile -->
+            <div class="mobile-nav-overlay" id="mobileNav">
+                <a href="#que-es" onclick="toggleMenu()">TRADICIÓN NAPOLITANA</a>
+                <a href="#pizzas-destacadas" onclick="toggleMenu()">PIZZAS DESTACADAS</a>
+                <a href="#reconocimientos" onclick="toggleMenu()">RECONOCIMIENTOS</a>
+                <a href="#testimonios" onclick="toggleMenu()">TESTIMONIOS</a>
+                <a href="#sucursales" onclick="toggleMenu()">SUCURSALES</a>
+                <a href="#contacto" onclick="toggleMenu()">CONTACTO</a>
+            </div>
         </div>
     </header>
 
@@ -361,26 +478,29 @@
 
         <!-- ¿QUÉ HACE ÚNICA? -->
         <section id="que-es" class="section-ingredients">
-            <div class="container ingredients-grid">
+            <div class="container ingredients-grid text-left-mobile">
                 <div class="ingredients-text">
                     <h2>¿Qué hace única a la pizza napolitana?</h2>
                     <h3>En Domani seguimos la tradición con ingredientes italianos auténticos y un proceso que respeta el oficio:</h3>
                     
                     <ul class="ingredients-list">
                         <li>
-                            <svg viewBox="0 0 24 24"><path d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve"><g><path d="M32.7,41.3c45.2,0,90.2,0,135.3,0c-0.3-3.4-1.7-6-4.3-8c-3.9-3.1-8.7-4-13.4-4.8c-6.3-1-12.6-2-18.1-5.4c-0.8-0.5-1.8-1.3-2.1-2.1c-0.3-0.8-0.1-2.2,0.5-2.8c0.6-0.7,1.9-0.8,2.9-1.2c0.1,0,0.3,0,0.4,0.1c7.1,4.4,15.5,4.6,23.3,6.6c2.7,0.7,5.4,1.8,7.9,3.2c5.3,2.9,8.4,7.5,9.1,13.5c0.2,1.2,0.6,1.8,1.7,2.2c6.9,2.8,9.7,9.6,6.9,16.5c-1.2,2.9-1.2,5.7,0,8.7c2.6,6.2,0.6,12.1-5.2,15.6c-1.1,0.6-1.2,1.3-1,2.4c3.4,18.1,4.8,36.3,3.8,54.7c-0.3,5.1-0.7,10.2-1.2,15.3c-0.7,6.2,0.9,11.7,4.7,16.6c2.5,3.3,3.6,7,2.9,11.1c-1.7,9.1-12.1,14.2-19.7,9c-5.7-3.9-11.2-3.9-17.5-2.7c-21.9,4.1-44.1,5.3-66.4,4c-12.7-0.7-25.3-2.3-37.8-4.7c-4.3-0.8-8,0.1-11.5,2.7c-6.4,4.7-15,3.1-19.3-3.5c-3-4.6-2.9-10.8,0.6-15.4c4.1-5.3,6-11.1,5.1-17.8c-0.3-2.5,0.8-4,2.7-4.2c2-0.2,3.2,1.2,3.5,3.8c1,8-1.1,15.1-6,21.5c-2.5,3.3-2.3,7.1,0.3,9.8c2.7,2.7,6.5,2.9,9.9,0.4c4.8-3.6,10.1-4.6,16-3.5c22,4.3,44.3,5.8,66.7,4.8c13.2-0.6,26.4-2.2,39.4-4.8c6-1.2,11.3-0.1,16.2,3.5c3.3,2.5,7.1,2.3,9.7-0.4c2.6-2.6,2.9-6.5,0.4-9.8c-5.5-7-7-14.9-5.9-23.6c1.6-12.7,1.9-25.4,0.7-38.1c-0.9-9.5-2.3-18.9-3.6-28.4c0-0.2-0.1-0.5-0.2-0.9c-2.5,0-5.1,0-7.6,0c-6,0-12,0-17.9,0c-2.8,0-4.3-1-4.3-3.1c0-2,1.4-3.2,4.2-3.2c8.6,0,17.3,0,25.9,0c2.8,0,5.1-1,6.5-3.5c1-1.8,0.9-3.6,0.1-5.4c-1.4-3.5-1.4-3.5-5.2-3.5c-3.1,0-6.1,0-9.2,0c-2.3,0-3.7-1.2-3.7-3.1c0-1.9,1.4-3.1,3.7-3.1c3.9,0,7.8-0.1,11.7,0c1.2,0,1.8-0.3,2-1.5c0.1-0.7,0.5-1.3,0.7-2c1.7-4.3-0.9-8.6-5.6-9c-0.5,0-0.9,0-1.4,0c-46.9,0-93.8,0-140.7,0.1c-1.7,0-3.6,0.6-5.1,1.5c-2.4,1.5-3.1,4.2-2.1,6.8c1.4,4.1,1.4,4.1,5.8,4.1c1.9,0,3.9,0,5.8,0c2.2,0,3.5,1.2,3.5,3.1c0,1.8-1.3,3.1-3.5,3.1c-3,0-6,0-9,0c-1,0-1.5,0.3-1.7,1.3c-0.1,0.8-0.5,1.5-0.8,2.2c-1.7,4.3,0.9,8.5,5.6,9c0.7,0.1,1.4,0,2.1,0c33.1,0,66.1,0,99.2,0c3.2,0,4.7,1,4.7,3.1c0,2.1-1.5,3.1-4.6,3.1c-32.6,0-65.2,0-97.9,0c-0.7,0-1.4,0-2.4,0c-0.9,6.2-1.9,12.4-2.6,18.5c-1.5,12.2-1.7,24.4-1.2,36.6c0,0.9,0,2-0.4,2.8c-0.6,1.3-1.9,1.7-3.3,1.4c-1.7-0.4-2.4-1.7-2.4-3.3c-0.1-5-0.3-10-0.3-15c0.2-13.6,1.5-27.1,4.1-40.5c0.2-1.2,0-1.8-1.1-2.5c-5.7-3.4-7.7-9.4-5.1-15.5c1.2-3,1.2-5.9,0-8.9c-2.9-7.1,0.5-14.3,7.7-16.7c0.8-0.3,1.7-0.8,2-1.5c3.7-10.6,11.4-16.1,22.1-17.8c5.5-0.9,11.2-1,16.6-2.3c5.9-1.4,11.6-3.6,17.3-5.8c6.7-2.6,13.2-5.7,20.4-7c7.2-1.3,14.1-0.6,20.6,2.9c1.5,0.8,2.5,1.9,2,3.8c-0.5,2.1-2.6,2.9-4.8,1.8c-4.1-2.1-8.4-3-13-2.7c-5.5,0.4-10.7,2.1-15.8,4.1c-6.6,2.6-13,5.7-19.7,7.7c-5.7,1.7-11.7,2.1-17.6,2.9c-4.6,0.6-9.3,1.3-13.4,3.6C37,33.8,34.4,37,32.7,41.3z"/><path d="M123.8,124.4c3.6,2.1,6.8,4,10.3,6c0.9-1.2,2-2.6,3.1-4c1.5-1.9,3.3-2.3,4.9-1.1c1.5,1.2,1.6,3,0.1,4.8c-1.8,2.4-3.7,4.7-5.5,7c-3.6,4.5-8.4,7.1-14.5,8c0.9,0.7,1.5,1.3,2.2,1.8c1.9,1.6,2.1,3.3,0.4,5.2c-3.6,4.3-8.3,6.8-14.2,7.7c0.8,0.6,1.3,1.1,1.9,1.6c2.4,1.9,2.5,3.5,0.5,5.7c-7.3,8.4-19.9,10-29.1,3.5c-1.2-0.8-2.3-1.7-3.5-2.6c-3.6,3.3-7.5,5.6-12.2,6.6c-5.9,1.3-11.6,0.5-17-2.2c-2-1-2.8-2.7-2-4.4c0.9-1.9,2.5-2.2,4.8-1.2c7.5,3.6,15.3,2.6,21.4-2.8c-1.1-1-2.3-1.9-3.3-2.9c-8-7.2-9.4-19.5-3.3-28.4c2-3,3.4-3.2,6.2-1c0.5,0.3,0.9,0.7,1.5,1.1c0.2-2.4,0.1-4.8,0.7-6.9c0.8-2.8,2-5.6,3.5-8.1c1.5-2.6,3.2-2.8,5.6-0.9c0.6,0.4,1.1,0.9,1.8,1.4c0.1-1.9,0.1-3.6,0.3-5.3c0.3-3.6,1.6-6.8,3.7-9.7c2-2.8,4.2-5.5,6.3-8.2c1.3-1.7,3.2-1.9,4.6-0.8c1.4,1.1,1.5,3,0.3,4.7c-1.1,1.5-2.3,3-3.3,4.3c2.8,2.9,5.4,5.6,8.1,8.4c2.7-5,6.9-8.7,12.6-10.5c2.2-0.7,4.4-1.2,6.6-1.8c2.2-0.6,3.7,0.3,4.2,2.5c1.9,8.1-0.2,15.1-6.1,21C124.8,123.7,124.2,124.1,123.8,124.4z M96.6,148.8c6.4,6.2,16,6.8,21.4,1.4C112.3,144.1,102.7,143.4,96.6,148.8z M73,138.5c-4,6.6-0.8,16.8,6.4,20.4C83.3,152.3,80.4,143.3,73,138.5z M111.9,123c8.7-1.4,14.7-8.6,13.8-16.4C117,107.9,110.2,115.9,111.9,123z M84.5,123.8c-4,6.6-0.6,17.3,6.5,20.4C94.6,137.1,92,128.7,84.5,123.8z M96,109.1c-3.8,7.3-0.8,16.6,6.5,20.4C106.4,123,103.5,113.7,96,109.1z M85,163.5c6.6,6.1,16.3,6.7,21.4,1.4C101,158.8,91.1,158.1,85,163.5z M129.7,135.5c-6.6-6.2-16.3-6.8-21.4-1.4C113.7,140.2,123.4,140.9,129.7,135.5z M103.9,138.9c-1.8-1.4-3.4-2.6-5.1-4c0,1.9,0,3.5,0,5.2C100.5,139.7,102,139.4,103.9,138.9zM92.3,153.6c-1.9-1.5-3.4-2.6-5-3.9c0,1.9,0,3.5,0,5.2C88.9,154.4,90.4,154.1,92.3,153.6z"/><path d="M73.2,66.3c-7.6,0-15.2,0-22.8,0c-2.1,0-3.4-1-3.7-2.7c-0.3-1.9,1.2-3.5,3.5-3.5c3.6,0,7.1,0,10.7,0c11.6,0,23.1,0,34.7,0c1,0,2.3,0.2,2.9,0.8c0.7,0.8,1.1,2.2,1,3.2c-0.2,1.6-1.6,2.2-3.2,2.2c-5.3,0-10.7,0-16,0C77.9,66.3,75.5,66.3,73.2,66.3z"/><path d="M121.3,66.3c-3.9,0-7.8,0-11.7,0c-2.3,0-3.7-1.2-3.7-3.1c0-1.9,1.4-3.1,3.7-3.1c7.9,0,15.9,0,23.8,0c2.3,0,3.7,1.2,3.7,3.1c0,1.9-1.4,3.1-3.7,3.1C129.4,66.3,125.4,66.3,121.3,66.3z"/><path d="M149.5,66.3c-1.7-0.1-3.1-1.5-3-3.2c0.1-1.7,1.5-3.1,3.2-3c1.7,0.1,3.1,1.5,3,3.2C152.6,64.9,151.2,66.3,149.5,66.3z"/></g></svg>
                             Harina italiana tipo 00
                         </li>
                         <li>
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2v10l4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <!-- Icono Tomate -->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve"><g><path d="M92,8c3.8,0,7.5,0,11.3,0c5.2,2.1,7.1,6.1,6.9,11.5c-0.1,3,0,6.1,0,9.1c0,0.6,0.1,1.2,0.1,2c4.4-1.7,8.8-2.6,13.3-2.5c11.1,0.1,20.9,4,30,10.1c1.1,0.8,1.6,2.6,2.4,3.9c0.4,0.6,0.6,1.4,1.1,1.8c2.9,2.5,6,4.7,8.8,7.2c25.5,23,33.8,59.1,20,89.8c-13.2,29.4-37,45.6-68.1,51.6c-3.6,0.7-7.3,1-10.9,1.5c-4,0-8,0-12,0c-3.5-0.5-7-0.8-10.4-1.4c-24.2-4.2-44.3-15.4-59.2-35.1c-13.1-17.3-18.4-37-15.3-58.6c2.8-19.3,12-35.3,26.3-48.4c1.7-1.6,3.8-2.9,5.8-4.4c-1-4-0.2-5.9,3.9-8.1c8.8-4.8,18.2-7.1,28.2-7c3.6,0,7.2,0.4,11,0.7c0-4,0.1-8.1,0-12.1C85,14.2,86.8,10.1,92,8z M68.1,48.8c-0.6,0-1.3-0.1-1.9,0c-5.6,1-11.2,2.2-16.8,3.1c-4.4,0.7-7.8,2.7-10.9,5.9c-18.1,18.7-26.1,40.7-20.9,66.5c4.4,22.1,17.5,38.4,36.5,49.9c18.8,11.4,39.3,15.1,60.9,11.7c22.6-3.5,41.4-13.9,55.4-32.2c12.7-16.7,17.6-35.5,13.9-56.2c-3.6-20.2-14.6-35.8-31-47.8c-0.5-0.4-1.2-0.7-1.8-0.7c-4.3-0.2-8.7-0.3-13-0.3c-2.4,0-4.9,0.4-7.4,0.6c0.2,0.4,0.3,0.5,0.3,0.6c0.7,0.5,1.3,1,2,1.5c6.6,5.2,11.1,11.7,12.5,20.2c0.5,3.2-0.4,5.5-2.8,6.9c-2.4,1.3-4.7,0.8-7.3-1.3c-2.4-1.9-4.9-3.8-7.5-5.3c-4.7-2.7-9.9-3.9-15.3-4.3c-0.5,4.5-0.8,8.9-1.5,13.3c-1.6,9.4-4.9,18.1-10.3,25.9c-2.8,3.9-7.7,3.7-10.2-0.4c-0.5-0.8-0.9-1.6-1.2-2.4c-3.1-7.6-3.9-15.7-4.4-23.8c-0.3-4.3-0.3-8.7-0.5-13.1c-0.4,0-0.6-0.1-0.9-0.1c-0.5,0-1,0-1.4,0.1c-4.2,0.4-8.2,1.9-11.7,4.1c-4,2.4-7.7,5.2-11.5,7.9c-2.6,1.8-5.3,2-7.5,0.3c-2.3-1.7-2.9-4.4-1.6-7.3c0.7-1.5,1.5-3.1,2.3-4.5C56.5,60.3,61.7,54.2,68.1,48.8z M95.9,101.3c0.2,0,0.5,0,0.7,0c0.6-1,1.3-2,1.9-3.1c5.2-9.7,7.4-20.1,7.4-31.1c0-4.3,2.4-6.7,6.7-6.4c8.8,0.4,16.8,3,24.1,8.1c0.5,0.3,0.9,0.6,1.4,1c0.1-0.1,0.3-0.2,0.4-0.3c-0.7-1.6-1.4-3.2-2.2-4.6c-2.7-4.7-6.7-8.1-11.2-10.9c-2.3-1.4-3.3-3.5-2.8-6.2c0.5-2.6,2.2-4.2,4.7-4.6c3.4-0.6,6.8-1.1,10.2-1.4c2.7-0.3,5.4-0.3,8-0.4c-5.5-3.3-11.3-5.4-17.6-6.1c-5.6-0.6-10.9,0.2-16.1,2.4c-4.1,1.7-8-1-8.1-5.4c0-1.5,0-2.9,0-4.4c0-3.3,0-6.7,0-10c0-2.3-0.8-3-3.1-3c-1.5,0-3,0-4.5,0c-2.8,0-3.5,0.6-3.5,3.5c0,4.6,0,9.2,0,13.8c0,5.1-2.9,7.5-7.8,6.5c-6.4-1.2-12.9-1.3-19.3-0.2c-3.1,0.6-6.2,1.5-9.3,2.3c1.4,0.4,2.8,0.4,4.1,0.4c4.4-0.1,8.7,0.3,12.9,1.6c2.4,0.8,3.9,2.4,4.3,4.9c0.3,2.4-0.7,4.2-2.6,5.6c-1.2,0.9-2.4,1.7-3.5,2.6c-4.8,3.9-8.7,8.6-12,14.3c3.1-1.9,6-3.7,8.9-5.4c5.2-2.9,10.7-4.8,16.7-5c5-0.1,7.6,2.3,7.7,7.4c0.1,7.7,0.7,15.5,1.4,23.2C93.9,94.2,95.1,97.7,95.9,101.3z"/><path d="M23.3,115.3c0-2.2,1.3-3.7,3.1-3.8c2-0.2,3.3,1,3.8,3c0.7,2.7,1.4,5.4,2.3,8c0.5,1.4,1.4,2.7,2,4.1c0.7,1.7,0.1,3.5-1.4,4.4c-1.5,0.9-3.4,0.6-4.4-0.8C25.7,125.5,24,120.4,23.3,115.3z"/><path d="M23.4,99.7c1-4.2,1.9-8.3,3.1-12.4c0.6-2.1,2.5-3,4.4-2.4c1.9,0.7,2.7,2.4,2.1,4.7c-0.8,3.6-1.6,7.2-2.3,10.8c-0.4,2.3-1.8,3.7-3.8,3.6C24.9,103.7,23.6,102.1,23.4,99.7z"/></g></svg>
                             Tomates Mutti
                         </li>
                         <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.43 2.1a2 2 0 0 1 2.62 1.57l4.83 17.16A2 2 0 0 1 17.96 23H4.04A2 2 0 0 1 2.12 20.84l4.83-17.16a2 2 0 0 1 2.62-1.57l2.86.8z"/><circle cx="10" cy="17" r="1.5"/><circle cx="14" cy="12" r="1.5"/><path d="M12.8 4.6L18 7"/></svg>
+                            <!-- Icono Mozzarella -->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve"><g><path d="M31.5,75.1c50.3,7.7,100.7,15.3,151.3,23c-0.1-1.8-0.3-3.5-0.4-5.1c-0.2-2.8,1.1-4.7,3.5-4.9c2.2-0.2,3.8,1.4,4,4.2c0.3,3.9,0.5,7.7,0.5,11.6c0,20.3,0,40.6,0,60.9c0,4.9-1.4,6-6.3,5.3c-20.6-3.2-41.2-6.3-61.9-9.4c-2.5-0.4-5-0.7-7.6-1.2c-2.7-0.5-3.9-2.1-3.5-4.8c0.6-5-2.6-9.5-7.5-10.5c-4.8-1-9.5,2-10.8,7c-1.1,4.1-2.1,4.7-6.4,4c-19.6-3-39.2-6-58.8-9c-4.8-0.7-9.7-1.4-14.5-2.2c-2.3-0.4-3.5-1.6-3.5-4c-0.1-3.6-0.1-7.2,0-10.7c0.1-2.5,1.2-3.7,3.7-4.1c2.4-0.4,3.8-1.8,3.9-3.7c0-2-1.4-3.4-3.8-3.8c-2.6-0.5-3.7-1.6-3.8-4.3c0-12.3,0-24.5,0-36.8c0-2.6,0.9-3.5,3.7-4.4c18.2-5.6,36.4-11.1,54.6-16.7c8.7-2.7,17.4-5.3,26.1-8c3.5-1.1,5-0.4,6.1,3.1c0.8,2.3,2.6,3.3,4.8,2.7c2-0.6,3-2.6,2.3-4.9c-0.9-3.3-0.1-4.9,3.2-5.9c12.1-3.7,24.2-7.4,36.4-11c1.4-0.4,3.4-0.3,4.8,0.4c13.1,6.5,22.5,16.6,29.4,29.4c1.1,2,0.4,4.1-1.4,5.1c-1.9,1.1-3.9,0.4-5.3-1.6c-3.1-4.5-6-9.1-9.5-13.4c-3.8-4.7-8.7-8.3-14-11.5c-1.4-0.8-2.7-1.1-4.3-0.6c-9.9,3.1-19.9,6.2-29.9,9.2c-1.2,0.4-1.7,0.9-1.8,2.2c-0.3,4.7-3.5,8.6-8,9.9c-4.4,1.3-9-0.1-12-3.8c-0.7-0.9-1.2-1.3-2.5-0.9C72.7,62,52.7,68,32.8,74.1c-0.4,0.1-0.9,0.4-1.3,0.5C31.5,74.8,31.5,74.9,31.5,75.1z M182.8,105.7C127.6,97.3,72.5,88.9,17.5,80.6c-0.1,0.3-0.2,0.4-0.2,0.6c0,9.5-0.1,19,0,28.5c0,0.5,0.6,1.3,1.1,1.6c4.1,2.2,6.3,5.7,6.3,10.3c0,4.5-2.3,7.9-6.2,10.1c-0.6,0.3-1,1.2-1.2,2c-0.2,1.1-0.1,2.3-0.1,3.5c23.1,3.5,46,7,68.7,10.5c0.2-0.3,0.4-0.5,0.5-0.6c3.8-7.5,10.1-11.1,17.9-10.2c7.3,0.9,12.8,6.3,14.4,14.4c0.3,1.5,1,1.6,2.2,1.8c16,2.4,32,4.9,48,7.3c4.6,0.7,9.2,1.4,13.9,2.1C182.8,143.2,182.8,124.6,182.8,105.7z"/><path d="M156.6,87.4c-6.1,0-11.3-5.1-11.3-11.3c0-6.1,5.1-11.3,11.2-11.4c6.2-0.1,11.5,5.2,11.4,11.4C167.9,82.3,162.7,87.4,156.6,87.4z M156.5,79.9c2,0,3.8-1.7,3.8-3.7c0-2-1.7-3.7-3.7-3.8c-2.1,0-3.7,1.6-3.8,3.7C152.8,78.1,154.5,79.9,156.5,79.9z"/><path d="M152.5,56.5c-2.1,0-3.7-1.7-3.6-3.8c0.1-2,1.8-3.7,3.8-3.7c2,0.1,3.7,1.9,3.7,3.9C156.3,54.9,154.6,56.5,152.5,56.5z"/><path d="M122.4,71.6c0,2.1-1.5,3.7-3.7,3.8c-2.1,0-3.8-1.6-3.8-3.6c0-2,1.7-3.8,3.7-3.8C120.7,67.8,122.4,69.5,122.4,71.6z"/><path d="M133.9,57.2c0,2.1-1.6,3.8-3.6,3.8c-2,0.1-3.8-1.6-3.8-3.7c-0.1-2,1.6-3.8,3.7-3.8C132.2,53.5,133.9,55.1,133.9,57.2z"/><path d="M81.2,76.1c-2,0-3.8-1.7-3.8-3.7c0-2,1.7-3.7,3.7-3.8c2.1,0,3.7,1.6,3.8,3.7C84.9,74.4,83.3,76.1,81.2,76.1z"/><path d="M187.1,77.1c0,2-1.8,3.7-3.8,3.7c-2,0-3.7-1.7-3.6-3.8c0-2.1,1.6-3.7,3.7-3.7C185.5,73.4,187.2,75.1,187.1,77.1z"/><path d="M133.9,82.9c-2,0-3.7-1.6-3.8-3.7c0-2.1,1.6-3.7,3.7-3.8c2.1,0,3.8,1.6,3.8,3.7C137.6,81.2,135.9,82.9,133.9,82.9z"/><path d="M73.6,95c6.2,0,11.3,5,11.4,11.2c0.1,6.2-5.1,11.5-11.3,11.5c-6.2,0-11.3-5.1-11.3-11.3C62.4,100.1,67.4,95,73.6,95z M77.4,106.4c0.1-2.1-1.6-3.8-3.6-3.9c-2-0.1-3.8,1.6-3.9,3.6c-0.1,2,1.6,3.8,3.7,3.8C75.6,110,77.3,108.5,77.4,106.4z"/><path d="M43.4,132.6c-6.2,0-11.3-5.1-11.2-11.3c0-6.2,5.1-11.2,11.3-11.3c6.3,0,11.5,5.2,11.4,11.4C54.7,127.7,49.6,132.7,43.4,132.6z M47.2,121.4c0-2.1-1.6-3.7-3.7-3.7c-2.1,0-3.8,1.6-3.8,3.7c0,2,1.7,3.8,3.7,3.8C45.5,125.1,47.2,123.4,47.2,121.4z"/><path d="M126.4,106.3c6.2,0,11.3,5,11.3,11.2c0,6.3-5.1,11.4-11.3,11.4c-6.2,0-11.3-5.1-11.3-11.3C115.1,111.4,120.2,106.3,126.4,106.3z M130.2,117.7c0.1-2-1.6-3.8-3.7-3.9c-2-0.1-3.8,1.6-3.8,3.7c-0.1,2.1,1.5,3.8,3.6,3.8C128.4,121.3,130.1,119.7,130.2,117.7z"/><path d="M164.1,151.5c-6.2,0-11.3-5-11.3-11.2c0-6.2,5-11.3,11.2-11.3c6.3,0,11.4,5,11.4,11.3C175.4,146.5,170.3,151.5,164.1,151.5z M164.2,144c2,0,3.7-1.8,3.7-3.8c0-2-1.7-3.7-3.8-3.7c-2.1,0-3.7,1.6-3.7,3.7C160.4,142.3,162.1,144,164.2,144z"/><path d="M39.6,97.9c0.1,2-1.6,3.8-3.6,3.9c-2,0.1-3.8-1.6-3.8-3.7c-0.1-2.1,1.5-3.8,3.6-3.9C37.8,94.2,39.5,95.9,39.6,97.9z"/><path d="M88.5,131.9c-2.1,0-3.8-1.7-3.7-3.8c0-2,1.8-3.7,3.8-3.7c2.1,0,3.7,1.7,3.7,3.8C92.3,130.3,90.6,131.9,88.5,131.9z"/><path d="M133.8,139.6c2.1,0,3.8,1.6,3.8,3.7c0,2-1.7,3.8-3.7,3.8c-2,0-3.8-1.7-3.8-3.7C130,141.2,131.7,139.6,133.8,139.6z"/><path d="M73.4,131.9c0,2.1-1.6,3.7-3.7,3.7c-2.1,0-3.8-1.7-3.8-3.7c0-2,1.7-3.7,3.8-3.7C71.8,128.2,73.5,129.9,73.4,131.9z"/><path d="M103.4,109.3c-2.1-0.1-3.6-1.9-3.5-4c0.1-2.1,1.8-3.6,3.9-3.5c2.1,0.1,3.7,1.9,3.5,3.9C107.3,107.8,105.4,109.5,103.4,109.3z"/><path d="M152.8,113.2c2.1,0.1,3.7,1.8,3.6,3.8c-0.1,2-1.9,3.7-3.9,3.6c-2.1-0.1-3.7-1.8-3.6-3.9C149,114.7,150.7,113.1,152.8,113.2z"/></g></svg>
                             Mozzarella fior di latte o de búfala
                         </li>
                         <li>
-                            <svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0011 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 11-14 0c0-1.1.2-2.2.6-3a7 7 0 013 1.5z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <!-- Icono Fuego -->
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve"><g><path d="M190.4,391c-3.3-0.5-6.6-1-9.9-1.5c-31.9-4.5-59.3-18.2-82-40.9c-22.1-22.1-36-48.8-40.1-79.9c-4.4-32.9-1.1-65,12.4-95.6c5.9-13.5,14.6-25,26.7-33.9c7.2-5.4,14-2.2,15.5,6.1c2.8,15.2,8.1,29.5,18.7,41.3c5.5,6.1,12.1,10.7,20.4,12.3c0.6-12.1,1.2-24,1.8-35.9c2.3-46.4,18.4-87.4,49.1-122.5c9.3-10.6,19.4-20.3,30.7-28.8c3.1-2.3,6.2-3.8,10-1.9c3.5,1.8,4.5,5,4.5,8.8c0.2,21.8,7.4,41.6,19.3,59.4c12,18,25.1,35.3,37.4,53c17.2,24.7,30.2,51.4,35.5,81.3c4.5,25.7,5.1,51.2-2.6,76.4c-7.3,23.6-19.7,44.2-37.4,61.4c-15.9,15.4-34.2,27-55.4,33.4c-10.1,3.1-20.6,4.5-30.9,6.7c-1.3,0.3-2.7,0.5-4,0.7C203.3,391,196.8,391,190.4,391z M251.7,364c0.8-0.3,1.5-0.7,2.3-1c15.2-7.1,28.5-16.8,39.8-29.1c17.7-19.2,28.7-41.7,32.4-67.5c3.3-22.7,0.6-45.1-5.5-67.1c-5.9-21.4-16.4-40.8-29-58.9c-11.7-16.8-24.1-33.2-35.7-50.1c-10.7-15.7-18.6-32.8-22-51.8c-0.3-1.7-0.7-3.5-1.1-5.4c-0.7,0.5-1,0.7-1.3,0.9c-39.2,35.9-60.3,80.2-62.2,133.4c-0.5,13.2-0.8,26.3-1.2,39.5c-0.2,6.2-3.2,9.1-9.4,9c-12.6-0.2-23.6-4.6-33.1-12.7c-12.5-10.7-19.7-24.7-24.9-40c-0.5-1.3-0.9-2.6-1.4-4c-0.5-0.1-0.9-0.2-1.4-0.3c-4,6.5-8.6,12.8-12,19.6c-8.7,17.5-12.2,36.5-12.9,55.9c-0.4,11-0.6,22.2,1,33.1c5.3,34.2,22.4,61.8,50.1,82.7c7.5,5.7,15.6,10.5,24.6,14.2c-0.2-0.6-0.2-0.9-0.3-1.1c-15.2-23-15.3-47.4-6.2-72.4c2.6-7.2,7-13.5,13.6-17.8c5.2-3.4,11-1,12.6,4.9c0.5,1.9,0.7,3.9,1.5,5.8c1.4,3.7,3.1,7.2,5,11.5c0.8-1.3,1-1.4,1-1.6c0.1-1.4,0.2-2.7,0.2-4.1c1-28.2,11.8-51.7,33.5-70.1c2.9-2.5,6-4.2,9.8-2.6c4.1,1.7,5,5.2,5.1,9.2c0.2,7.4,2.3,14.2,6.2,20.4c5.2,8.3,10.7,16.5,16.1,24.6c9.4,14,15.1,29.3,16.6,46.1C265,333.9,261.1,349.5,251.7,364z M157.2,296.5c-0.5,1.1-0.9,2-1.2,2.9c-4.1,13.2-5.4,26.6-1.5,40c7.3,25.5,32.6,40.7,56.9,34.3c23.9-6.3,38.5-29.9,36.4-54.1c-1.2-14.2-5.7-27.2-13.5-39c-8.4-12.8-18.5-24.7-23.2-40c-0.7,0.6-1.1,0.9-1.4,1.3c-8.6,10.7-14.6,22.6-16.2,36.3c-1,8.9-1.3,17.8-1.7,26.8c-0.3,7.6-4,10.8-11.6,9.8c-7-1-12.7-4.3-17.1-9.7C161,302.3,159.3,299.5,157.2,296.5z"/></g></svg>
                             Cocción rápida a más de 450 °C
                         </li>
                     </ul>
@@ -555,14 +675,13 @@
                 <h3>Opiniones reales desde Google Maps y redes sociales</h3>
                 <br>
                 
-                <!-- Carrusel wrapper -->
                 <div style="position: relative; padding: 0 50px;">
                     <button class="review-nav review-prev" onclick="slideReview(-1)"><i class="fas fa-chevron-left"></i></button>
                     <button class="review-nav review-next" onclick="slideReview(1)"><i class="fas fa-chevron-right"></i></button>
                     
                     <div style="overflow: hidden;">
                         <div class="reviews-track" id="reviewsTrack">
-                            <!-- Slide 1 -->
+                            <!-- SLIDE 1 -->
                             <div class="review-slide">
                                 <div class="review-card">
                                     <div class="review-stars">★★★★★</div>
@@ -570,20 +689,12 @@
                                     <p class="review-author">— Camila A., Google Reviews</p>
                                 </div>
                             </div>
-                            <!-- Slide 2 -->
+                            <!-- SLIDE 2 -->
                             <div class="review-slide">
                                 <div class="review-card">
                                     <div class="review-stars">★★★★★</div>
                                     <p class="review-text">"Sabor increíble, servicio rápido. Ya es mi favorita. Recomendadísimo para ir en familia."</p>
                                     <p class="review-author">— Juan P., Instagram</p>
-                                </div>
-                            </div>
-                            <!-- Slide 3 -->
-                            <div class="review-slide">
-                                <div class="review-card">
-                                    <div class="review-stars">★★★★★</div>
-                                    <p class="review-text">"La masa es de otro planeta, fermentación perfecta y ligera. Sin duda la mejor de Santiago."</p>
-                                    <p class="review-author">— Roberto M., TripAdvisor</p>
                                 </div>
                             </div>
                         </div>
@@ -678,7 +789,7 @@
             </div>
         </section>
 
-        <!-- FORMULARIO SPLIT -->
+        <!-- FORMULARIO SPLIT VIEW -->
         <section id="contacto" class="section-contact">
             <div class="contact-grid">
                 <div class="contact-text-col">
@@ -754,7 +865,7 @@
             btns.forEach(btn => {
                 if(btn.textContent.toLowerCase() === category || (category === 'all' && btn.textContent === 'TODAS')) {
                     btn.classList.add('active');
-                } else if (category === btn.textContent.toLowerCase().split(' ')[0]) { // Simple match for single word categories
+                } else if (category === btn.textContent.toLowerCase().split(' ')[0]) { // Simple match
                      btn.classList.add('active');
                 } else if (category === 'iconicas' && btn.textContent.includes('ICÓNICAS')) {
                      btn.classList.add('active');
@@ -765,7 +876,7 @@
 
             items.forEach(item => {
                 if (category === 'all' || item.getAttribute('data-category') === category) {
-                    item.style.display = 'flex'; /* Flex needed for updated card style */
+                    item.style.display = 'flex';
                 } else {
                     item.style.display = 'none';
                 }
@@ -804,6 +915,12 @@
         scrollTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // Mobile Menu Logic
+        function toggleMenu() {
+            const menu = document.getElementById('mobileNav');
+            menu.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
