@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- FontAwesome para iconos de redes sociales (Footer) -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -29,7 +29,7 @@
             
             --font-main: "Trueno", "Montserrat", sans-serif;
             
-            --container-width: 1200px;
+            --container-width: 1400px; 
             --section-padding: 80px 20px;
         }
 
@@ -52,7 +52,6 @@
             color: var(--domani-black);
         }
 
-        /* H1 Estilizado Hero */
         h1 { 
             font-weight: 900; 
             font-size: clamp(2.5rem, 5vw, 4.5rem); 
@@ -143,13 +142,6 @@
         }
         .btn-primary:hover { background-color: var(--domani-black); border-color: var(--domani-black); }
 
-        .btn-outline {
-            background-color: transparent;
-            border-color: #fff;
-            color: #fff;
-        }
-        .btn-outline:hover { background-color: #fff; color: var(--domani-black); }
-
         .btn-outline-red {
             background-color: transparent;
             border-color: #fff;
@@ -166,32 +158,78 @@
         }
         .btn-black:hover { background-color: var(--domani-red); }
 
+        .btn-border-thick {
+            background-color: transparent;
+            border: 3px solid #FFFFFF;
+            color: #FFFFFF;
+            font-weight: 800;
+            padding: 12px 30px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        .btn-border-thick:hover {
+            background-color: #FFFFFF;
+            color: var(--domani-black);
+        }
+
         /* --- HEADER --- */
         header {
             background-color: var(--domani-black);
             color: #fff;
-            padding: 10px 0;
+            height: 90px; 
             position: sticky;
             top: 0;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        .header-inner { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            width: 100%;
+        }
         
         .logo img {
-            height: 45px; /* Ajuste tamaño logo */
+            height: 50px;
             width: auto;
+            display: block;
         }
 
-        .nav-desktop ul { display: flex; gap: 30px; }
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-desktop ul { 
+            display: flex; 
+            gap: 20px; 
+            margin: 0; 
+            padding: 0; 
+            list-style: none;
+        }
+        
         .nav-desktop a { 
-            font-weight: 600; 
-            font-size: 0.8rem; 
+            font-weight: 700; 
+            font-size: 0.75rem; 
             text-transform: uppercase; 
-            letter-spacing: 1px; 
+            letter-spacing: 0.5px; 
             color: #FFFFFF; 
+            display: flex;
+            align-items: center;
+            height: 100%; 
+            white-space: nowrap;
         }
         .nav-desktop a:hover { color: var(--domani-red); }
-        @media (max-width: 768px) { .nav-desktop { display: none; } }
+        
+        /* Mobile Menu Button (Simple) */
+        .mobile-menu-btn { display: none; color: #fff; font-size: 1.5rem; background: none; border: none; cursor: pointer; }
+
+        @media (max-width: 1100px) { 
+            .nav-desktop { display: none; } 
+            .mobile-menu-btn { display: block; }
+        }
 
         /* --- HERO --- */
         .hero {
@@ -206,17 +244,11 @@
         }
         .hero-content { max-width: 900px; color: #fff; }
         .hero h1 { margin-bottom: 30px; }
-        
-        .hero-subtitle-group {
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
-            font-weight: 500;
-            margin-bottom: 40px;
-            line-height: 1.4;
-        }
+        .hero-subtitle-group { font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 500; margin-bottom: 40px; line-height: 1.4; }
         .hero-subtitle-group p { color: #fff; margin: 0; }
         .hero-actions { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
 
-        /* --- CINTILLO (Marquee) --- */
+        /* --- CINTILLO --- */
         .marquee-container {
             background-color: #000;
             height: 35px;
@@ -225,244 +257,86 @@
             align-items: center;
             width: 100%;
         }
-        .marquee-content {
-            display: flex;
-            white-space: nowrap;
-            animation: scroll 25s linear infinite;
-        }
-        .marquee-item {
-            color: #fff;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-right: 60px;
-            font-size: 0.95rem;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        .marquee-content { display: flex; white-space: nowrap; animation: scroll 25s linear infinite; }
+        .marquee-item { color: #fff; font-weight: 800; text-transform: uppercase; margin-right: 60px; font-size: 0.95rem; letter-spacing: 2px; display: flex; align-items: center; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- QUE HACE ÚNICA --- */
+        /* --- SECCIONES GENERALES --- */
         .section-ingredients { padding: var(--section-padding); background-color: #fff; }
-        .ingredients-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+        .ingredients-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .ingredients-text { text-align: left; }
-        
-        /* Alineación a la izquierda para H2 y H3 en esta sección */
-        .ingredients-text h2 {
-            text-align: left;
-            margin-left: 0;
-        }
-        
-        .ingredients-text h3 {
-            text-align: left;
-            margin-left: 0;
-            margin-right: 0;
-            max-width: 100%;
-        }
-
-        .ingredients-list li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        .ingredients-list svg {
-            width: 30px;
-            height: 30px;
-            margin-right: 15px;
-            stroke: var(--domani-black);
-            stroke-width: 1.5;
-            flex-shrink: 0;
-            fill: none;
-        }
+        .ingredients-text h2 { text-align: left; margin-left: 0; }
+        .ingredients-text h3 { text-align: left; margin-left: 0; margin-right: 0; max-width: 100%; }
+        .ingredients-list li { display: flex; align-items: center; margin-bottom: 20px; font-weight: 600; font-size: 1.1rem; }
+        .ingredients-list svg { width: 30px; height: 30px; margin-right: 15px; stroke: var(--domani-black); stroke-width: 1.5; flex-shrink: 0; fill: none; }
         .ingredients-img { width: 100%; height: 500px; object-fit: cover; }
-        
-        @media (max-width: 768px) {
-            .ingredients-grid { grid-template-columns: 1fr; gap: 40px; }
-            .ingredients-img { height: 300px; order: -1; }
-        }
+        @media (max-width: 768px) { .ingredients-grid { grid-template-columns: 1fr; gap: 40px; } .ingredients-img { height: 300px; order: -1; } }
 
-        /* --- MENU SECTION --- */
         .section-menu { padding: var(--section-padding); background-color: var(--grey-light); position: relative; }
-        
         .tabs-wrapper { display: flex; justify-content: center; margin-bottom: 50px; }
-        .tabs-container {
-            background-color: var(--tab-bg);
-            padding: 5px;
-            border-radius: 8px;
-            display: inline-flex;
-            gap: 5px;
-        }
-        .tab-btn {
-            padding: 10px 40px;
-            border: none;
-            background: transparent;
-            color: #666;
-            cursor: pointer;
-            font-weight: 600;
-            text-transform: capitalize;
-            font-family: var(--font-main);
-            font-size: 1rem;
-            border-radius: 6px;
-            transition: 0.3s;
-        }
+        .tabs-container { background-color: var(--tab-bg); padding: 5px; border-radius: 8px; display: inline-flex; gap: 5px; }
+        .tab-btn { padding: 10px 40px; border: none; background: transparent; color: #666; cursor: pointer; font-weight: 600; font-family: var(--font-main); font-size: 1rem; border-radius: 6px; transition: 0.3s; }
         .tab-btn.active { background-color: #fff; color: var(--domani-black); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .tab-btn:hover:not(.active) { color: var(--domani-black); }
 
         .carousel-wrapper { position: relative; max-width: 1200px; margin: 0 auto; }
-        .carousel-container {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding-bottom: 20px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            scroll-behavior: smooth;
-        }
+        .carousel-container { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 20px; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
         .carousel-container::-webkit-scrollbar { display: none; }
-        
-        .nav-arrow {
-            position: absolute;
-            top: 40%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
+        .nav-arrow { position: absolute; top: 40%; transform: translateY(-50%); width: 50px; height: 50px; background: #fff; border: 1px solid #ddd; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; }
         .nav-arrow:hover { background: var(--domani-red); border-color: var(--domani-red); color: #fff; }
         .nav-prev { left: -25px; }
         .nav-next { right: -25px; }
         @media(max-width: 768px) { .nav-arrow { display: none; } }
 
-        .pizza-card {
-            min-width: 300px;
-            background: #fff;
-            scroll-snap-align: start;
-            border-radius: 0; 
-            border: 1px solid #eee;
-        }
+        .pizza-card { min-width: 300px; background: #fff; scroll-snap-align: start; border-radius: 0; border: 1px solid #eee; }
         .pizza-img { height: 250px; width: 100%; object-fit: cover; }
         .pizza-details { padding: 25px; text-align: center; }
         .pizza-details h4 { font-weight: 800; text-transform: uppercase; font-size: 1.2rem; }
         .pizza-details p { font-size: 0.9rem; color: #666; }
-
         .menu-footer-cta { text-align: center; margin-top: 50px; }
 
-        /* --- PROCESO --- */
-        .section-process-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background-color: var(--domani-black);
-            color: #fff;
-            min-height: 600px;
-        }
-        .process-content {
-            padding: 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        .section-process-split { display: grid; grid-template-columns: 1fr 1fr; background-color: var(--domani-black); color: #fff; min-height: 600px; }
+        .process-content { padding: 80px; display: flex; flex-direction: column; justify-content: center; }
         .process-content h2 { color: #fff; text-align: left; }
         .process-content h3 { color: #fff; text-align: left; margin-left: 0; margin-bottom: 20px; font-weight: 500; }
         .process-content p { color: #fff; text-align: left; font-weight: 400; opacity: 0.9; }
-        .process-image-col {
-            background: url('https://images.unsplash.com/photo-1542834369-f10ebf06d3e0?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
-        }
+        .process-image-col { background: url('https://images.unsplash.com/photo-1542834369-f10ebf06d3e0?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; }
         @media (max-width: 768px) { .section-process-split { grid-template-columns: 1fr; } }
 
-        /* --- RECONOCIMIENTOS --- */
-        .section-awards { 
-            padding: 100px 20px; 
-            background-color: #000;
-            background-image: url('https://pizzeriadomani.cl/wp-content/uploads/2023/09/fondo-suelo-textura-madera-marron-3.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            text-align: center; 
-            color: #fff;
-        }
+        .section-awards { padding: 100px 20px; background-color: #000; background-image: url('https://pizzeriadomani.cl/wp-content/uploads/2023/09/fondo-suelo-textura-madera-marron-3.png'); background-size: cover; background-repeat: no-repeat; background-position: center; text-align: center; color: #fff; }
         .section-awards h2 { color: #fff; font-size: 2.2rem; margin-bottom: 10px; }
         .section-awards h2::after { background-color: var(--domani-red); width: 60px; height: 3px; margin-top: 20px; }
-        
-        /* TEXTO EN BLANCO FORZADO */
-        .awards-intro {
-            max-width: 800px;
-            margin: 0 auto 60px;
-            font-size: 1.1rem;
-            color: #FFFFFF !important; /* Blanco Puro */
-            line-height: 1.6;
-            font-weight: 500;
-        }
+        .awards-intro { max-width: 800px; margin: 0 auto 60px; font-size: 1.1rem; color: #FFFFFF !important; line-height: 1.6; font-weight: 500; }
         .awards-intro p { color: #FFFFFF !important; }
-
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .award-card {
-            background-color: var(--domani-card-bg);
-            padding: 40px 20px;
-            border-radius: 8px;
-            border: 1px solid #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: 0.3s;
-        }
+        .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .award-card { background-color: var(--domani-card-bg); padding: 40px 20px; border-radius: 8px; border: 1px solid #333; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .award-card:hover { transform: translateY(-5px); border-color: #444; }
-        
-        .award-logo-circle {
-            width: 100px;
-            height: 100px;
-            background: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            padding: 15px;
-        }
+        .award-logo-circle { width: 100px; height: 100px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; padding: 15px; }
         .award-logo-circle img { width: 100%; height: auto; object-fit: contain; }
-        
         .award-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; color: #fff; text-transform: none; }
         .award-desc { font-size: 0.9rem; color: #aaa; margin-bottom: 15px; }
         .award-year { font-weight: 700; font-size: 1rem; color: #fff; }
-
         .awards-footer { margin-top: 50px; font-weight: 600; font-size: 1.1rem; color: #fff; }
 
-        /* --- SUCURSALES --- */
+        /* Galería */
+        .gallery-section { display: grid; grid-template-columns: 1fr 1fr 1fr; height: 300px; width: 100%; overflow: hidden; }
+        .gallery-item { height: 100%; width: 100%; overflow: hidden; position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        @media (max-width: 768px) { .gallery-section { display: flex; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; height: 300px; scrollbar-width: none; } .gallery-item { min-width: 100%; scroll-snap-align: center; } }
+
+        /* Testimonios */
+        .section-reviews { padding: var(--section-padding); background-color: #f9f9f9; text-align: center; }
+        .reviews-container { max-width: 800px; margin: 0 auto; }
+        .review-card { background: #fff; padding: 40px; border: 1px solid #eee; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .review-stars { color: #FFC107; font-size: 1.2rem; margin-bottom: 15px; }
+        .review-text { font-size: 1.1rem; font-style: italic; color: #555; line-height: 1.6; margin-bottom: 20px; }
+        .review-author { font-weight: 700; color: var(--domani-black); font-size: 0.9rem; }
+
+        /* Sucursales */
         .section-branches { padding: var(--section-padding); background-color: var(--grey-light); }
         .branches-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
-        .branch-card { 
-            background: #fff; 
-            border: 1px solid #ddd;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-        }
+        .branch-card { background: #fff; border: 1px solid #ddd; padding: 0; display: flex; flex-direction: column; }
         .branch-info { padding: 30px; }
         .branch-info h4 { font-weight: 800; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 20px; }
         .info-row { display: flex; align-items: flex-start; margin-bottom: 15px; font-size: 0.9rem; }
@@ -471,73 +345,72 @@
         .branch-actions .btn { width: 100%; }
         .map-wrapper { height: 200px; background: #eee; width: 100%; }
 
-        /* --- FINAL CTA --- */
-        .section-final {
-            padding: 100px 20px;
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1920&auto=format&fit=crop') center/cover;
-            text-align: center;
-            color: #fff;
-        }
+        /* Final CTA */
+        .section-final { padding: 100px 20px; background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1920&auto=format&fit=crop') center/cover; text-align: center; color: #fff; }
         .section-final h2 { color: #fff; margin-bottom: 20px; }
-        .final-copy {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: #ddd;
-        }
-        .final-actions {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-        .slogan-final {
-            font-family: "Montserrat", sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            font-style: italic;
-            color: #fff;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        .final-copy { font-size: 1.1rem; max-width: 700px; margin: 0 auto 40px; color: #ddd; }
+        .final-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+        .slogan-final { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 1.5rem; font-style: italic; color: #fff; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* --- FORMULARIO --- */
+        /* Formulario */
         .section-contact { padding: var(--section-padding); background: #fff; }
         .form-control { width: 100%; padding: 15px; border: 1px solid #ccc; margin-bottom: 20px; font-family: inherit; }
         
-        /* --- FOOTER --- */
+        /* --- FOOTER ALINEADO --- */
         footer {
             background-color: #000;
             color: #fff;
             padding: 60px 0 20px;
         }
-        .footer-content {
+        .footer-top {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: center; /* Alineación vertical centrada */
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 20px;
             padding-bottom: 40px;
             border-bottom: 1px solid #333;
         }
         
+        /* Grupo Izquierdo (Logo + Enlaces) */
+        .footer-left-group {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
         .footer-logo-box {
-            /* Fondo rojo para el logo */
             background-color: var(--domani-red);
             padding: 10px 20px;
             display: inline-block;
+            flex-shrink: 0;
         }
         .footer-logo-box img {
             height: 40px;
             width: auto;
             display: block;
-            /* Filtro para asegurar que sea blanco si la imagen original no lo es, 
-               pero dado que es un PNG, se usa tal cual */
             filter: brightness(0) invert(1); 
         }
         
-        .footer-social-section {
+        .footer-links-inline {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .footer-link-item { 
+            color: #fff; 
+            font-weight: 700; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            transition: 0.3s; 
+        }
+        .footer-link-item:hover { color: var(--domani-red); }
+
+        /* Grupo Derecho (Redes + Newsletter) */
+        .footer-right-group {
             display: flex;
             gap: 40px;
             align-items: center;
@@ -577,36 +450,18 @@
 
         .mobile-sticky { position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; display: none; }
         .mobile-sticky .btn { width: 100%; }
-        
-        /* --- SCROLL TO TOP BUTTON --- */
-        .scroll-top-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--domani-red);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
+        .scroll-top-btn { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background-color: var(--domani-red); color: #fff; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         .scroll-top-btn.visible { opacity: 1; visibility: visible; }
         .scroll-top-btn:hover { transform: translateY(-5px); background-color: #d60515; }
 
+        @media(max-width: 1100px) { 
+            .footer-top { flex-direction: column; text-align: center; gap: 30px; }
+            .footer-left-group { justify-content: center; width: 100%; flex-direction: column; gap: 20px; }
+            .footer-right-group { width: 100%; justify-content: center; }
+        }
         @media(max-width: 768px) { 
             .mobile-sticky { display: block; }
-            .footer-content { flex-direction: column; text-align: center; }
-            .scroll-top-btn { bottom: 80px; right: 20px; } /* Ajuste para sticky btn */
+            .scroll-top-btn { bottom: 80px; right: 20px; }
         }
 
     </style>
@@ -616,15 +471,20 @@
     <header>
         <div class="container header-inner">
             <a href="https://pizzeriadomani.cl/" aria-label="Domani Home" class="logo">
-                <!-- LOGO IMAGEN UPLOADED -->
                 <img src="domani-png-min-1024x263.png" alt="Domani Pizzería">
             </a>
+            
+            <!-- Menú Visible y Centrado -->
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            
             <nav class="nav-desktop">
                 <ul>
-                    <li><a href="#delivery">Delivery</a></li>
-                    <li><a href="#">Regala Domani</a></li>
-                    <li><a href="#reservas">Reserva</a></li>
-                    <li><a href="#eventos">Eventos</a></li>
+                    <li><a href="#inicio">Pizza Napolitana</a></li>
+                    <li><a href="#pizzas-destacadas">Pizzas Destacadas</a></li>
+                    <li><a href="#reconocimientos">Reconocimientos</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#sucursales">Sucursales</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -633,7 +493,7 @@
     <main>
 
         <!-- HERO SECTION -->
-        <section class="hero">
+        <section class="hero" id="inicio">
             <div class="container hero-content">
                 <h1>
                     LA AUTÉNTICA<br>
@@ -699,7 +559,7 @@
         </section>
 
         <!-- MENU SECTION -->
-        <section class="section-menu">
+        <section id="pizzas-destacadas" class="section-menu">
             <div class="container">
                 <h2>¡Nuestras napolitanas más pedidas!</h2>
                 <h3>Cada pizza es una historia, conoce las favoritas del público.</h3>
@@ -790,8 +650,8 @@
             <div class="process-image-col"></div>
         </section>
 
-        <!-- RECONOCIMIENTOS (Textos Blancos) -->
-        <section class="section-awards">
+        <!-- RECONOCIMIENTOS -->
+        <section id="reconocimientos" class="section-awards">
             <div class="container">
                 <h2>RECONOCIDOS ENTRE LOS MEJORES</h2>
                 <div class="awards-intro">
@@ -835,6 +695,38 @@
             </div>
         </section>
 
+        <!-- NUEVA GALERÍA (3 Imágenes) -->
+        <section class="gallery-section">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Ambiente Domani">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1559969143-b2defc6419fd?q=80&w=800&auto=format&fit=crop" alt="Pizzas al horno">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="Compartiendo en Domani">
+            </div>
+        </section>
+
+        <!-- TESTIMONIOS (Recuperada) -->
+        <section id="testimonios" class="section-reviews">
+            <div class="container reviews-container">
+                <h2>Lo que dicen quienes ya la probaron</h2>
+                <h3>Opiniones reales desde Google Maps y redes sociales</h3>
+                <br>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Probé la Margherita y fue como estar en Nápoles. El borde inflado, los ingredientes y el horno... ¡todo perfecto!"</p>
+                    <p class="review-author">— Cliente Google Reviews</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Sabor increíble, servicio rápido. Ya es mi favorita. Recomendadísimo."</p>
+                    <p class="review-author">— Cliente Instagram</p>
+                </div>
+            </div>
+        </section>
+
         <!-- SUCURSALES -->
         <section id="sucursales" class="section-branches">
             <div class="container">
@@ -850,7 +742,7 @@
                             <h4>Providencia</h4>
                             <div class="info-row">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                <span>Granaderos 1328, Santiago</span>
+                                <span>Granaderos 1328, Providencia, Santiago</span>
                             </div>
                             <div class="info-row">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -870,7 +762,7 @@
                             <h4>Pedro de Valdivia</h4>
                             <div class="info-row">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                <span>Plaza P. de Valdivia 2025</span>
+                                <span>Plaza P. de Valdivia 2025, Providencia, Santiago</span>
                             </div>
                             <div class="info-row">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -890,7 +782,7 @@
                             <h4>Barrio Italia</h4>
                             <div class="info-row">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                <span>Av. Italia 758</span>
+                                <span>Av. Italia 758, Providencia, Santiago</span>
                             </div>
                             <div class="info-row">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -912,9 +804,12 @@
                 <p class="final-copy">Reserva tu mesa hoy, haz tu pedido o planifica tu próximo evento con nosotros. Llevamos la experiencia Domani hasta donde estés.</p>
                 
                 <div class="final-actions">
+                    <!-- Primary -->
                     <a href="#reservas" class="btn btn-primary" style="padding: 18px 40px;">Reservar ahora</a>
-                    <a href="#delivery" class="btn btn-outline" style="padding: 18px 40px;">Pide por delivery</a>
-                    <a href="#" class="btn btn-outline" style="padding: 18px 40px;">Regala Domani</a>
+                    
+                    <!-- Secondary Buttons (Borde Grueso Recto) -->
+                    <a href="#delivery" class="btn btn-border-thick">PIDE POR DELIVERY</a>
+                    <a href="#" class="btn btn-border-thick">REGALA DOMANI</a>
                 </div>
 
                 <div class="slogan-final">Más pizza, más fiesta</div>
@@ -925,14 +820,14 @@
         <section id="contacto" class="section-contact">
             <div class="container" style="max-width: 600px;">
                 <h2 class="text-center">¿Aún tienes dudas?</h2>
-                <h3 class="text-center">Completa el formulario y nuestro equipo Domani te contactará a la brevedad. Queremos que disfrutes la experiencia completa, desde el horno hasta tu mesa</h3>
+                <h3 class="text-center">Completa el formulario y nuestro equipo Domani te contactará a la brevedad.<br>Queremos que disfrutes la experiencia completa, desde el horno hasta tu mesa</h3>
                 <br>
                 <form>
                     <input type="text" placeholder="Nombre" class="form-control" required>
                     <input type="email" placeholder="Correo electrónico" class="form-control" required>
                     <textarea rows="4" placeholder="¿En qué podemos ayudarte?" class="form-control" required></textarea>
                     <div style="text-align: center;">
-                        <button type="submit" class="btn btn-black" style="width: 100%;">Enviar mensaje</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar mensaje</button>
                     </div>
                 </form>
             </div>
@@ -943,13 +838,23 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <!-- Logo Izquierda con imagen Uploaded -->
-                <div class="footer-logo-box">
-                    <img src="domani-png-min-1024x263.png" alt="Domani">
+            <div class="footer-top">
+                <!-- Grupo Izquierda: Logo + Links -->
+                <div class="footer-left-group">
+                    <div class="footer-logo-box">
+                        <img src="domani-png-min-1024x263.png" alt="Domani">
+                    </div>
+
+                    <div class="footer-links-inline">
+                        <a href="#" class="footer-link-item">DELIVERY</a>
+                        <a href="#" class="footer-link-item">REGALA DOMANI</a>
+                        <a href="#" class="footer-link-item">RESERVA</a>
+                        <a href="#" class="footer-link-item">EVENTOS</a>
+                    </div>
                 </div>
 
-                <div class="footer-social-section">
+                <!-- Grupo Derecha: Redes -->
+                <div class="footer-right-group">
                     <a href="#" class="social-link">
                         SÍGUENOS
                         <i class="fab fa-instagram"></i>
