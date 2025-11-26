@@ -94,6 +94,7 @@
             .ingredients-text h2::after
             { margin: 15px 0 0 0 !important; }
             
+            /* Testimonios a la DERECHA en mobile */
             .section-reviews h2, .section-reviews h3 { text-align: right !important; margin-left: auto !important; margin-right: 0 !important; }
             .section-reviews h2::after { margin: 15px 0 0 auto !important; }
         }
@@ -186,6 +187,7 @@
             display: flex; align-items: center; justify-content: center; text-align: center;
             padding: 100px 20px;
         }
+        /* FIX HERO MOBILE */
         @media (max-width: 768px) {
             .hero {
                 min-height: 80vh; 
@@ -263,8 +265,8 @@
 
         /* FIX PIZZA CARD - NO STRETCH */
         .pizza-card { 
-            width: 340px; /* Ancho fijo para evitar estiramiento en desktop */
-            flex: 0 0 auto; /* No crecer, no encoger */
+            width: 340px; 
+            flex: 0 0 auto; 
             background: #fff; scroll-snap-align: start; border-radius: 0; border: 1px solid #eee; 
             display: flex; flex-direction: column; 
         }
@@ -308,36 +310,37 @@
         .award-year { font-weight: 700; font-size: 1rem; color: #fff; }
         .awards-footer { margin-top: 50px; font-weight: 600; font-size: 1.1rem; color: #fff; }
 
-        /* GALERÍA ANIMADA (Desktop & Mobile) */
+        /* GALERÍA ANIMADA (CORREGIDA) */
         .gallery-section { 
             display: flex; 
             width: 100%; 
             overflow: hidden; 
             height: 300px;
+            background-color: #000; /* Fondo por si acaso */
         }
         
-        /* Contenedor interno ancho para animación */
+        /* Contenedor interno que se mueve */
         .gallery-track {
             display: flex;
-            width: 200%; /* 6 imágenes */
+            width: 200%; /* Ancho doble para contener 6 items (3 originales + 3 clones) */
             animation: slideGallery 20s infinite linear;
         }
         
         .gallery-item { 
-            width: 16.66%; /* 100% / 6 */
+            width: 16.666%; /* 100% / 6 items = 16.666% */
             height: 100%; 
             position: relative; 
             flex-shrink: 0;
         }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
         .gallery-item:hover img { transform: scale(1.05); }
         
         @keyframes slideGallery {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Mueve 1 set completo (3 imagenes) */
+            100% { transform: translateX(-50%); } /* Se mueve la mitad (1 set de 3 imágenes) */
         }
         
-        /* Ajuste mobile: la animación se ve bien igual, pero ajustamos velocidad si es necesario */
+        /* Ajuste animación mobile (más rápido si se desea, o igual) */
         @media (max-width: 768px) {
             .gallery-track { animation-duration: 15s; }
         }
@@ -370,7 +373,7 @@
         
         /* AJUSTE MOBILE TESTIMONIOS FIXED */
         @media(max-width: 768px) { 
-            .review-slide { padding: 0 10px; } /* PADDING REDUCIDO a 10px */
+            .review-slide { padding: 0 10px; } /* AHORA SÍ: Padding mínimo */
             .review-card { padding: 30px 20px; }
             
             .section-reviews h2, .section-reviews h3 { padding-right: 20px; } 
@@ -712,24 +715,27 @@
 
         <!-- GALERÍA -->
         <section class="gallery-section">
-            <div class="gallery-item">
-                <img src="img/galeria-01.jpg" alt="Ambiente Domani">
-            </div>
-            <div class="gallery-item">
-                <img src="img/galeria-02.jpg" alt="Pizzas al horno">
-            </div>
-            <div class="gallery-item">
-                <img src="img/galeria-03.jpg" alt="Compartiendo en Domani">
-            </div>
-            <!-- ITEMS DUPLICADOS PARA LOOP DESKTOP & MOBILE -->
-            <div class="gallery-item">
-                <img src="img/galeria-01.jpg" alt="Ambiente Domani">
-            </div>
-            <div class="gallery-item">
-                <img src="img/galeria-02.jpg" alt="Pizzas al horno">
-            </div>
-            <div class="gallery-item">
-                <img src="img/galeria-03.jpg" alt="Compartiendo en Domani">
+            <div class="gallery-track">
+                <!-- ORIGINALES -->
+                <div class="gallery-item">
+                    <img src="img/galeria-01.jpg" alt="Ambiente Domani">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/galeria-02.jpg" alt="Pizzas al horno">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/galeria-03.jpg" alt="Compartiendo en Domani">
+                </div>
+                <!-- DUPLICADOS PARA LOOP INFINITO -->
+                <div class="gallery-item">
+                    <img src="img/galeria-01.jpg" alt="Ambiente Domani">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/galeria-02.jpg" alt="Pizzas al horno">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/galeria-03.jpg" alt="Compartiendo en Domani">
+                </div>
             </div>
         </section>
 
@@ -760,14 +766,6 @@
                                     <div class="review-stars">★★★★★</div>
                                     <p class="review-text">"Sabor increíble, servicio rápido. Ya es mi favorita. Recomendadísimo para ir en familia."</p>
                                     <p class="review-author">— Juan P., Instagram</p>
-                                </div>
-                            </div>
-                            <!-- SLIDE 3 -->
-                            <div class="review-slide">
-                                <div class="review-card">
-                                    <div class="review-stars">★★★★★</div>
-                                    <p class="review-text">"La masa es de otro planeta, fermentación perfecta y ligera. Sin duda la mejor de Santiago."</p>
-                                    <p class="review-author">— Roberto M., TripAdvisor</p>
                                 </div>
                             </div>
                         </div>
