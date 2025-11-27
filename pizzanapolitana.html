@@ -1,18 +1,22 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- SEO ON-PAGE -->
     <title>Pizza Napolitana auténtica en Santiago | Domani</title>
     <meta name="description" content="Pizza napolitana auténtica en Santiago. Masa ligera, ingredientes italianos y horno napolitano. Reserva, pide con retiro o despacho. Delivery 13:30–21:30.">
     <link rel="canonical" href="https://pizzeriadomani.cl/pizza-napolitana-santiago">
+    
+    <!-- FA<!DOCTYPE html>
+VICON -->
     <link rel="icon" type="image/png" sizes="20x20" href="favicon.png">
     
-    <!-- FONTS & ICONS -->
+    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -25,7 +29,9 @@
             --bg-color: #FFFFFF;
             --grey-light: #f4f4f4;
             --tab-bg: #EAE0D5;
+            
             --font-main: "Trueno", "Montserrat", sans-serif;
+            
             --container-width: 1400px; 
             --section-padding: 80px 20px;
             --header-height: 90px; 
@@ -66,26 +72,43 @@
             content: ''; display: block; width: 80px; height: 4px; 
             background-color: var(--domani-red); margin: 15px auto 0 auto;
         }
-
+        
         /* Alineaciones Mobile Específicas */
         @media (max-width: 768px) {
-            .text-left-mobile h2, .text-left-mobile h3, .text-left-mobile p,
-            .awards-intro, .branch-info, .section-final h2,
+            .text-left-mobile h2, 
+            .text-left-mobile h3, 
+            .text-left-mobile p,
+            .awards-intro, 
+            .branch-info,
+            .section-final h2,
             .process-content h2, .process-content h3, .process-content p,
-            .section-awards h2, .section-branches h2, .section-branches h3,
+            .section-awards h2,
+            .section-branches h2, .section-branches h3,
             .section-reviews h2, .section-reviews h3, .section-reviews p
-            { text-align: left !important; margin-left: 0 !important; margin-right: auto !important; }
-            
-            .text-left-mobile h2::after, .section-final h2::after, .section-awards h2::after,
-            .process-content h2::after, .ingredients-text h2::after, .contact-text-col h2::after,
-            .section-branches h2::after, .section-reviews h2::after
+            { 
+                text-align: left !important; 
+                margin-left: 0 !important;
+                margin-right: auto !important;
+            }
+            .text-left-mobile h2::after,
+            .section-final h2::after,
+            .section-awards h2::after,
+            .process-content h2::after,
+            .ingredients-text h2::after,
+            .contact-text-col h2::after,
+            .section-branches h2::after,
+            .section-reviews h2::after
             { margin: 15px 0 0 0 !important; }
         }
+
+        .text-left h2::after, .ingredients-text h2::after, .process-content h2::after, .contact-text-col h2::after { margin: 15px 0 0 0; }
         
-        /* Alineación Izquierda Desktop por Defecto en Secciones Específicas */
-        .text-left h2::after, .ingredients-text h2::after, .process-content h2::after, .contact-text-col h2::after, .section-reviews h2::after { margin: 15px 0 0 0; }
-        
-        h3 { font-size: 1.25rem; font-weight: 500; text-transform: none; max-width: 900px; margin: 0 auto; text-align: center; color: var(--text-color); }
+        h3 { 
+            font-size: 1.25rem; font-weight: 500; text-transform: none; 
+            max-width: 900px; margin-left: auto; margin-right: auto; 
+            text-align: center; color: var(--text-color);
+        }
+
         p, li { margin-bottom: 1rem; font-size: 1rem; color: var(--text-color); font-weight: 400; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
@@ -105,7 +128,9 @@
             border-radius: 0; cursor: pointer; border: 2px solid transparent;
             font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center;
         }
-        @media (max-width: 450px) { .btn { padding: 12px 10px; font-size: 0.8rem; letter-spacing: 0.5px; width: 100%; } }
+        @media (max-width: 450px) { 
+            .btn { padding: 12px 10px; font-size: 0.8rem; letter-spacing: 0.5px; width: 100%; } 
+        }
 
         .btn-primary { background-color: var(--domani-red); color: #fff; border-color: var(--domani-red); }
         .btn-primary:hover { background-color: var(--domani-black); border-color: var(--domani-black); }
@@ -116,7 +141,10 @@
         .btn-black { background-color: var(--domani-black); color: #fff; }
         .btn-black:hover { background-color: var(--domani-red); }
 
-        .btn-border-thick { background-color: transparent; border: 3px solid #FFFFFF; color: #FFFFFF; font-weight: 800; padding: 12px 30px; font-size: 1rem; letter-spacing: 1px; }
+        .btn-border-thick {
+            background-color: transparent; border: 3px solid #FFFFFF; color: #FFFFFF;
+            font-weight: 800; padding: 12px 30px; font-size: 1rem; letter-spacing: 1px;
+        }
         .btn-border-thick:hover { background-color: #FFFFFF; color: var(--domani-black); }
 
         /* --- HEADER --- */
@@ -149,16 +177,24 @@
         .mobile-nav-overlay.active { display: flex; }
         .mobile-nav-overlay a { color: #fff; font-weight: 700; font-size: 1rem; padding: 10px; display: block; }
 
-        @media (max-width: 1100px) { .nav-desktop { display: none; } .mobile-menu-btn { display: block; } }
+        @media (max-width: 1100px) { 
+            .nav-desktop { display: none; } 
+            .mobile-menu-btn { display: block; }
+        }
 
         /* --- HERO --- */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/bg-hero-principal.jpg');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1579751626657-72bc17010498?q=80&w=1920&auto=format&fit=crop');
             background-size: cover; background-position: center; height: auto; min-height: 90vh;
             display: flex; align-items: center; justify-content: center; text-align: center;
             padding: 100px 20px;
         }
-        @media (max-width: 768px) { .hero { min-height: 80vh; padding: 70px 20px; } }
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 80vh; 
+                padding: 70px 20px; 
+            }
+        }
 
         .hero-content { max-width: 900px; color: #fff; }
         .hero h1 { margin-bottom: 30px; }
@@ -183,14 +219,19 @@
         .ingredients-img { width: 100%; height: 500px; object-fit: cover; }
         @media (max-width: 768px) { .ingredients-grid { grid-template-columns: 1fr; gap: 40px; } .ingredients-img { height: 300px; order: -1; } }
 
-        /* Menu Pizzas */
+        /* Menu */
         .section-menu { padding: var(--section-padding); background-color: var(--grey-light); position: relative; }
         .tabs-wrapper { display: flex; justify-content: center; margin-bottom: 50px; width: 100%; overflow: hidden; }
+        
         .tabs-container { 
             background-color: var(--tab-bg); padding: 0; display: inline-flex; gap: 2px; border-radius: 0; 
-            @media (max-width: 768px) { display: flex; overflow-x: auto; width: 100%; justify-content: flex-start; padding-bottom: 5px; }
+            @media (max-width: 768px) {
+                display: flex; overflow-x: auto; width: 100%; justify-content: flex-start;
+                padding-bottom: 5px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+            }
         }
         .tabs-container::-webkit-scrollbar { display: none; }
+        
         .tab-btn { 
             padding: 15px 40px; border: none; background: transparent; color: #666; cursor: pointer; 
             font-weight: 700; font-family: var(--font-main); font-size: 0.95rem; text-transform: uppercase; 
@@ -208,16 +249,25 @@
             position: absolute; top: 40%; transform: translateY(-50%); 
             width: 40px; height: 40px; background: #fff; border: 1px solid #ddd; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; color: #000 !important;
+            cursor: pointer; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
+            color: #000 !important;
         }
         .nav-arrow svg { stroke: #000 !important; } 
         .nav-arrow:hover { background: var(--domani-red); border-color: var(--domani-red); color: #fff !important; }
         .nav-arrow:hover svg { stroke: #fff !important; }
         .nav-prev { left: -10px; }
         .nav-next { right: -10px; }
-        @media(max-width: 768px) { .nav-arrow { width: 35px; height: 35px; top: 35%; } .nav-prev { left: 5px; } .nav-next { right: 5px; } }
+        @media(max-width: 768px) { 
+            .nav-arrow { width: 35px; height: 35px; top: 35%; } 
+            .nav-prev { left: 5px; } 
+            .nav-next { right: 5px; }
+        }
 
-        .pizza-card { width: 340px; flex: 0 0 auto; background: #fff; scroll-snap-align: start; border-radius: 0; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .pizza-card { 
+            width: 340px; flex: 0 0 auto; 
+            background: #fff; scroll-snap-align: start; border-radius: 0; border: 1px solid #eee; 
+            display: flex; flex-direction: column; 
+        }
         .pizza-img { height: 250px; width: 100%; object-fit: cover; }
         .pizza-details { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; }
         .pizza-details h4 { font-weight: 800; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 10px; }
@@ -230,18 +280,25 @@
         .process-content h2 { color: #fff; text-align: left; }
         .process-content h3 { color: #fff; text-align: left; margin-left: 0; margin-bottom: 20px; font-weight: 500; }
         .process-content p { color: #fff; text-align: left; font-weight: 400; opacity: 0.9; font-size: 1.05rem; line-height: 1.7; }
-        .process-image-col { background: url('img/bg-proceso-horno.jpg') center/cover no-repeat; }
-        @media (max-width: 768px) { .section-process-split { grid-template-columns: 1fr; } .process-content { padding: 60px 20px; } .process-image-col { height: 350px; width: 100%; display: block; min-height: 300px; flex-shrink: 0; } }
+        .process-image-col { background: url('https://images.unsplash.com/photo-1542834369-f10ebf06d3e0?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat; }
+        @media (max-width: 768px) { 
+            .section-process-split { grid-template-columns: 1fr; display: flex; flex-direction: column; }
+            .process-content { padding: 60px 20px; }
+            .process-image-col { height: 350px; width: 100%; display: block; min-height: 300px; flex-shrink: 0; } 
+        }
 
         /* Awards */
-        .section-awards { padding: 100px 20px; background-color: #000; background-image: url('img/fondo-suelo-textura-madera-marron-3.png'); background-size: cover; background-repeat: no-repeat; background-position: center; text-align: center; color: #fff; }
+        .section-awards { padding: 100px 20px; background-color: #000; background-image: url('https://pizzeriadomani.cl/wp-content/uploads/2023/09/fondo-suelo-textura-madera-marron-3.png'); background-size: cover; background-repeat: no-repeat; background-position: center; text-align: center; color: #fff; }
         .section-awards h2 { color: #fff; font-size: 2.2rem; margin-bottom: 10px; }
         .section-awards h2::after { background-color: var(--domani-red); width: 60px; height: 3px; margin-top: 20px; }
         @media (max-width: 768px) { .section-awards h2 { text-align: left; } }
         .awards-intro { max-width: 800px; margin: 0 auto 60px; font-size: 1.1rem; color: #FFFFFF !important; line-height: 1.6; font-weight: 500; }
         .awards-intro p { color: #FFFFFF !important; }
         .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        @media (max-width: 768px) { .awards-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding-bottom: 20px; } .award-card { min-width: 85%; scroll-snap-align: center; } }
+        @media (max-width: 768px) {
+            .awards-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding-bottom: 20px; }
+            .award-card { min-width: 85%; scroll-snap-align: center; }
+        }
         .award-card { background-color: var(--domani-card-bg); padding: 40px 20px; border-radius: 8px; border: 1px solid #333; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .award-card:hover { transform: translateY(-5px); border-color: #444; }
         .award-logo-circle { width: 100px; height: 100px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; padding: 15px; }
@@ -257,7 +314,7 @@
         }
         .gallery-track {
             display: flex; 
-            width: max-content; /* Ancho automático según el contenido */
+            width: max-content; 
             animation: scrollGallery 20s infinite linear;
         }
         .gallery-item { 
@@ -278,10 +335,18 @@
 
         /* Testimonios */
         .section-reviews { padding: var(--section-padding); background-color: #f9f9f9; text-align: left; position: relative; }
+        
         .section-reviews h2, .section-reviews h3 { text-align: left; margin-left: 0; margin-right: 0; }
         .section-reviews h2::after { margin: 15px 0 0 0; }
-        @media (max-width: 768px) { .section-reviews { padding-left: 0; padding-right: 0; } }
+        
+        @media (max-width: 768px) { 
+            .section-reviews { padding-left: 0; padding-right: 0; }
+            .section-reviews h2, .section-reviews h3 { padding-left: 20px; text-align: left !important; } 
+            .section-reviews h2::after { margin: 15px 0 0 0 !important; }
+        }
+
         .reviews-container { max-width: 1000px; margin: 0 auto; overflow: hidden; position: relative; padding-bottom: 50px; }
+        
         .reviews-track { display: flex; transition: transform 0.5s ease-in-out; }
         .review-slide { min-width: 100%; box-sizing: border-box; padding: 20px 60px; }
         .review-card { background: #fff; padding: 50px; border: 1px solid #eee; box-shadow: 0 5px 25px rgba(0,0,0,0.05); text-align: center; }
@@ -299,8 +364,9 @@
         .review-prev { left: 0; }
         .review-next { right: 0; }
         
+        /* AJUSTE MOBILE TESTIMONIOS FIXED */
         @media(max-width: 768px) { 
-            .review-slide { padding: 0 10px; } /* Padding lateral mínimo para máximo ancho */
+            .review-slide { padding: 0 10px; } 
             .review-card { padding: 30px 20px; }
             .reviews-container { padding-bottom: 60px; } 
             .review-nav { top: auto; bottom: 0; transform: none; border-color: #333; }
@@ -626,7 +692,32 @@
             </div>
         </section>
 
-        <!-- GALERÍA ELIMINADA POR SOLICITUD -->
+        <!-- GALERÍA ANIMADA (RESTAURADA) -->
+        <section class="gallery-section">
+            <div class="gallery-track">
+                <!-- ORIGINALES -->
+                <div class="gallery-item">
+                    <!-- Usamos URL de Unsplash para visualización inmediata -->
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Ambiente Domani">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559969143-b2defc6419fd?q=80&w=800&auto=format&fit=crop" alt="Pizzas al horno">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="Compartiendo en Domani">
+                </div>
+                <!-- DUPLICADOS PARA LOOP INFINITO -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Ambiente Domani">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1559969143-b2defc6419fd?q=80&w=800&auto=format&fit=crop" alt="Pizzas al horno">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="Compartiendo en Domani">
+                </div>
+            </div>
+        </section>
 
         <!-- TESTIMONIOS (CARRUSEL) -->
         <section id="testimonios" class="section-reviews">
