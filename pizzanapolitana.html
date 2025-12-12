@@ -84,7 +84,8 @@
             .process-content h2, .process-content h3, .process-content p,
             .section-awards h2,
             .section-branches h2, .section-branches h3,
-            .section-reviews h2, .section-reviews h3, .section-reviews p
+            .section-reviews h2, .section-reviews h3, .section-reviews p,
+            .contact-text-col h2, .contact-text-col h3
             { 
                 text-align: left !important; 
                 margin-left: 0 !important;
@@ -102,8 +103,7 @@
         }
 
         /* Alineación izquierda Desktop por defecto */
-        /* MODIFICADO: Se eliminó .section-reviews h2::after de esta lista para permitir centrado */
-        .text-left h2::after, .ingredients-text h2::after, .process-content h2::after, .contact-text-col h2::after { margin: 15px 0 0 0; }
+        .text-left h2::after, .ingredients-text h2::after, .process-content h2::after, .contact-text-col h2::after, .section-reviews h2::after { margin: 15px 0 0 0; }
         
         h3 { 
             font-size: 1.25rem; font-weight: 500; text-transform: none; 
@@ -142,6 +142,12 @@
         
         .btn-black { background-color: var(--domani-black); color: #fff; }
         .btn-black:hover { background-color: var(--domani-red); }
+
+        .btn-whatsapp {
+            background-color: #25D366; color: #fff; border-color: #25D366; 
+            font-size: 0.95rem; font-weight: 700;
+        }
+        .btn-whatsapp:hover { background-color: #128C7E; border-color: #128C7E; }
 
         .btn-border-thick {
             background-color: transparent; border: 3px solid #FFFFFF; color: #FFFFFF;
@@ -187,14 +193,14 @@
         /* --- HERO --- */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/bg-hero-principal.jpg');
-            background-size: cover; background-position: center; height: auto; min-height: 80vh; /* Reducido de 90vh */
+            background-size: cover; background-position: center; height: auto; min-height: 90vh;
             display: flex; align-items: center; justify-content: center; text-align: center;
-            padding: 70px 20px; /* Reducido de 90px */
+            padding: 80px 20px; 
         }
         @media (max-width: 768px) {
             .hero {
                 min-height: 80vh; 
-                padding: 70px 20px; /* Mobile mantiene 70px */
+                padding: 70px 20px; 
             }
         }
 
@@ -225,30 +231,21 @@
         .section-menu { padding: var(--section-padding); background-color: var(--grey-light); position: relative; }
         .tabs-wrapper { display: flex; justify-content: center; margin-bottom: 50px; width: 100%; overflow: hidden; }
         
-        /* CORRECCIÓN CSS FLATTENING: Reglas media query extraídas del nesting */
         .tabs-container { 
             background-color: var(--tab-bg); padding: 0; display: inline-flex; gap: 2px; border-radius: 0; 
-        }
-        @media (max-width: 768px) {
-            .tabs-container {
+            @media (max-width: 768px) {
                 display: flex; overflow-x: auto; width: 100%; justify-content: flex-start;
                 padding-bottom: 5px; scrollbar-width: none; -webkit-overflow-scrolling: touch;
             }
         }
-
         .tabs-container::-webkit-scrollbar { display: none; }
         
         .tab-btn { 
             padding: 15px 40px; border: none; background: transparent; color: #666; cursor: pointer; 
             font-weight: 700; font-family: var(--font-main); font-size: 0.95rem; text-transform: uppercase; 
             border-radius: 0; transition: 0.3s; white-space: nowrap;
+            @media (max-width: 768px) { padding: 12px 20px; font-size: 0.85rem; flex-shrink: 0; }
         }
-        @media (max-width: 768px) { 
-            .tab-btn {
-                padding: 12px 20px; font-size: 0.85rem; flex-shrink: 0; 
-            }
-        }
-
         .tab-btn.active { background-color: #fff; color: var(--domani-black); box-shadow: none; }
         .tab-btn:hover:not(.active) { color: var(--domani-black); background-color: rgba(255,255,255,0.5); }
 
@@ -306,10 +303,7 @@
         .awards-intro { max-width: 800px; margin: 0 auto 60px; font-size: 1.1rem; color: #FFFFFF !important; line-height: 1.6; font-weight: 500; }
         .awards-intro p { color: #FFFFFF !important; }
         .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        @media (max-width: 768px) {
-            .awards-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding-bottom: 20px; }
-            .award-card { min-width: 85%; scroll-snap-align: center; }
-        }
+        
         .award-card { background-color: var(--domani-card-bg); padding: 40px 20px; border-radius: 8px; border: 1px solid #333; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .award-card:hover { transform: translateY(-5px); border-color: #444; }
         .award-logo-circle { width: 100px; height: 100px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; padding: 15px; }
@@ -317,7 +311,20 @@
         .award-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 5px; color: #fff; text-transform: none; }
         .award-desc { font-size: 0.9rem; color: #aaa; margin-bottom: 15px; }
         .award-year { font-weight: 700; font-size: 1rem; color: #fff; }
-        .awards-footer { margin-top: 50px; font-weight: 600; font-size: 1.1rem; color: #fff; }
+        
+        /* New Featured Card Styles */
+        .award-featured { background-color: #ffffff !important; border-color: #ddd !important; }
+        .award-featured .award-title { color: var(--domani-black) !important; font-weight: 800; }
+        .award-featured .award-year { color: var(--domani-black) !important; font-weight: 800; margin-top: 5px; display: block; }
+        .award-featured .award-desc { color: #444 !important; font-style: italic; }
+
+        @media (max-width: 768px) {
+            .awards-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding-bottom: 20px; }
+            .award-card { min-width: 85%; scroll-snap-align: center; }
+        }
+        
+        /* Texto Blanco Footer Awards */
+        .awards-footer { margin-top: 30px; font-weight: 600; font-size: 1.1rem; color: #fff !important; padding: 0 15px; }
 
         /* --- GALERÍA ANIMADA --- */
         .gallery-section { 
@@ -334,35 +341,26 @@
         }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
-        @media (max-width: 768px) {
-            /* Ajuste para mantener proporción 4:3 en mobile sin recortar */
-            .gallery-section { height: 75vw; } 
-            .gallery-item { width: 100vw; } 
-        }
-
         @keyframes scrollGallery {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); } 
         }
 
         /* Testimonios */
-        .section-reviews { padding: var(--section-padding); background-color: #f9f9f9; text-align: center; position: relative; } /* Cambiado a center */
-        
-        /* Alineación Centrada en Desktop */
+        /* Desktop: Centrado */
+        .section-reviews { padding: var(--section-padding); background-color: #f9f9f9; text-align: center; position: relative; }
         .section-reviews h2, .section-reviews h3 { text-align: center; margin-left: auto; margin-right: auto; }
         .section-reviews h2::after { margin: 15px auto 0 auto; }
         
+        /* Mobile: Izquierda */
         @media (max-width: 768px) { 
-            .section-reviews { padding-left: 0; padding-right: 0; text-align: left; }
-            .section-reviews h2, .section-reviews h3 { padding-left: 20px; text-align: left !important; } 
-            .section-reviews h2::after { margin: 15px 0 0 0 !important; }
+            .section-reviews { padding-left: 0; padding-right: 0; }
+            .section-reviews h2, .section-reviews h3 { padding-left: 20px; text-align: left !important; margin-left: 0 !important; } 
+            .section-reviews h2::after { margin: 15px 0 0 0 !important; } 
         }
 
         .reviews-container { max-width: 1000px; margin: 0 auto; overflow: hidden; position: relative; padding-bottom: 50px; }
         
-        /* CLASE NUEVA PARA CONTROLAR EL PADDING RESPONSIVE DE LAS FLECHAS */
-        .reviews-wrapper-inner { position: relative; padding: 0 50px; }
-
         .reviews-track { display: flex; transition: transform 0.5s ease-in-out; }
         .review-slide { min-width: 100%; box-sizing: border-box; padding: 20px 60px; }
         .review-card { background: #fff; padding: 50px; border: 1px solid #eee; box-shadow: 0 5px 25px rgba(0,0,0,0.05); text-align: center; }
@@ -382,16 +380,10 @@
         
         /* AJUSTE MOBILE TESTIMONIOS FIXED */
         @media(max-width: 768px) { 
-            /* Eliminamos el padding lateral del contenedor en mobile para ganar espacio */
-            /* Añadimos padding-bottom para reservar espacio para las flechas abajo */
-            .reviews-wrapper-inner { padding: 0; padding-bottom: 70px; }
-
             .review-slide { padding: 0 10px; } 
             .review-card { padding: 30px 20px; }
             .reviews-container { padding-bottom: 60px; } 
-            
-            /* Flechas abajo del contenedor */
-            .review-nav { top: auto; bottom: 10px; transform: none; border-color: #333; }
+            .review-nav { top: auto; bottom: 0; transform: none; border-color: #333; }
             .review-prev { left: calc(50% - 50px); } 
             .review-next { right: calc(50% - 50px); }
         }
@@ -402,6 +394,8 @@
         .branch-info { padding: 30px; text-align: left; }
         .branch-info h4 { font-weight: 800; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 20px; }
         .info-row { display: flex; align-items: flex-start; margin-bottom: 15px; font-size: 0.9rem; }
+        /* Icono email (sobre) */
+        .info-row i { font-size: 1.2rem; margin-right: 15px; color: var(--domani-black); }
         .info-row svg { width: 20px; height: 20px; margin-right: 15px; flex-shrink: 0; stroke: var(--domani-black); }
         .branch-actions { padding: 0 30px 30px; margin-top: auto; }
         .branch-actions .btn { width: 100%; }
@@ -423,11 +417,13 @@
 
         /* Formulario */
         .section-contact { padding: 0; background: #fff; } 
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 550px; } /* Reducido de 600px a 550px */
-        .contact-text-col { padding: 20px 60px; display: flex; flex-direction: column; justify-content: center; background-color: #fff; } /* Reducido de 40px a 20px */
-        .contact-text-col h2 { text-align: left; margin-left: 0; }
-        .contact-text-col h3 { text-align: left; margin-left: 0; max-width: 100%; }
-        .form-control { width: 100%; padding: 15px; border: 1px solid #ccc; margin-bottom: 20px; font-family: inherit; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 400px; }
+        .contact-text-col { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; background-color: #fff; }
+        .contact-text-col h2 { text-align: center; margin-left: auto; margin-right: auto; }
+        .contact-text-col h3 { text-align: center; margin-left: auto; margin-right: auto; max-width: 100%; }
+        /* Linea roja centrada */
+        .contact-text-col h2::after { margin: 15px auto 0 auto !important; }
+
         .contact-image-col { width: 100%; height: 100%; position: relative; overflow: hidden; }
         .contact-image-col img { width: 100%; height: 100%; object-fit: cover; display: block; }
         @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } .contact-text-col { padding: 60px 20px; order: 1; } .contact-image-col { height: 350px; order: 2; } }
@@ -465,7 +461,12 @@
         @media(max-width: 768px) { .scroll-top-btn { bottom: 20px; right: 20px; } }
 
         .mobile-sticky { display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; }
-        .mobile-sticky .btn { width: 100%; }
+        .mobile-sticky .btn { 
+            width: 100%; 
+            background-color: var(--domani-red); 
+            color: #fff !important; /* Force white text */
+            border-color: var(--domani-red);
+        }
         @media(max-width: 768px) { .mobile-sticky { display: block; } }
 
     </style>
@@ -483,20 +484,20 @@
             <nav class="nav-desktop">
                 <ul>
                     <li><a href="#que-es">TRADICIÓN NAPOLITANA</a></li>
-                    <li><a href="#pizzas-destacadas">PIZZAS DESTACADAS</a></li>
                     <li><a href="#reconocimientos">RECONOCIMIENTOS</a></li>
-                    <li><a href="#testimonios">TESTIMONIOS</a></li>
+                    <li><a href="#pizzas-destacadas">PIZZAS DESTACADAS</a></li>
                     <li><a href="#sucursales">SUCURSALES</a></li>
+                    <li><a href="#testimonios">TESTIMONIOS</a></li>
                     <li><a href="#contacto">CONTACTO</a></li>
                 </ul>
             </nav>
             
             <div class="mobile-nav-overlay" id="mobileNav">
                 <a href="#que-es" onclick="toggleMenu()">TRADICIÓN NAPOLITANA</a>
-                <a href="#pizzas-destacadas" onclick="toggleMenu()">PIZZAS DESTACADAS</a>
                 <a href="#reconocimientos" onclick="toggleMenu()">RECONOCIMIENTOS</a>
-                <a href="#testimonios" onclick="toggleMenu()">TESTIMONIOS</a>
+                <a href="#pizzas-destacadas" onclick="toggleMenu()">PIZZAS DESTACADAS</a>
                 <a href="#sucursales" onclick="toggleMenu()">SUCURSALES</a>
+                <a href="#testimonios" onclick="toggleMenu()">TESTIMONIOS</a>
                 <a href="#contacto" onclick="toggleMenu()">CONTACTO</a>
             </div>
         </div>
@@ -518,7 +519,7 @@
                 
                 <div class="hero-actions">
                     <a href="#que-es" class="btn btn-primary">Conoce Domani</a>
-                    <a href="https://domani.cl/pedir" class="btn btn-outline-red">Pide por delivery</a>
+                    <a href="https://delivery.pizzeriadomani.cl/?_gl=1*1td0umh*_gcl_au*MTc2NzgxNDMzNy4xNzYwOTY5OTY1*_ga*NDM5ODU5ODg5LjE3NjA5Njk5NjU.*_ga_C6YQEJ0B5Z*czE3NjU1NTczMTckbzExJGcwJHQxNzY1NTU3MzE3JGo2MCRsMCRoMTY4NzgxMTg1OA" class="btn btn-outline-red">Pide por delivery</a>
                 </div>
             </div>
         </section>
@@ -536,6 +537,62 @@
             </div>
         </div>
 
+        <!-- RECONOCIMIENTOS (MOVIDO AL INICIO) -->
+        <section id="reconocimientos" class="section-awards">
+            <div class="container">
+                <h2>RECONOCIDOS ENTRE LOS MEJORES</h2>
+                
+                <div class="awards-intro">
+                    <p>Somos ganadores <b>50 TopPizza 2025 Artisan Pizza Chains N°46 en el Mundo, Mejor Pizzería de Chile</b> y <b>Pizzería Revelación 2025.</b></p>
+                    <p>Cada año más personas nos eligen, y los rankings también. Así nos reconocen en Chile, Latinoamérica y el mundo.</p>
+                    <p>Destacados por 50TopPizza como una de las 20 mejores pizzerías de Latinoamérica y a demás, por más de cinco años consecutivos, recibimos el Tripadvisor Travelers' Choice Award, gracias a las opiniones de nuestros propios clientes.</p>
+                </div>
+
+                <div class="award-card award-featured" style="background-color: #fff; border: 1px solid #ddd; max-width: 600px; margin: 0 auto 50px auto;">
+                     <h4 style="color: var(--domani-black); font-weight: 800; margin-bottom: 10px;">★ PREMIO DESTACADO ★</h4>
+                     <h5 style="color: var(--domani-red); font-weight: 800; font-size: 1.1rem; margin-bottom: 20px;">N°1 de Chile • 4ª de Latinoamérica • 46ª del mundo</h5>
+                     
+                     <div class="award-logo-circle">
+                          <img src="img/top-pizza.png" alt="50 Top Pizza">
+                     </div>
+                     
+                     <h4 class="award-title" style="color: var(--domani-black);">Premios 50 Top Pizza 2025</h4>
+                     <p class="award-desc" style="color: #666; font-style: italic;">- Categoría Artisan Pizzeria Chains -</p>
+                     <span class="award-year" style="color: var(--domani-black); font-weight: 800;">+ Galardón “Pizzería Revelación 2025”</span>
+                </div>
+                
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <div class="award-logo-circle">
+                             <img src="img/top-pizza.png" alt="50 Top Pizza">
+                        </div>
+                        <h4 class="award-title">50TopPizza Latinoamérica</h4>
+                        <p class="award-desc">Top 20 mejores pizzerías</p>
+                        <span class="award-year">2024</span>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-logo-circle">
+                             <img src="img/top-pizza.png" alt="50 Top Artisan">
+                        </div>
+                        <h4 class="award-title">50Top Artisan Pizzeria Chains</h4>
+                        <p class="award-desc">Ranking mundial de cadenas artesanales</p>
+                        <span class="award-year">2024</span>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-logo-circle">
+                             <img src="img/tripadvisor-logo.png" alt="Tripadvisor" style="width: 80%;">
+                        </div>
+                        <h4 class="award-title">Tripadvisor Travelers' Choice</h4>
+                        <p class="award-desc">5+ años consecutivos</p>
+                        <span class="award-year">2019-2024</span>
+                    </div>
+                </div>
+
+                <p class="awards-footer" style="margin-top: 30px; padding: 0 15px;">Orgullosos de nuestros reconocimientos, de nuestro equipo y, ¡Gracias a ustedes!, ¡Vamos por más y contando!</p>
+            </div>
+        </section>
+
+        <!-- ¿QUÉ HACE ÚNICA? -->
         <section id="que-es" class="section-ingredients">
             <div class="container ingredients-grid text-left-mobile">
                 <div class="ingredients-text">
@@ -543,25 +600,20 @@
                     <h3>En Domani seguimos la tradición con ingredientes italianos auténticos y un proceso que respeta el oficio, elaborado en hornos napolitanos traídos directamente desde Italia:</h3>
                     
                     <ul class="ingredients-list">
-                        <!-- Item 1: Harina -->
                         <li>
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve"><g><path d="M32.7,41.3c45.2,0,90.2,0,135.3,0c-0.3-3.4-1.7-6-4.3-8c-3.9-3.1-8.7-4-13.4-4.8c-6.3-1-12.6-2-18.1-5.4c-0.8-0.5-1.8-1.3-2.1-2.1c-0.3-0.8-0.1-2.2,0.5-2.8c0.6-0.7,1.9-0.8,2.9-1.2c0.1,0,0.3,0,0.4,0.1c7.1,4.4,15.5,4.6,23.3,6.6c2.7,0.7,5.4,1.8,7.9,3.2c5.3,2.9,8.4,7.5,9.1,13.5c0.2,1.2,0.6,1.8,1.7,2.2c6.9,2.8,9.7,9.6,6.9,16.5c-1.2,2.9-1.2,5.7,0,8.7c2.6,6.2,0.6,12.1-5.2,15.6c-1.1,0.6-1.2,1.3-1,2.4c3.4,18.1,4.8,36.3,3.8,54.7c-0.3,5.1-0.7,10.2-1.2,15.3c-0.7,6.2,0.9,11.7,4.7,16.6c2.5,3.3,3.6,7,2.9,11.1c-1.7,9.1-12.1,14.2-19.7,9c-5.7-3.9-11.2-3.9-17.5-2.7c-21.9,4.1-44.1,5.3-66.4,4c-12.7-0.7-25.3-2.3-37.8-4.7c-4.3-0.8-8,0.1-11.5,2.7c-6.4,4.7-15,3.1-19.3-3.5c-3-4.6-2.9-10.8,0.6-15.4c4.1-5.3,6-11.1,5.1-17.8c-0.3-2.5,0.8-4,2.7-4.2c2-0.2,3.2,1.2,3.5,3.8c1,8-1.1,15.1-6,21.5c-2.5,3.3-2.3,7.1,0.3,9.8c2.7,2.7,6.5,2.9,9.9,0.4c4.8-3.6,10.1-4.6,16-3.5c22,4.3,44.3,5.8,66.7,4.8c13.2-0.6,26.4-2.2,39.4-4.8c6-1.2,11.3-0.1,16.2,3.5c3.3,2.5,7.1,2.3,9.7-0.4c2.6-2.6,2.9-6.5,0.4-9.8c-5.5-7-7-14.9-5.9-23.6c1.6-12.7,1.9-25.4,0.7-38.1c-0.9-9.5-2.3-18.9-3.6-28.4c0-0.2-0.1-0.5-0.2-0.9c-2.5,0-5.1,0-7.6,0c-6,0-12,0-17.9,0c-2.8,0-4.3-1-4.3-3.1c0-2,1.4-3.2,4.2-3.2c8.6,0,17.3,0,25.9,0c2.8,0,5.1-1,6.5-3.5c1-1.8,0.9-3.6,0.1-5.4c-1.4-3.5-1.4-3.5-5.2-3.5c-3.1,0-6.1,0-9.2,0c-2.3,0-3.7-1.2-3.7-3.1c0-1.9,1.4-3.1,3.7-3.1c3.9,0,7.8-0.1,11.7,0c1.2,0,1.8-0.3,2-1.5c0.1-0.7,0.5-1.3,0.7-2c1.7-4.3-0.9-8.6-5.6-9c-0.5,0-0.9,0-1.4,0c-46.9,0-93.8,0-140.7,0.1c-1.7,0-3.6,0.6-5.1,1.5c-2.4,1.5-3.1,4.2-2.1,6.8c1.4,4.1,1.4,4.1,5.8,4.1c1.9,0,3.9,0,5.8,0c2.2,0,3.5,1.2,3.5,3.1c0,1.8-1.3,3.1-3.5,3.1c-3,0-6,0-9,0c-1,0-1.5,0.3-1.7,1.3c-0.1,0.8-0.5,1.5-0.8,2.2c-1.7,4.3,0.9,8.5,5.6,9c0.7,0.1,1.4,0,2.1,0c33.1,0,66.1,0,99.2,0c3.2,0,4.7,1,4.7,3.1c0,2.1-1.5,3.1-4.6,3.1c-32.6,0-65.2,0-97.9,0c-0.7,0-1.4,0-2.4,0c-0.9,6.2-1.9,12.4-2.6,18.5c-1.5,12.2-1.7,24.4-1.2,36.6c0,0.9,0,2-0.4,2.8c-0.6,1.3-1.9,1.7-3.3,1.4c-1.7-0.4-2.4-1.7-2.4-3.3c-0.1-5-0.3-10-0.3-15c0.2-13.6,1.5-27.1,4.1-40.5c0.2-1.2,0-1.8-1.1-2.5c-5.7-3.4-7.7-9.4-5.1-15.5c1.2-3,1.2-5.9,0-8.9c-2.9-7.1,0.5-14.3,7.7-16.7c0.8-0.3,1.7-0.8,2-1.5c3.7-10.6,11.4-16.1,22.1-17.8c5.5-0.9,11.2-1,16.6-2.3c5.9-1.4,11.6-3.6,17.3-5.8c6.7-2.6,13.2-5.7,20.4-7c7.2-1.3,14.1-0.6,20.6,2.9c1.5,0.8,2.5,1.9,2,3.8c-0.5,2.1-2.6,2.9-4.8,1.8c-4.1-2.1-8.4-3-13-2.7c-5.5,0.4-10.7,2.1-15.8,4.1c-6.6,2.6-13,5.7-19.7,7.7c-5.7,1.7-11.7,2.1-17.6,2.9c-4.6,0.6-9.3,1.3-13.4,3.6C37,33.8,34.4,37,32.7,41.3z"/><path d="M123.8,124.4c3.6,2.1,6.8,4,10.3,6c0.9-1.2,2-2.6,3.1-4c1.5-1.9,3.3-2.3,4.9-1.1c1.5,1.2,1.6,3,0.1,4.8c-1.8,2.4-3.7,4.7-5.5,7c-3.6,4.5-8.4,7.1-14.5,8c0.9,0.7,1.5,1.3,2.2,1.8c1.9,1.6,2.1,3.3,0.4,5.2c-3.6,4.3-8.3,6.8-14.2,7.7c0.8,0.6,1.3,1.1,1.9,1.6c2.4,1.9,2.5,3.5,0.5,5.7c-7.3,8.4-19.9,10-29.1,3.5c-1.2-0.8-2.3-1.7-3.5-2.6c-3.6,3.3-7.5,5.6-12.2,6.6c-5.9,1.3-11.6,0.5-17-2.2c-2-1-2.8-2.7-2-4.4c0.9-1.9,2.5-2.2,4.8-1.2c7.5,3.6,15.3,2.6,21.4-2.8c-1.1-1-2.3-1.9-3.3-2.9c-8-7.2-9.4-19.5-3.3-28.4c2-3,3.4-3.2,6.2-1c0.5,0.3,0.9,0.7,1.5,1.1c0.2-2.4,0.1-4.8,0.7-6.9c0.8-2.8,2-5.6,3.5-8.1c1.5-2.6,3.2-2.8,5.6-0.9c0.6,0.4,1.1,0.9,1.8,1.4c0.1-1.9,0.1-3.6,0.3-5.3c0.3-3.6,1.6-6.8,3.7-9.7c2-2.8,4.2-5.5,6.3-8.2c1.3-1.7,3.2-1.9,4.6-0.8c1.4,1.1,1.5,3,0.3,4.7c-1.1,1.5-2.3,3-3.3,4.3c2.8,2.9,5.4,5.6,8.1,8.4c2.7-5,6.9-8.7,12.6-10.5c2.2-0.7,4.4-1.2,6.6-1.8c2.2-0.6,3.7,0.3,4.2,2.5c1.9,8.1-0.2,15.1-6.1,21C124.8,123.7,124.2,124.1,123.8,124.4z M96.6,148.8c6.4,6.2,16,6.8,21.4,1.4C112.3,144.1,102.7,143.4,96.6,148.8z M73,138.5c-4,6.6-0.8,16.8,6.4,20.4C83.3,152.3,80.4,143.3,73,138.5z M111.9,123c8.7-1.4,14.7-8.6,13.8-16.4C117,107.9,110.2,115.9,111.9,123z M84.5,123.8c-4,6.6-0.6,17.3,6.5,20.4C94.6,137.1,92,128.7,84.5,123.8z M96,109.1c-3.8,7.3-0.8,16.6,6.5,20.4C106.4,123,103.5,113.7,96,109.1z M85,163.5c6.6,6.1,16.3,6.7,21.4,1.4C101,158.8,91.1,158.1,85,163.5z M129.7,135.5c-6.6-6.2-16.3-6.8-21.4-1.4C113.7,140.2,123.4,140.9,129.7,135.5z M103.9,138.9c-1.8-1.4-3.4-2.6-5.1-4c0,1.9,0,3.5,0,5.2C100.5,139.7,102,139.4,103.9,138.9zM92.3,153.6c-1.9-1.5-3.4-2.6-5-3.9c0,1.9,0,3.5,0,5.2C88.9,154.4,90.4,154.1,92.3,153.6z"/><path d="M73.2,66.3c-7.6,0-15.2,0-22.8,0c-2.1,0-3.4-1-3.7-2.7c-0.3-1.9,1.2-3.5,3.5-3.5c3.6,0,7.1,0,10.7,0c11.6,0,23.1,0,34.7,0c1,0,2.3,0.2,2.9,0.8c0.7,0.8,1.1,2.2,1,3.2c-0.2,1.6-1.6,2.2-3.2,2.2c-5.3,0-10.7,0-16,0C77.9,66.3,75.5,66.3,73.2,66.3z"/><path d="M121.3,66.3c-3.9,0-7.8,0-11.7,0c-2.3,0-3.7-1.2-3.7-3.1c0-1.9,1.4-3.1,3.7-3.1c7.9,0,15.9,0,23.8,0c2.3,0,3.7,1.2,3.7,3.1c0,1.9-1.4,3.1-3.7,3.1C129.4,66.3,125.4,66.3,121.3,66.3z"/><path d="M149.5,66.3c-1.7-0.1-3.1-1.5-3-3.2c0.1-1.7,1.5-3.1,3.2-3c1.7,0.1,3.1,1.5,3,3.2C152.6,64.9,151.2,66.3,149.5,66.3z"/></g></svg>
+                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve"><g><path d="M32.7,41.3c45.2,0,90.2,0,135.3,0c-0.3-3.4-1.7-6-4.3-8c-3.9-3.1-8.7-4-13.4-4.8c-6.3-1-12.6-2-18.1-5.4c-0.8-0.5-1.8-1.3-2.1-2.1c-0.3-0.8-0.1-2.2,0.5-2.8c0.6-0.7,1.9-0.8,2.9-1.2c0.1,0,0.3,0,0.4,0.1c7.1,4.4,15.5,4.6,23.3,6.6c2.7,0.7,5.4,1.8,7.9,3.2c5.3,2.9,8.4,7.5,9.1,13.5c0.2,1.2,0.6,1.8,1.7,2.2c6.9,2.8,9.7,9.6,6.9,16.5c-1.2,2.9-1.2,5.7,0,8.7c2.6,6.2,0.6,12.1-5.2,15.6c-1.1,0.6-1.2,1.3-1,2.4c3.4,18.1,4.8,36.3,3.8,54.7c-0.3,5.1-0.7,10.2-1.2,15.3c-0.7,6.2,0.9,11.7,4.7,16.6c2.5,3.3,3.6,7,2.9,11.1c-1.7,9.1-12.1,14.2-19.7,9c-5.7-3.9-11.2-3.9-17.5-2.7c-21.9,4.1-44.1,5.3-66.4,4c-12.7-0.7-25.3-2.3-37.8-4.7c-4.3-0.8-8,0.1-11.5,2.7c-6.4,4.7-15,3.1-19.3-3.5c-3-4.6-2.9-10.8,0.6-15.4c4.1-5.3,6-11.1,5.1-17.8c-0.3-2.5,0.8-4,2.7-4.2c2-0.2,3.2,1.2,3.5,3.8c1,8-1.1,15.1-6,21.5c-2.5,3.3-2.3,7.1,0.3,9.8c2.7,2.7,6.5,2.9,9.9,0.4c4.8-3.6,10.1-4.6,16-3.5c22,4.3,44.3,5.8,66.7,4.8c13.2-0.6,26.4-2.2,39.4-4.8c6-1.2,11.3-0.1,16.2,3.5c3.3,2.5,7.1,2.3,9.7-0.4c2.6-2.6,2.9-6.5,0.4-9.8c-5.5-7-7-14.9-5.9-23.6c1.6-12.7,1.9-25.4,0.7-38.1c-0.9-9.5-2.3-18.9-3.6-28.4c0-0.2-0.1-0.5-0.2-0.9c-2.5,0-5.1,0-7.6,0c-6,0-12,0-17.9,0c-2.8,0-4.3-1-4.3-3.1c0-2,1.4-3.2,4.2-3.2c8.6,0,17.3,0,25.9,0c2.8,0,5.1-1,6.5-3.5c1-1.8,0.9-3.6,0.1-5.4c-1.4-3.5-1.4-3.5-5.2-3.5c-3.1,0-6.1,0-9.2,0c-2.3,0-3.7-1.2-3.7-3.1c0-1.9,1.4-3.1,3.7-3.1c3.9,0,7.8-0.1,11.7,0c1.2,0,1.8-0.3,2-1.5c0.1-0.7,0.5-1.3,0.7-2c1.7-4.3-0.9-8.6-5.6-9c-0.5,0-0.9,0-1.4,0c-46.9,0-93.8,0-140.7,0.1c-1.7,0-3.6,0.6-5.1,1.5c-2.4,1.5-3.1,4.2-2.1,6.8c1.4,4.1,1.4,4.1,5.8,4.1c1.9,0,3.9,0,5.8,0c2.2,0,3.5,1.2,3.5,3.1c0,1.8-1.3,3.1-3.5,3.1c-3,0-6,0-9,0c-1,0-1.5,0.3-1.7,1.3c-0.1,0.8-0.5,1.5-0.8,2.2c-1.7,4.3,0.9,8.5,5.6,9c0.7,0.1,1.4,0,2.1,0c33.1,0,66.1,0,99.2,0c3.2,0,4.7,1,4.7,3.1c0,2.1-1.5,3.1-4.6,3.1c-32.6,0-65.2,0-97.9,0c-0.7,0-1.4,0-2.4,0c-0.9,6.2-1.9,12.4-2.6,18.5c-1.5,12.2-1.7,24.4-1.2,36.6c0,0.9,0,2-0.4,2.8c-0.6,1.3-1.9,1.7-3.3,1.4c-1.7-0.4-2.4-1.7-2.4-3.3c-0.1-5-0.3-10-0.3-15c0.2-13.6,1.5-27.1,4.1-40.5c0.2-1.2,0-1.8-1.1-2.5c-5.7-3.4-7.7-9.4-5.1-15.5c1.2-3,1.2-5.9,0-8.9c-2.9-7.1,0.5-14.3,7.7-16.7c0.8-0.3,1.7-0.8,2-1.5c3.7-10.6,11.4-16.1,22.1-17.8c5.5-0.9,11.2-1,16.6-2.3c5.9-1.4,11.6-3.6,17.3-5.8c6.7-2.6,13.2-5.7,20.4-7c7.2-1.3,14.1-0.6,20.6,2.9c1.5,0.8,2.5,1.9,2,3.8c-0.5,2.1-2.6,2.9-4.8,1.8c-4.1-2.1-8.4-3-13-2.7c-5.5,0.4-10.7,2.1-15.8,4.1c-6.6,2.6-13,5.7-19.7,7.7c-5.7,1.7-11.7,2.1-17.6,2.9c-4.6,0.6-9.3,1.3-13.4,3.6C37,33.8,34.4,37,32.7,41.3z"/><path d="M121.3,66.3c-3.9,0-7.8,0-11.7,0c-2.3,0-3.7-1.2-3.7-3.1c0-1.9,1.4-3.1,3.7-3.1c7.9,0,15.9,0,23.8,0c2.3,0,3.7,1.2,3.7,3.1c0,1.9-1.4,3.1-3.7,3.1C129.4,66.3,125.4,66.3,121.3,66.3z"/><path d="M149.5,66.3c-1.7-0.1-3.1-1.5-3-3.2c0.1-1.7,1.5-3.1,3.2-3c1.7,0.1,3.1,1.5,3,3.2C152.6,64.9,151.2,66.3,149.5,66.3z"/></g></svg>
                             Harina italiana tipo 00
                         </li>
-                        
-                        <!-- Item 2: Tomates -->
                         <li>
+                            <!-- Icono Tomate -->
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve"><g><path d="M92,8c3.8,0,7.5,0,11.3,0c5.2,2.1,7.1,6.1,6.9,11.5c-0.1,3,0,6.1,0,9.1c0,0.6,0.1,1.2,0.1,2c4.4-1.7,8.8-2.6,13.3-2.5c11.1,0.1,20.9,4,30,10.1c1.1,0.8,1.6,2.6,2.4,3.9c0.4,0.6,0.6,1.4,1.1,1.8c2.9,2.5,6,4.7,8.8,7.2c25.5,23,33.8,59.1,20,89.8c-13.2,29.4-37,45.6-68.1,51.6c-3.6,0.7-7.3,1-10.9,1.5c-4,0-8,0-12,0c-3.5-0.5-7-0.8-10.4-1.4c-24.2-4.2-44.3-15.4-59.2-35.1c-13.1-17.3-18.4-37-15.3-58.6c2.8-19.3,12-35.3,26.3-48.4c1.7-1.6,3.8-2.9,5.8-4.4c-1-4-0.2-5.9,3.9-8.1c8.8-4.8,18.2-7.1,28.2-7c3.6,0,7.2,0.4,11,0.7c0-4,0.1-8.1,0-12.1C85,14.2,86.8,10.1,92,8z M68.1,48.8c-0.6,0-1.3-0.1-1.9,0c-5.6,1-11.2,2.2-16.8,3.1c-4.4,0.7-7.8,2.7-10.9,5.9c-18.1,18.7-26.1,40.7-20.9,66.5c4.4,22.1,17.5,38.4,36.5,49.9c18.8,11.4,39.3,15.1,60.9,11.7c22.6-3.5,41.4-13.9,55.4-32.2c12.7-16.7,17.6-35.5,13.9-56.2c-3.6-20.2-14.6-35.8-31-47.8c-0.5-0.4-1.2-0.7-1.8-0.7c-4.3-0.2-8.7-0.3-13-0.3c-2.4,0-4.9,0.4-7.4,0.6c0.2,0.4,0.3,0.5,0.3,0.6c0.7,0.5,1.3,1,2,1.5c6.6,5.2,11.1,11.7,12.5,20.2c0.5,3.2-0.4,5.5-2.8,6.9c-2.4,1.3-4.7,0.8-7.3-1.3c-2.4-1.9-4.9-3.8-7.5-5.3c-4.7-2.7-9.9-3.9-15.3-4.3c-0.5,4.5-0.8,8.9-1.5,13.3c-1.6,9.4-4.9,18.1-10.3,25.9c-2.8,3.9-7.7,3.7-10.2-0.4c-0.5-0.8-0.9-1.6-1.2-2.4c-3.1-7.6-3.9-15.7-4.4-23.8c-0.3-4.3-0.3-8.7-0.5-13.1c-0.4,0-0.6-0.1-0.9-0.1c-0.5,0-1,0-1.4,0.1c-4.2,0.4-8.2,1.9-11.7,4.1c-4,2.4-7.7,5.2-11.5,7.9c-2.6,1.8-5.3,2-7.5,0.3c-2.3-1.7-2.9-4.4-1.6-7.3c0.7-1.5,1.5-3.1,2.3-4.5C56.5,60.3,61.7,54.2,68.1,48.8z M95.9,101.3c0.2,0,0.5,0,0.7,0c0.6-1,1.3-2,1.9-3.1c5.2-9.7,7.4-20.1,7.4-31.1c0-4.3,2.4-6.7,6.7-6.4c8.8,0.4,16.8,3,24.1,8.1c0.5,0.3,0.9,0.6,1.4,1c0.1-0.1,0.3-0.2,0.4-0.3c-0.7-1.6-1.4-3.2-2.2-4.6c-2.7-4.7-6.7-8.1-11.2-10.9c-2.3-1.4-3.3-3.5-2.8-6.2c0.5-2.6,2.2-4.2,4.7-4.6c3.4-0.6,6.8-1.1,10.2-1.4c2.7-0.3,5.4-0.3,8-0.4c-5.5-3.3-11.3-5.4-17.6-6.1c-5.6-0.6-10.9,0.2-16.1,2.4c-4.1,1.7-8-1-8.1-5.4c0-1.5,0-2.9,0-4.4c0-3.3,0-6.7,0-10c0-2.3-0.8-3-3.1-3c-1.5,0-3,0-4.5,0c-2.8,0-3.5,0.6-3.5,3.5c0,4.6,0,9.2,0,13.8c0,5.1-2.9,7.5-7.8,6.5c-6.4-1.2-12.9-1.3-19.3-0.2c-3.1,0.6-6.2,1.5-9.3,2.3c1.4,0.4,2.8,0.4,4.1,0.4c4.4-0.1,8.7,0.3,12.9,1.6c2.4,0.8,3.9,2.4,4.3,4.9c0.3,2.4-0.7,4.2-2.6,5.6c-1.2,0.9-2.4,1.7-3.5,2.6c-4.8,3.9-8.7,8.6-12,14.3c3.1-1.9,6-3.7,8.9-5.4c5.2-2.9,10.7-4.8,16.7-5c5-0.1,7.6,2.3,7.7,7.4c0.1,7.7,0.7,15.5,1.4,23.2C93.9,94.2,95.1,97.7,95.9,101.3z"/><path d="M23.3,115.3c0-2.2,1.3-3.7,3.1-3.8c2-0.2,3.3,1,3.8,3c0.7,2.7,1.4,5.4,2.3,8c0.5,1.4,1.4,2.7,2,4.1c0.7,1.7,0.1,3.5-1.4,4.4c-1.5,0.9-3.4,0.6-4.4-0.8C25.7,125.5,24,120.4,23.3,115.3z"/><path d="M23.4,99.7c1-4.2,1.9-8.3,3.1-12.4c0.6-2.1,2.5-3,4.4-2.4c1.9,0.7,2.7,2.4,2.1,4.7c-0.8,3.6-1.6,7.2-2.3,10.8c-0.4,2.3-1.8,3.7-3.8,3.6C24.9,103.7,23.6,102.1,23.4,99.7z"/></g></svg>
                             Tomates Mutti
                         </li>
-                        
-                        <!-- Item 3: Mozzarella -->
                         <li>
+                            <!-- Icono Mozzarella -->
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve"><g><path d="M31.5,75.1c50.3,7.7,100.7,15.3,151.3,23c-0.1-1.8-0.3-3.5-0.4-5.1c-0.2-2.8,1.1-4.7,3.5-4.9c2.2-0.2,3.8,1.4,4,4.2c0.3,3.9,0.5,7.7,0.5,11.6c0,20.3,0,40.6,0,60.9c0,4.9-1.4,6-6.3,5.3c-20.6-3.2-41.2-6.3-61.9-9.4c-2.5-0.4-5-0.7-7.6-1.2c-2.7-0.5-3.9-2.1-3.5-4.8c0.6-5-2.6-9.5-7.5-10.5c-4.8-1-9.5,2-10.8,7c-1.1,4.1-2.1,4.7-6.4,4c-19.6-3-39.2-6-58.8-9c-4.8-0.7-9.7-1.4-14.5-2.2c-2.3-0.4-3.5-1.6-3.5-4c-0.1-3.6-0.1-7.2,0-10.7c0.1-2.5,1.2-3.7,3.7-4.1c2.4-0.4,3.8-1.8,3.9-3.7c0-2-1.4-3.4-3.8-3.8c-2.6-0.5-3.7-1.6-3.8-4.3c0-12.3,0-24.5,0-36.8c0-2.6,0.9-3.5,3.7-4.4c18.2-5.6,36.4-11.1,54.6-16.7c8.7-2.7,17.4-5.3,26.1-8c3.5-1.1,5-0.4,6.1,3.1c0.8,2.3,2.6,3.3,4.8,2.7c2-0.6,3-2.6,2.3-4.9c-0.9-3.3-0.1-4.9,3.2-5.9c12.1-3.7,24.2-7.4,36.4-11c1.4-0.4,3.4-0.3,4.8,0.4c13.1,6.5,22.5,16.6,29.4,29.4c1.1,2,0.4,4.1-1.4,5.1c-1.9,1.1-3.9,0.4-5.3-1.6c-3.1-4.5-6-9.1-9.5-13.4c-3.8-4.7-8.7-8.3-14-11.5c-1.4-0.8-2.7-1.1-4.3-0.6c-9.9,3.1-19.9,6.2-29.9,9.2c-1.2,0.4-1.7,0.9-1.8,2.2c-0.3,4.7-3.5,8.6-8,9.9c-4.4,1.3-9-0.1-12-3.8c-0.7-0.9-1.2-1.3-2.5-0.9C72.7,62,52.7,68,32.8,74.1c-0.4,0.1-0.9,0.4-1.3,0.5C31.5,74.8,31.5,74.9,31.5,75.1z M182.8,105.7C127.6,97.3,72.5,88.9,17.5,80.6c-0.1,0.3-0.2,0.4-0.2,0.6c0,9.5-0.1,19,0,28.5c0,0.5,0.6,1.3,1.1,1.6c4.1,2.2,6.3,5.7,6.3,10.3c0,4.5-2.3,7.9-6.2,10.1c-0.6,0.3-1,1.2-1.2,2c-0.2,1.1-0.1,2.3-0.1,3.5c23.1,3.5,46,7,68.7,10.5c0.2-0.3,0.4-0.5,0.5-0.6c3.8-7.5,10.1-11.1,17.9-10.2c7.3,0.9,12.8,6.3,14.4,14.4c0.3,1.5,1,1.6,2.2,1.8c16,2.4,32,4.9,48,7.3c4.6,0.7,9.2,1.4,13.9,2.1C182.8,143.2,182.8,124.6,182.8,105.7z"/><path d="M156.6,87.4c-6.1,0-11.3-5.1-11.3-11.3c0-6.1,5.1-11.3,11.2-11.4c6.2-0.1,11.5,5.2,11.4,11.4C167.9,82.3,162.7,87.4,156.6,87.4z M156.5,79.9c2,0,3.8-1.7,3.8-3.7c0-2-1.7-3.7-3.7-3.8c-2.1,0-3.7,1.6-3.8,3.7C152.8,78.1,154.5,79.9,156.5,79.9z"/><path d="M152.5,56.5c-2.1,0-3.7-1.7-3.6-3.8c0.1-2,1.8-3.7,3.8-3.7c2,0.1,3.7,1.9,3.7,3.9C156.3,54.9,154.6,56.5,152.5,56.5z"/><path d="M122.4,71.6c0,2.1-1.5,3.7-3.7,3.8c-2.1,0-3.8-1.6-3.8-3.6c0-2,1.7-3.8,3.7-3.8C120.7,67.8,122.4,69.5,122.4,71.6z"/><path d="M133.9,57.2c0,2.1-1.6,3.8-3.6,3.8c-2,0.1-3.8-1.6-3.8-3.7c-0.1-2,1.6-3.8,3.7-3.8C132.2,53.5,133.9,55.1,133.9,57.2z"/><path d="M81.2,76.1c-2,0-3.8-1.7-3.8-3.7c0-2,1.7-3.7,3.7-3.8c2.1,0,3.7,1.6,3.8,3.7C84.9,74.4,83.3,76.1,81.2,76.1z"/><path d="M187.1,77.1c0,2-1.8,3.7-3.8,3.7c-2,0-3.7-1.7-3.6-3.8c0-2.1,1.6-3.7,3.7-3.7C185.5,73.4,187.2,75.1,187.1,77.1z"/><path d="M133.9,82.9c-2,0-3.7-1.6-3.8-3.7c0-2.1,1.6-3.7,3.7-3.8c2.1,0,3.8,1.6,3.8,3.7C137.6,81.2,135.9,82.9,133.9,82.9z"/><path d="M73.6,95c6.2,0,11.3,5,11.4,11.2c0.1,6.2-5.1,11.5-11.3,11.5c-6.2,0-11.3-5.1-11.3-11.3C62.4,100.1,67.4,95,73.6,95z M77.4,106.4c0.1-2.1-1.6-3.8-3.6-3.9c-2-0.1-3.8,1.6-3.9,3.6c-0.1,2,1.6,3.8,3.7,3.8C75.6,110,77.3,108.5,77.4,106.4z"/><path d="M43.4,132.6c-6.2,0-11.3-5.1-11.2-11.3c0-6.2,5.1-11.2,11.3-11.3c6.3,0,11.5,5.2,11.4,11.4C54.7,127.7,49.6,132.7,43.4,132.6z M47.2,121.4c0-2.1-1.6-3.7-3.7-3.7c-2.1,0-3.8,1.6-3.8,3.7c0,2,1.7,3.8,3.7,3.8C45.5,125.1,47.2,123.4,47.2,121.4z"/><path d="M126.4,106.3c6.2,0,11.3,5,11.3,11.2c0,6.3-5.1,11.4-11.3,11.4c-6.2,0-11.3-5.1-11.3-11.3C115.1,111.4,120.2,106.3,126.4,106.3z M130.2,117.7c0.1-2-1.6-3.8-3.7-3.9c-2-0.1-3.8,1.6-3.8,3.7c-0.1,2.1,1.5,3.8,3.6,3.8C128.4,121.3,130.1,119.7,130.2,117.7z"/><path d="M164.1,151.5c-6.2,0-11.3-5-11.3-11.2c0-6.2,5-11.3,11.2-11.3c6.3,0,11.4,5,11.4,11.3C175.4,146.5,170.3,151.5,164.1,151.5z M164.2,144c2,0,3.7-1.8,3.7-3.8c0-2-1.7-3.7-3.8-3.7c-2.1,0-3.7,1.6-3.7,3.7C160.4,142.3,162.1,144,164.2,144z"/><path d="M39.6,97.9c0.1,2-1.6,3.8-3.6,3.9c-2,0.1-3.8-1.6-3.8-3.7c-0.1-2.1,1.5-3.8,3.6-3.9C37.8,94.2,39.5,95.9,39.6,97.9z"/><path d="M88.5,131.9c-2.1,0-3.8-1.7-3.7-3.8c0-2,1.8-3.7,3.8-3.7c2.1,0,3.7,1.7,3.7,3.8C92.3,130.3,90.6,131.9,88.5,131.9z"/><path d="M133.8,139.6c2.1,0,3.8,1.6,3.8,3.7c0-2-1.7,3.8-3.7,3.8c-2,0-3.8-1.7-3.8-3.7C130,141.2,131.7,139.6,133.8,139.6z"/><path d="M73.4,131.9c0,2.1-1.6,3.7-3.7,3.7c-2.1,0-3.8-1.7-3.8-3.7c0-2,1.7-3.7,3.8-3.7C71.8,128.2,73.5,129.9,73.4,131.9z"/><path d="M103.4,109.3c-2.1-0.1-3.6-1.9-3.5-4c0.1-2.1,1.8-3.6,3.9-3.5c2.1,0.1,3.7,1.9,3.5,3.9C107.3,107.8,105.4,109.5,103.4,109.3z"/><path d="M152.8,113.2c2.1,0.1,3.7,1.8,3.6,3.8c-0.1,2-1.9,3.7-3.9,3.6c-2.1-0.1-3.7-1.8-3.6-3.9C149,114.7,150.7,113.1,152.8,113.2z"/></g></svg>
                             Mozzarella fior di latte o de búfala
                         </li>
-                        
-                        <!-- Item 4: Cocción -->
                         <li>
                             <!-- Icono Fuego (SVG Nuevo) -->
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve"><g><path d="M190.4,391c-3.3-0.5-6.6-1-9.9-1.5c-31.9-4.5-59.3-18.2-82-40.9c-22.1-22.1-36-48.8-40.1-79.9c-4.4-32.9-1.1-65,12.4-95.6c5.9-13.5,14.6-25,26.7-33.9c7.2-5.4,14-2.2,15.5,6.1c2.8,15.2,8.1,29.5,18.7,41.3c5.5,6.1,12.1,10.7,20.4,12.3c0.6-12.1,1.2-24,1.8-35.9c2.3-46.4,18.4-87.4,49.1-122.5c9.3-10.6,19.4-20.3,30.7-28.8c3.1-2.3,6.2-3.8,10-1.9c3.5,1.8,4.5,5,4.5,8.8c0.2,21.8,7.4,41.6,19.3,59.4c12,18,25.1,35.3,37.4,53c17.2,24.7,30.2,51.4,35.5,81.3c4.5,25.7,5.1,51.2-2.6,76.4c-7.3,23.6-19.7,44.2-37.4,61.4c-15.9,15.4-34.2,27-55.4,33.4c-10.1,3.1-20.6,4.5-30.9,6.7c-1.3,0.3-2.7,0.5-4,0.7C203.3,391,196.8,391,190.4,391z M251.7,364c0.8-0.3,1.5-0.7,2.3-1c15.2-7.1,28.5-16.8,39.8-29.1c17.7-19.2,28.7-41.7,32.4-67.5c3.3-22.7,0.6-45.1-5.5-67.1c-5.9-21.4-16.4-40.8-29-58.9c-11.7-16.8-24.1-33.2-35.7-50.1c-10.7-15.7-18.6-32.8-22-51.8c-0.3-1.7-0.7-3.5-1.1-5.4c-0.7,0.5-1,0.7-1.3,0.9c-39.2,35.9-60.3,80.2-62.2,133.4c-0.5,13.2-0.8,26.3-1.2,39.5c-0.2,6.2-3.2,9.1-9.4,9c-12.6-0.2-23.6-4.6-33.1-12.7c-12.5-10.7-19.7-24.7-24.9-40c-0.5-1.3-0.9-2.6-1.4-4c-0.5-0.1-0.9-0.2-1.4-0.3c-4,6.5-8.6,12.8-12,19.6c-8.7,17.5-12.2,36.5-12.9,55.9c-0.4,11-0.6,22.2,1,33.1c5.3,34.2,22.4,61.8,50.1,82.7c7.5,5.7,15.6,10.5,24.6,14.2c-0.2-0.6-0.2-0.9-0.3-1.1c-15.2-23-15.3-47.4-6.2-72.4c2.6-7.2,7-13.5,13.6-17.8c5.2-3.4,11-1,12.6,4.9c0.5,1.9,0.7,3.9,1.5,5.8c1.4,3.7,3.1,7.2,5,11.5c0.8-1.3,1-1.4,1-1.6c0.1-1.4,0.2-2.7,0.2-4.1c1-28.2,11.8-51.7,33.5-70.1c2.9-2.5,6-4.2,9.8-2.6c4.1,1.7,5,5.2,5.1,9.2c0.2,7.4,2.3,14.2,6.2,20.4c5.2,8.3,10.7,16.5,16.1,24.6c9.4,14,15.1,29.3,16.6,46.1C265,333.9,261.1,349.5,251.7,364z M157.2,296.5c-0.5,1.1-0.9,2-1.2,2.9c-4.1,13.2-5.4,26.6-1.5,40c7.3,25.5,32.6,40.7,56.9,34.3c23.9-6.3,38.5-29.9,36.4-54.1c-1.2-14.2-5.7-27.2-13.5-39c-8.4-12.8-18.5-24.7-23.2-40c-0.7,0.6-1.1,0.9-1.4,1.3c-8.6,10.7-14.6,22.6-16.2,36.3c-1,8.9-1.3,17.8-1.7,26.8c-0.3,7.6-4,10.8-11.6,9.8c-7-1-12.7-4.3-17.1-9.7C161,302.3,159.3,299.5,157.2,296.5z"/></g></svg>
@@ -586,7 +638,6 @@
                         <button class="tab-btn active" onclick="filterPizzas('all')">TODAS</button>
                         <button class="tab-btn" onclick="filterPizzas('clasicas')">CLÁSICAS</button>
                         <button class="tab-btn" onclick="filterPizzas('iconicas')">ICÓNICAS DOMANI</button>
-                        <button class="tab-btn" onclick="filterPizzas('especiales')">ESPECIALES</button>
                     </div>
                 </div>
 
@@ -637,37 +688,14 @@
                                 <p>Nuestra joya: Salsa pomodoro, rúcula fresca, prosciutto crudo y una suave burrata de Puglia al centro.</p>
                             </div>
                         </article>
-
-                        <!-- ESPECIALES -->
-                        <article class="pizza-card" data-category="especiales">
-                            <img src="img/pizza-margherita-verace.jpg" class="pizza-img" loading="lazy">
-                            <div class="pizza-details">
-                                <h4>Margherita Verace</h4>
-                                <p>Salsa pomodoro Mutti, cremosa mozzarella de búfala, parmesano Reggiano, albahaca fresca y AOVE.</p>
-                            </div>
-                        </article>
                     </div>
                 </div>
 
                 <div class="menu-footer-cta">
-                    <a href="https://domani.cl/menu" class="btn btn-primary" style="padding: 16px 50px; font-size: 1rem;">Ver menú completo</a>
+                    <a href="https://delivery.pizzeriadomani.cl/?_gl=1*1td0umh*_gcl_au*MTc2NzgxNDMzNy4xNzYwOTY5OTY1*_ga*NDM5ODU5ODg5LjE3NjA5Njk5NjU.*_ga_C6YQEJ0B5Z*czE3NjU1NTczMTckbzExJGcwJHQxNzY1NTU3MzE3JGo2MCRsMCRoMTY4NzgxMTg1OA" class="btn btn-primary" style="padding: 16px 50px; font-size: 1rem;">VER MENÚ DELIVERY</a>
                 </div>
             </div>
         </section>
-
-        <!-- CINTILLO 2 -->
-        <div class="marquee-container" style="margin-bottom: -2px;">
-            <div class="marquee-content">
-                <span class="marquee-item">DOMANI PIZZA ORIGINAL NAPOLETANA</span>
-                <span class="marquee-item">DOMANI PIZZA ORIGINAL NAPOLETANA</span>
-                <span class="marquee-item">DOMANI PIZZA ORIGINAL NAPOLETANA</span>
-                <span class="marquee-item">DOMANI PIZZA ORIGINAL NAPOLETANA</span>
-                <span class="marquee-item">DOMANI PIZZA ORIGINAL NAPOLETANA</span>
-                <span class="marquee-item">DOMANI PIZZA ORIGINAL NAPOLETANA</span>
-                <span class="marquee-item">DOMANI PIZZA ORIGINAL NAPOLETANA</span>
-                <span class="marquee-item">DOMANI PIZZA ORIGINAL NAPOLETANA</span>
-            </div>
-        </div>
 
         <!-- PROCESO -->
         <section class="section-process-split">
@@ -679,66 +707,151 @@
             <div class="process-image-col"></div>
         </section>
 
-        <!-- RECONOCIMIENTOS -->
-        <section id="reconocimientos" class="section-awards">
-            <div class="container">
-                <h2>RECONOCIDOS ENTRE LOS MEJORES</h2>
-                <div class="awards-intro">
-                    <p>Fuimos destacados por 50TopPizza como una de las 20 mejores pizzerías de Latinoamérica, y a partir de diciembre formaremos parte del ranking 50Top Artisan Pizzeria Chains in the World.</p>
-                    <p>Además, por más de cinco años consecutivos, recibimos el Tripadvisor Travelers' Choice Award, gracias a las opiniones de nuestros propios clientes.</p>
-                </div>
-                
-                <div class="awards-grid">
-                    <div class="award-card">
-                        <div class="award-logo-circle">
-                             <img src="img/top-pizza.png" alt="50 Top Pizza">
-                        </div>
-                        <h4 class="award-title">50TopPizza Latinoamérica</h4>
-                        <p class="award-desc">Top 20 mejores pizzerías</p>
-                        <span class="award-year">2024</span>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-logo-circle">
-                             <img src="img/top-pizza.png" alt="50 Top Artisan">
-                        </div>
-                        <h4 class="award-title">50Top Artisan Pizzeria Chains</h4>
-                        <p class="award-desc">Ranking mundial de cadenas artesanales</p>
-                        <span class="award-year">2024</span>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-logo-circle">
-                             <img src="img/tripadvisor-logo.png" alt="Tripadvisor" style="width: 80%;">
-                        </div>
-                        <h4 class="award-title">Tripadvisor Travelers' Choice</h4>
-                        <p class="award-desc">5+ años consecutivos</p>
-                        <span class="award-year">2019-2024</span>
-                    </div>
-                </div>
-
-                <p class="awards-footer">Orgullosos de nuestros reconocimientos, de nuestro equipo y, ¡Gracias a ustedes!, ¡Vamos por más y contando!</p>
-            </div>
-        </section>
-
-        <!-- GALERÍA ANIMADA MODIFICADA -->
+        <!-- GALERÍA ANIMADA (CON RUTAS LOCALES) -->
         <section class="gallery-section">
             <div class="gallery-track">
                 <!-- 
-                   LÓGICA INFINITE LOOP:
-                   Para que el scroll infinito funcione con CSS (transform de 0% a -50%),
-                   necesitamos DUPLICAR el contenido. 
-                   Set 1: Las 3 fotos originales.
-                   Set 2: Las mismas 3 fotos repetidas.
+                   IMPORTANTE: 
+                   Para ver tus fotos locales:
+                   1. BORRA o COMENTA las lineas con las fotos de Unsplash.
+                   2. DESCOMENTA el bloque de abajo "FOTOS LOCALES".
                 -->
                 
-                <!-- SET 1 -->
-                <div class="gallery-item"><img src="img/galeria-01.jpg" alt="Ambiente Domani - Interior"></div>
-                <div class="gallery-item"><img src="img/galeria-02.jpg" alt="Pizzas saliendo del horno napolitano"></div>
-                <div class="gallery-item"><img src="img/galeria-03.jpg" alt="Grupo de amigos compartiendo pizza"></div>
+                <!-- FOTOS UNSPLASH (BORRAR AL SUBIR AL SERVIDOR) -->
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Ambiente Domani 1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1559969143-b2defc6419fd?q=80&w=800&auto=format&fit=crop" alt="Pizzas al horno 2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="Compartiendo en Domani 3"></div>
+                <!-- Duplicados para loop -->
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=800&auto=format&fit=crop" alt="Ambiente Domani 1"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1559969143-b2defc6419fd?q=80&w=800&auto=format&fit=crop" alt="Pizzas al horno 2"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" alt="Compartiendo en Domani 3"></div>
 
-                <!-- SET 2 (CLON PARA LOOP INFINITO) -->
-                <div class="gallery-item"><img src="img/galeria-01.jpg" alt="Ambiente Domani - Interior"></div>
-                <div class="gallery-item"><img src="img/galeria-02.jpg" alt="Pizzas saliendo del horno napolitano"></div>
-                <div class="gallery-item"><img src="img/galeria-03.jpg" alt="Grupo de amigos compartiendo pizza"></div>
+                <!-- FOTOS LOCALES (DESCOMENTAR ESTO AL SUBIR) -->
+                <!--
+                <div class="gallery-item"><img src="img/galeria-01.jpg" alt="Ambiente Domani"></div>
+                <div class="gallery-item"><img src="img/galeria-02.jpg" alt="Pizzas al horno"></div>
+                <div class="gallery-item"><img src="img/galeria-03.jpg" alt="Compartiendo en Domani"></div>
+                <div class="gallery-item"><img src="img/galeria-01.jpg" alt="Ambiente Domani"></div>
+                <div class="gallery-item"><img src="img/galeria-02.jpg" alt="Pizzas al horno"></div>
+                <div class="gallery-item"><img src="img/galeria-03.jpg" alt="Compartiendo en Domani"></div>
+                -->
+            </div>
+        </section>
+
+        <!-- SUCURSALES (ACTUALIZADO) -->
+        <section id="sucursales" class="section-branches">
+            <div class="container">
+                <h2>Ven a vivir la experiencia Domani</h2>
+                <h3>Elige tu local favorito o pide a domicilio. Delivery disponible todos los días.</h3>
+
+                <div class="branches-grid">
+                    
+                    <!-- Domani Providencia (Granaderos) -->
+                    <article class="branch-card">
+                        <div class="map-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.988046894086!2d-70.61845148480133!3d-33.42354788078174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf7a1b7a2d1d%3A0x6b7b2b2b2b2b2b2b!2sGranaderos%201328%2C%20Providencia%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1620000000000!5m2!1ses!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Providencia)</h4>
+                            <div class="info-row">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span>Granaderos 1328, Providencia, Región Metropolitana</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="fas fa-envelope"></i>
+                                <span>reservas@pizzeriadomani.cl</span>
+                            </div>
+                        </div>
+                        <div class="branch-actions">
+                            <a href="#" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+
+                    <!-- Domani Las Condes -->
+                    <article class="branch-card">
+                        <div class="map-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.6819903542573!2d-70.57700262495105!3d-33.405459895208345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf275902abd3%3A0xcab946023951cdc0!2sDomani%20Pizzeria%20Napolitana%20%26%20Bar%20-%20Las%20Condes!5e0!3m2!1ses!2scl!4v1765558065572!5m2!1ses!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Las Condes)</h4>
+                            <div class="info-row">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span>Cerro El Plomo 5630, Local 201-202, Las Condes, Región Metropolitana</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="fas fa-envelope"></i>
+                                <span>lascondes@pizzeriadomani.cl</span>
+                            </div>
+                        </div>
+                        <div class="branch-actions">
+                            <a href="#" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+
+                     <!-- Domani Pedro de Valdivia -->
+                    <article class="branch-card">
+                        <div class="map-wrapper">
+                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.685237894086!2d-70.60256848480133!3d-33.43145688078174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf7a1b7a2d1d%3A0x6b7b2b2b2b2b2b2b!2sPlaza%20Pedro%20de%20Valdivia%202025%2C%20Providencia%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1620000000000!5m2!1ses!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Pedro de Valdivia)</h4>
+                            <div class="info-row">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span>Plaza Pedro de Valdivia 2025, Providencia, Región Metropolitana</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="fas fa-envelope"></i>
+                                <span>pvaldivia@pizzeriadomani.cl</span>
+                            </div>
+                        </div>
+                         <div class="branch-actions">
+                            <a href="#" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+
+                    <!-- Domani Tobalaba -->
+                    <article class="branch-card">
+                        <div class="map-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.9189295537685!2d-70.59572612494989!3d-33.42535789622641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662d7a19c8d8a13%3A0xdfa347d4ee499cdb!2sDomani%20Pizzeria%20Napolitana%20%26%20Bar%20-%20Tobalaba!5e0!3m2!1ses!2scl!4v1765557972495!5m2!1ses!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Tobalaba)</h4>
+                            <div class="info-row">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span>Tobalaba 1145, Providencia, Región Metropolitana</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="fas fa-envelope"></i>
+                                <span>tobalaba@pizzeriadomani.cl</span>
+                            </div>
+                        </div>
+                        <div class="branch-actions">
+                            <a href="#" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+
+                    <!-- Domani Barrio Italia -->
+                     <article class="branch-card">
+                        <div class="map-wrapper">
+                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.234567894086!2d-70.62567848480133!3d-33.44567888078174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf7a1b7a2d1d%3A0x6b7b2b2b2b2b2b2b!2sAv.%20Italia%20758%2C%20Providencia%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1620000000000!5m2!1ses!2scl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Barrio Italia)</h4>
+                            <div class="info-row">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span>Av. Italia 758, Providencia, Región Metropolitana</span>
+                            </div>
+                            <div class="info-row">
+                                <i class="fas fa-envelope"></i>
+                                <span>italia@pizzeriadomani.cl</span>
+                            </div>
+                        </div>
+                         <div class="branch-actions">
+                            <a href="#" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+
+                </div>
             </div>
         </section>
 
@@ -749,8 +862,7 @@
                 <h3>Opiniones reales desde Google Maps y redes sociales</h3>
                 <br>
                 
-                <!-- CONTENEDOR CORREGIDO PARA PADDING RESPONSIVE -->
-                <div class="reviews-wrapper-inner">
+                <div style="position: relative; padding: 0 50px;">
                     <button class="review-nav review-prev" onclick="slideReview(-1)"><i class="fas fa-chevron-left"></i></button>
                     <button class="review-nav review-next" onclick="slideReview(1)"><i class="fas fa-chevron-right"></i></button>
                     
@@ -772,78 +884,16 @@
                                     <p class="review-author">— Juan P., Instagram</p>
                                 </div>
                             </div>
+                            <!-- SLIDE 3 -->
+                            <div class="review-slide">
+                                <div class="review-card">
+                                    <div class="review-stars">★★★★★</div>
+                                    <p class="review-text">"La masa es de otro planeta, fermentación perfecta y ligera. Sin duda la mejor de Santiago."</p>
+                                    <p class="review-author">— Roberto M., TripAdvisor</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SUCURSALES -->
-        <section id="sucursales" class="section-branches">
-            <div class="container">
-                <h2>Ven a vivir la experiencia Domani</h2>
-                <h3>Elige tu local favorito o pide a domicilio. Delivery disponible todos los días.</h3>
-
-                <div class="branches-grid">
-                    <article class="branch-card">
-                        <div class="map-wrapper">
-                            <iframe style="width:100%; height:100%; border:0;" loading="lazy" src="https://maps.google.com/maps?q=Granaderos+1328+Providencia&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-                        </div>
-                        <div class="branch-info">
-                            <h4>Providencia</h4>
-                            <div class="info-row">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                <span>Granaderos 1328, Providencia, Santiago</span>
-                            </div>
-                            <div class="info-row">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>Lun: 12:00–22:30<br>Mar-Mié: 12:00–23:30<br>Jue-Sáb: 12:00–00:30<br>Dom: 12:00–22:00</span>
-                            </div>
-                        </div>
-                        <div class="branch-actions">
-                            <a href="#" class="btn btn-black">Pedir Delivery</a>
-                        </div>
-                    </article>
-
-                    <article class="branch-card">
-                        <div class="map-wrapper">
-                             <iframe style="width:100%; height:100%; border:0;" loading="lazy" src="https://maps.google.com/maps?q=Plaza+Pedro+de+Valdivia+2025&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-                        </div>
-                        <div class="branch-info">
-                            <h4>Pedro de Valdivia</h4>
-                            <div class="info-row">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                <span>Plaza P. de Valdivia 2025, Providencia, Santiago</span>
-                            </div>
-                            <div class="info-row">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>Lun: 12:00–22:30<br>Mar-Mié: 12:00–23:30<br>Jue-Sáb: 12:00–00:30<br>Dom: 12:00–22:00</span>
-                            </div>
-                        </div>
-                         <div class="branch-actions">
-                            <a href="#" class="btn btn-black">Pedir Delivery</a>
-                        </div>
-                    </article>
-
-                     <article class="branch-card">
-                        <div class="map-wrapper">
-                             <iframe style="width:100%; height:100%; border:0;" loading="lazy" src="https://maps.google.com/maps?q=Av+Italia+758&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
-                        </div>
-                        <div class="branch-info">
-                            <h4>Barrio Italia</h4>
-                            <div class="info-row">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                <span>Av. Italia 758, Providencia, Santiago</span>
-                            </div>
-                            <div class="info-row">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                                <span>Lun: 12:00–22:30<br>Mar-Mié: 12:00–23:30<br>Jue-Sáb: 12:00–00:30<br>Dom: 12:00–22:00</span>
-                            </div>
-                        </div>
-                         <div class="branch-actions">
-                            <a href="#" class="btn btn-black">Pedir Delivery</a>
-                        </div>
-                    </article>
                 </div>
             </div>
         </section>
@@ -869,17 +919,13 @@
             <div class="contact-grid">
                 <div class="contact-text-col">
                     <h2>¿Aún tienes dudas?</h2>
-                    <h3>Completa el formulario y nuestro equipo Domani te contactará a la brevedad.<br>Queremos que disfrutes la experiencia completa, desde el horno hasta tu mesa</h3>
+                    <h3>Si tienes más preguntas de nuestros locales o servicio, te invitamos a conversarnos directamente por WhatsApp</h3>
                     <br>
-                    
-                    <form>
-                        <input type="text" placeholder="Nombre" class="form-control" required>
-                        <input type="email" placeholder="Correo electrónico" class="form-control" required>
-                        <textarea rows="4" placeholder="¿En qué podemos ayudarte?" class="form-control" required></textarea>
-                        <div style="text-align: center;">
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar mensaje</button>
-                        </div>
-                    </form>
+                    <div style="text-align: center;">
+                        <a href="https://wa.me/569XXXXXXXX" target="_blank" class="btn btn-whatsapp" style="padding: 10px 20px;">
+                            <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Resolver dudas por WhatsApp
+                        </a>
+                    </div>
                 </div>
                 <div class="contact-image-col">
                     <img src="img/img-contacto-lateral.jpg" alt="Experiencia Domani">
@@ -922,6 +968,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- STICKY MOBILE -->
+    <div class="mobile-sticky">
+        <a href="https://delivery.pizzeriadomani.cl/?_gl=1*1td0umh*_gcl_au*MTc2NzgxNDMzNy4xNzYwOTY5OTY1*_ga*NDM5ODU5ODg5LjE3NjA5Njk5NjU.*_ga_C6YQEJ0B5Z*czE3NjU1NTczMTckbzExJGcwJHQxNzY1NTU3MzE3JGo2MCRsMCRoMTY4NzgxMTg1OA" class="btn btn-primary" style="background-color: #F70618; color: #fff; border-color: #F70618;">Pedir Delivery</a>
+    </div>
 
     <!-- SCROLL TOP BUTTON -->
     <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Volver arriba">
