@@ -50,6 +50,7 @@
             color: var(--text-color);
             background-color: var(--bg-color);
             line-height: 1.6;
+            padding-top: var(--header-height); /* Compensar header fijo */
         }
 
         section, #que-es { scroll-margin-top: var(--header-height); }
@@ -155,10 +156,12 @@
         }
         .btn-border-thick:hover { background-color: #FFFFFF; color: var(--domani-black); }
 
-        /* --- HEADER --- */
+        /* --- HEADER FIXED --- */
         header {
             background-color: var(--domani-black); color: #fff; height: var(--header-height); 
-            position: sticky; top: 0; z-index: 1000; display: flex; align-items: center;
+            position: fixed; /* Menú fijo */
+            top: 0; left: 0; width: 100%;
+            z-index: 1000; display: flex; align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         .header-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; height: 100%; }
@@ -341,6 +344,11 @@
         }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
         
+        @media (max-width: 768px) {
+            .gallery-section { height: 450px; }
+            .gallery-item { width: 100vw; } /* Mobile: 100% ancho pantalla */
+        }
+
         @keyframes scrollGallery {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); } 
@@ -419,19 +427,10 @@
         .section-contact { padding: 0; background: #fff; } 
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 400px; }
         .contact-text-col { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; background-color: #fff; }
-        
-        /* Centrado de texto */
-        .contact-text-col h2,
-        .contact-text-col h3 { 
-            text-align: center; 
-            margin-left: auto; 
-            margin-right: auto; 
-        }
-        
-        /* Centrado de línea roja */
-        .contact-text-col h2::after { 
-            margin: 15px auto 0 auto !important; 
-        }
+        .contact-text-col h2 { text-align: center; margin-left: auto; margin-right: auto; }
+        .contact-text-col h3 { text-align: center; margin-left: auto; margin-right: auto; max-width: 100%; }
+        /* Linea roja centrada */
+        .contact-text-col h2::after { margin: 15px auto 0 auto !important; }
 
         .contact-image-col { width: 100%; height: 100%; position: relative; overflow: hidden; }
         .contact-image-col img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -546,7 +545,7 @@
             </div>
         </div>
 
-        <!-- RECONOCIMIENTOS (MOVIDO AL INICIO) -->
+        <!-- RECONOCIMIENTOS -->
         <section id="reconocimientos" class="section-awards">
             <div class="container">
                 <h2>RECONOCIDOS ENTRE LOS MEJORES</h2>
@@ -585,7 +584,7 @@
                         </div>
                         <h4 class="award-title">50Top Artisan Pizzeria Chains</h4>
                         <p class="award-desc">Ranking mundial de cadenas artesanales</p>
-                        <span class="award-year">2024</span>
+                        <span class="award-year">2025</span>
                     </div>
                     <div class="award-card">
                         <div class="award-logo-circle">
@@ -647,6 +646,7 @@
                         <button class="tab-btn active" onclick="filterPizzas('all')">TODAS</button>
                         <button class="tab-btn" onclick="filterPizzas('clasicas')">CLÁSICAS</button>
                         <button class="tab-btn" onclick="filterPizzas('iconicas')">ICÓNICAS DOMANI</button>
+                        <button class="tab-btn" onclick="filterPizzas('antipastos')">ANTIPASTOS</button>
                     </div>
                 </div>
 
@@ -697,6 +697,22 @@
                                 <p>Nuestra joya: Salsa pomodoro, rúcula fresca, prosciutto crudo y una suave burrata de Puglia al centro.</p>
                             </div>
                         </article>
+
+                         <!-- ANTIPASTOS -->
+                        <article class="pizza-card" data-category="antipastos">
+                            <img src="img/antipasto-burrata.jpg" class="pizza-img" loading="lazy">
+                            <div class="pizza-details">
+                                <h4>TAVOLA BURRATA AL POMODORO</h4>
+                                <p>Tabla con cremosa burrata de Puglia, sartén con tomates asados al aceite de ajo, mix de aceitunas y crocantinas rústicas con dip de la casa.</p>
+                            </div>
+                        </article>
+                        <article class="pizza-card" data-category="antipastos">
+                            <img src="img/antipasto-prosciutto.jpg" class="pizza-img" loading="lazy">
+                            <div class="pizza-details">
+                                <h4>TAVOLA PROSCIUTTO E BUFALA</h4>
+                                <p>Tabla de mozzarella de búfala di Campana, prosciutto di Parma, mix de aceitunas y crocantinas rústicas con dip de la casa.</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
 
@@ -738,49 +754,6 @@
                 </div>
                 <div class="gallery-item">
                     <img src="img/galeria-03.jpg" alt="Compartiendo en Domani">
-                </div>
-            </div>
-        </section>
-
-        <!-- TESTIMONIOS (CARRUSEL) -->
-        <section id="testimonios" class="section-reviews">
-            <div class="container reviews-container">
-                <h2>Lo que dicen quienes ya la probaron</h2>
-                <h3>Opiniones reales desde Google Maps y redes sociales</h3>
-                <br>
-                
-                <div style="position: relative; padding: 0 50px;">
-                    <button class="review-nav review-prev" onclick="slideReview(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <button class="review-nav review-next" onclick="slideReview(1)"><i class="fas fa-chevron-right"></i></button>
-                    
-                    <div style="overflow: hidden;">
-                        <div class="reviews-track" id="reviewsTrack">
-                            <!-- SLIDE 1 -->
-                            <div class="review-slide">
-                                <div class="review-card">
-                                    <div class="review-stars">★★★★★</div>
-                                    <p class="review-text">"Probé la Margherita y fue como estar en Nápoles. El borde inflado, los ingredientes y el horno... ¡todo perfecto!"</p>
-                                    <p class="review-author">— Camila A., Google Reviews</p>
-                                </div>
-                            </div>
-                            <!-- SLIDE 2 -->
-                            <div class="review-slide">
-                                <div class="review-card">
-                                    <div class="review-stars">★★★★★</div>
-                                    <p class="review-text">"Sabor increíble, servicio rápido. Ya es mi favorita. Recomendadísimo para ir en familia."</p>
-                                    <p class="review-author">— Juan P., Instagram</p>
-                                </div>
-                            </div>
-                            <!-- SLIDE 3 -->
-                            <div class="review-slide">
-                                <div class="review-card">
-                                    <div class="review-stars">★★★★★</div>
-                                    <p class="review-text">"La masa es de otro planeta, fermentación perfecta y ligera. Sin duda la mejor de Santiago."</p>
-                                    <p class="review-author">— Roberto M., TripAdvisor</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -902,6 +875,49 @@
             </div>
         </section>
 
+        <!-- TESTIMONIOS (CARRUSEL) -->
+        <section id="testimonios" class="section-reviews">
+            <div class="container reviews-container">
+                <h2>Lo que dicen quienes ya la probaron</h2>
+                <h3>Opiniones reales desde Google Maps y redes sociales</h3>
+                <br>
+                
+                <div style="position: relative; padding: 0 50px;">
+                    <button class="review-nav review-prev" onclick="slideReview(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="review-nav review-next" onclick="slideReview(1)"><i class="fas fa-chevron-right"></i></button>
+                    
+                    <div style="overflow: hidden;">
+                        <div class="reviews-track" id="reviewsTrack">
+                            <!-- SLIDE 1 -->
+                            <div class="review-slide">
+                                <div class="review-card">
+                                    <div class="review-stars">★★★★★</div>
+                                    <p class="review-text">"Probé la Margherita y fue como estar en Nápoles. El borde inflado, los ingredientes y el horno... ¡todo perfecto!"</p>
+                                    <p class="review-author">— Camila A., Google Reviews</p>
+                                </div>
+                            </div>
+                            <!-- SLIDE 2 -->
+                            <div class="review-slide">
+                                <div class="review-card">
+                                    <div class="review-stars">★★★★★</div>
+                                    <p class="review-text">"Sabor increíble, servicio rápido. Ya es mi favorita. Recomendadísimo para ir en familia."</p>
+                                    <p class="review-author">— Juan P., Instagram</p>
+                                </div>
+                            </div>
+                            <!-- SLIDE 3 -->
+                            <div class="review-slide">
+                                <div class="review-card">
+                                    <div class="review-stars">★★★★★</div>
+                                    <p class="review-text">"La masa es de otro planeta, fermentación perfecta y ligera. Sin duda la mejor de Santiago."</p>
+                                    <p class="review-author">— Roberto M., TripAdvisor</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- FINAL CTA -->
         <section class="section-final">
             <div class="container">
@@ -975,7 +991,7 @@
 
     <!-- STICKY MOBILE -->
     <div class="mobile-sticky">
-        <a href="https://delivery.pizzeriadomani.cl/?_gl=1*1td0umh*_gcl_au*MTc2NzgxNDMzNy4xNzYwOTY5OTY1*_ga*NDM5ODU5ODg5LjE3NjA5Njk5NjU.*_ga_C6YQEJ0B5Z*czE3NjU1NTczMTckbzExJGcwJHQxNzY1NTU3MzE3JGo2MCRsMCRoMTY4NzgxMTg1OA" class="btn btn-primary" style="background-color: #F70618; color: #fff; border-color: #F70618;">Pedir Delivery</a>
+        <a href="#reservas" class="btn btn-primary" style="background-color: #F70618; color: #fff; border-color: #F70618;">Reservar</a>
     </div>
 
     <!-- SCROLL TOP BUTTON -->
