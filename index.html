@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO ON-PAGE -->
+    <title>Domani | Pizza Napolitana auténtica en Santiago</title>
+    <meta name="description" content="Ganadores 50 Top Pizza 2025. La mejor pizzería de Chile y N°46 del mundo. Reserva tu experiencia napolitana.">
+    
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;0,900;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --domani-red: #F70618; 
+            --domani-black: #1a1a1a;
+            --domani-card-bg: #252525;
+            --text-color: #2C2D2B;
+            --bg-color: #FFFFFF;
+            --grey-light: #f4f4f4;
+            --tab-bg: #EAE0D5;
+            --header-height: 90px; 
+            --font-main: "Montserrat", sans-serif;
+            --container-width: 1400px;
+            --section-padding: 80px 20px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            padding-top: var(--header-height);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { color: var(--domani-black); }
+
+        h2 { 
+            font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.5rem); 
+            text-transform: uppercase; margin-bottom: 1.5rem; text-align: center; 
+            position: relative; padding-bottom: 15px;
+        }
+        h2::after {
+            content: ''; display: block; width: 80px; height: 4px; 
+            background-color: var(--domani-red); margin: 15px auto 0 auto;
+        }
+
+        h3 { 
+            font-size: 1.25rem; font-weight: 500; text-align: center; color: var(--text-color);
+            max-width: 900px; margin: 0 auto 2rem auto;
+        }
+
+        p, li { margin-bottom: 1rem; font-size: 1rem; color: var(--text-color); }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; transition: 0.3s; color: inherit; }
+
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; position: relative; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--domani-black); color: #fff; height: var(--header-height); 
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; height: 100%; }
+        .logo img { height: 50px; width: auto; display: block; }
+
+        .nav-desktop { display: flex; align-items: center; height: 100%; }
+        .nav-desktop ul { display: flex; gap: 0; margin: 0; padding: 0; list-style: none; height: 100%; align-items: center; }
+        .nav-desktop a { 
+            font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; 
+            color: #FFFFFF; display: flex; align-items: center; height: 100%; padding: 0 15px; 
+            white-space: nowrap;
+        }
+        .nav-desktop a:hover { color: var(--domani-red); }
+
+        .btn-reserve-nav {
+            background-color: var(--domani-red); padding: 12px 25px; margin-left: 15px;
+            font-weight: 800; color: #fff !important;
+        }
+
+        .mobile-menu-btn { display: none; color: #fff; font-size: 1.5rem; background: none; border: none; cursor: pointer; }
+        .mobile-nav-overlay {
+            display: none; position: fixed; top: var(--header-height); left: 0; width: 100%; 
+            background: rgba(26, 26, 26, 0.98); padding: 20px; border-top: 1px solid #333;
+            flex-direction: column; gap: 15px; text-align: center; z-index: 999;
+        }
+        .mobile-nav-overlay.active { display: flex; }
+
+        @media (max-width: 1150px) { .nav-desktop { display: none; } .mobile-menu-btn { display: block; } }
+
+        /* --- HERO --- */
+        .hero-video-container {
+            position: relative; width: 100%; height: 90vh; min-height: 600px;
+            overflow: hidden; display: flex; align-items: center; background-color: #000;
+        }
+        #bg-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); object-fit: cover; z-index: 1; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%); z-index: 2; }
+        .hero-content { position: relative; z-index: 3; padding: 0 40px; }
+        .hero-text h1 { font-family: 'Montserrat', sans-serif; font-weight: 900; font-style: italic; text-transform: uppercase; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.1; color: #fff; }
+        .hero-text h1 span { display: block; }
+
+        /* --- PREMIOS --- */
+        .section-awards { padding: 100px 20px; background-color: #000; text-align: center; color: #fff; }
+        .section-awards h2 { color: #fff; }
+        .section-awards h2::after { background-color: var(--domani-red); }
+        .awards-intro p { max-width: 850px; margin: 0 auto 60px; font-size: 1.1rem; color: #ffffff !important; opacity: 1; }
+        .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1300px; margin: 0 auto; }
+        .award-card { background-color: var(--domani-card-bg); padding: 40px 25px; border: 1px solid #333; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
+        .award-card:hover { transform: translateY(-5px); border-color: var(--domani-red); }
+        .award-logo-circle { width: 110px; height: 110px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; padding: 15px; }
+        .award-logo-circle img { width: 100%; height: auto; object-fit: contain; }
+        .award-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 12px; color: #fff; text-transform: uppercase; }
+        .award-desc { font-size: 0.95rem; color: #ccc; margin-bottom: 15px; }
+        .award-year { font-weight: 800; font-size: 1.1rem; color: var(--domani-red); margin-top: auto; }
+        .award-revelacion { border: 2px solid var(--domani-red); background: linear-gradient(145deg, #252525, #1a1a1a); }
+
+        /* --- MARQUEE --- */
+        .marquee-container { background-color: #000; height: 45px; overflow: hidden; display: flex; align-items: center; width: 100%; border-top: 1px solid #222; }
+        .marquee-content { display: flex; white-space: nowrap; animation: scrollMarquee 30s linear infinite; }
+        .marquee-item { color: #fff; font-weight: 800; text-transform: uppercase; margin-right: 60px; font-size: 0.95rem; letter-spacing: 2px; }
+        @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* --- SECCIÓN AUTÉNTICA --- */
+        .section-autentica {
+            height: 500px; position: relative; overflow: hidden; display: flex; align-items: center; background-color: #000;
+        }
+        .autentica-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://pizzeriadomani.cl/wp-content/uploads/2023/09/Property-1Variant3-1.png');
+            background-size: cover; background-position: center;
+            animation: kenBurns 20s infinite alternate;
+            filter: brightness(0.6);
+        }
+        @keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+        .autentica-content { position: relative; z-index: 5; padding-left: 10%; width: 100%; }
+        .autentica-content h2 {
+            color: #fff; text-align: left; font-weight: 900; font-style: italic; 
+            font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.1; margin: 0;
+            text-transform: uppercase;
+        }
+        .section-autentica h2::after { display: none; }
+
+        /* --- PROMOCIONES --- */
+        .section-promo { padding: var(--section-padding); background-color: #f9f9f9; text-align: center; }
+        .promo-wrapper { position: relative; max-width: 600px; margin: 0 auto; }
+        .promo-carousel {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory; 
+            scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .promo-carousel::-webkit-scrollbar { display: none; }
+        .promo-slide {
+            min-width: 100%; flex: 0 0 100%; scroll-snap-align: center;
+            background: #fff; border: 1px solid #ddd; display: flex; flex-direction: column;
+        }
+        .promo-img { height: 350px; width: 100%; object-fit: cover; }
+        .promo-info { padding: 30px; }
+        .promo-title { font-weight: 800; font-size: 1.3rem; margin-bottom: 10px; color: var(--domani-black); }
+        .promo-price-old { text-decoration: line-through; color: #999; font-size: 1.2rem; }
+        .promo-price-new { color: var(--domani-red); font-weight: 900; font-size: 2.2rem; display: block; margin: 10px 0; }
+        
+        .promo-nav { position: absolute; top: 40%; transform: translateY(-50%); width: 45px; height: 45px; background: #fff; border: 1px solid #ddd; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: 0.3s; }
+        .promo-nav:hover { background: var(--domani-red); color: #fff; border-color: var(--domani-red); }
+        .promo-prev { left: -60px; }
+        .promo-next { right: -60px; }
+        @media (max-width: 768px) { .promo-prev { left: 10px; } .promo-next { right: 10px; } .promo-wrapper { max-width: 100%; } }
+
+        /* --- SECCIÓN PRUEBA (TEXTURE SPLIT) --- */
+        .section-prueba { display: grid; grid-template-columns: 1fr 1fr; background-color: #000; min-height: 550px; }
+        .prueba-text-col {
+            background-image: url('https://pizzeriadomani.cl/wp-content/uploads/2023/09/fondo-suelo-textura-madera-marron-3.png');
+            background-size: cover; padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; color: #fff; position: relative;
+        }
+        .prueba-text-col::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1; }
+        .prueba-content-inner { position: relative; z-index: 2; }
+        .section-prueba h2 { color: #fff; text-align: left; font-size: 2.2rem; line-height: 1.2; margin-bottom: 25px; }
+        .section-prueba h2::after { margin: 15px 0 0 0; background: #fff; }
+        .prueba-text-col p { color: #eee; font-size: 1.05rem; line-height: 1.8; margin-bottom: 20px; }
+        .prueba-img-col { background-image: url('https://pizzeriadomani.cl/wp-content/uploads/2023/09/Rectangle-258-1.png'); background-size: cover; background-position: center; }
+        @media (max-width: 900px) { .section-prueba { grid-template-columns: 1fr; } .prueba-img-col { height: 350px; } .prueba-text-col { padding: 60px 20px; } }
+
+        /* --- PIZZERÍAS --- */
+        .section-branches { padding: var(--section-padding); background-color: var(--grey-light); }
+        .branches-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
+        .branch-card { background: #fff; border: 1px solid #ddd; display: flex; flex-direction: column; overflow: hidden; height: 100%; }
+        .map-wrapper { height: 250px; width: 100%; overflow: hidden; }
+        .map-wrapper iframe { width: 100%; height: 100%; border: 0; }
+        .branch-info { padding: 30px; text-align: left; flex-grow: 1; }
+        .branch-info h4 { font-weight: 800; text-transform: uppercase; font-size: 1.2rem; margin-bottom: 20px; color: var(--domani-black); }
+        .info-row { display: flex; align-items: flex-start; margin-bottom: 15px; font-size: 0.95rem; }
+        .info-row i { margin-right: 15px; color: var(--domani-red); margin-top: 5px; width: 20px; text-align: center; }
+        .branch-actions { padding: 0 30px 30px; }
+        .branch-actions .btn { width: 100%; }
+
+        /* --- TESTIMONIOS --- */
+        .section-reviews { padding: var(--section-padding); background-color: #fff; text-align: center; }
+        .reviews-container { max-width: 900px; margin: 0 auto; position: relative; overflow: hidden; }
+        .reviews-track { display: flex; transition: 0.5s ease-in-out; }
+        .review-slide { min-width: 100%; padding: 40px; }
+        .review-card { background: #f9f9f9; padding: 50px; border: 1px solid #eee; }
+        .stars { color: #FFC107; margin-bottom: 20px; font-size: 1.2rem; }
+
+        /* --- FINAL CTA --- */
+        .section-final { 
+            padding: 100px 20px; text-align: center; color: #fff;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://pizzeriadomani.cl/wp-content/uploads/2023/06/tradicion-domani.jpg') center/cover;
+        }
+        .final-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px; }
+        .btn-outline { border: 2px solid #fff; color: #fff; background: transparent; }
+        .btn-outline:hover { background: #fff; color: #000; border-color: #fff; }
+
+        /* --- FOOTER --- */
+        footer { background-color: #000; color: #fff; padding: 60px 0 20px; }
+        .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; border-bottom: 1px solid #333; padding-bottom: 40px; }
+        .footer-links-inline { display: flex; gap: 20px; flex-wrap: wrap; }
+        .footer-link-item { color: #fff; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+        .footer-copyright { text-align: center; font-size: 0.8rem; color: #888; margin-top: 30px; }
+
+        /* --- UTILS --- */
+        .btn { padding: 14px 30px; font-weight: 800; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border: none; font-family: inherit; transition: 0.3s; }
+        .btn-red { background: var(--domani-red); color: #fff; }
+        .btn-red:hover { background: #fff; color: var(--domani-red); }
+        .btn-black { background: #000; color: #fff; }
+        .btn-black:hover { background: var(--domani-red); color: #fff; }
+        .btn-whatsapp { background-color: #25D366; color: #fff; margin-top: 20px; }
+
+        /* STICKY MOBILE */
+        .mobile-sticky { display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 999; background: #fff; padding: 10px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+        .mobile-sticky-inner { display: flex; gap: 10px; }
+        .mobile-sticky .btn { flex: 1; font-size: 0.75rem; padding: 12px 5px; }
+        @media(max-width: 768px) { .mobile-sticky { display: block; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <img src="https://pizzeriadomani.cl/wp-content/uploads/2023/06/logo-domani-white.png" alt="Domani">
+            </a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+            
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="#que-es">Pizza Napolitana</a></li>
+                    <li><a href="#pizzerias">Pizzerías</a></li>
+                    <li><a href="#">Eventos</a></li>
+                    <li><a href="#">Gift Card</a></li>
+                    <li><a href="#promociones">Delivery</a></li>
+                    <li><a href="#" class="btn-reserve-nav">RESERVAR</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-nav-overlay" id="mobileNav">
+                <a href="#que-es" onclick="toggleMenu()">Pizza Napolitana</a>
+                <a href="#pizzerias" onclick="toggleMenu()">Pizzerías</a>
+                <a href="#" onclick="toggleMenu()">Eventos</a>
+                <a href="#" onclick="toggleMenu()">Gift Card</a>
+                <a href="#promociones" onclick="toggleMenu()">Delivery</a>
+                <a href="#" onclick="toggleMenu()" style="background: var(--domani-red); margin-top: 10px;">RESERVAR</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero-video-container">
+            <video autoplay muted loop playsinline id="bg-video">
+                <source src="https://pizzeriadomani.cl/wp-content/uploads/2025/12/PremioFinal.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>
+                        <span>GANADORES 50 TOP PIZZA</span>
+                        <span>2025 Artisan Pizza Chains</span>
+                        <span>N°46 DEL MUNDO</span>
+                        <span>Mejor pizzería de Chile</span>
+                        <span>Pizzería Revelación</span>
+                    </h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- MARQUEE INICIAL -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="marquee-item">DOMANI • ORIGINAL NAPOLETANA • TOP 46 WORLDWIDE • ARTISAN PIZZA CHAINS</span>
+                <span class="marquee-item">DOMANI • ORIGINAL NAPOLETANA • TOP 46 WORLDWIDE • ARTISAN PIZZA CHAINS</span>
+                <span class="marquee-item">DOMANI • ORIGINAL NAPOLETANA • TOP 46 WORLDWIDE • ARTISAN PIZZA CHAINS</span>
+            </div>
+        </div>
+
+        <!-- PREMIOS -->
+        <section id="reconocimientos" class="section-awards">
+            <div class="container">
+                <h2>Premios</h2>
+                <div class="awards-intro">
+                    <p>Orgullosos de ser reconocidos por los rankings más prestigiosos del mundo. Nuestra pasión por la verdadera pizza napolitana nos ha llevado a lo más alto de la gastronomía internacional.</p>
+                </div>
+                
+                <div class="awards-grid">
+                    <div class="award-card award-revelacion">
+                        <div class="award-logo-circle"><img src="https://pizzeriadomani.cl/wp-content/uploads/2026/01/top-pizza.webp" alt="50 Top"></div>
+                        <h4 class="award-title">50Top Artisan Pizzeria Chains</h4>
+                        <p class="award-desc">Pizzería Revelación 2025 • N°1 de Chile • 46° del mundo</p>
+                        <span class="award-year">2025</span>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-logo-circle"><img src="https://pizzeriadomani.cl/wp-content/uploads/2026/01/top-pizza.webp" alt="50 Top"></div>
+                        <h4 class="award-title">50TopPizza Latinoamérica</h4>
+                        <p class="award-desc">Top 20 mejores pizzerías</p>
+                        <span class="award-year">2024</span>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-logo-circle"><img src="https://pizzeriadomani.cl/wp-content/uploads/2026/01/top-pizza.webp" alt="50 Top"></div>
+                        <h4 class="award-title">50Top Artisan Chains</h4>
+                        <p class="award-desc">Ranking mundial cadenas artesanales</p>
+                        <span class="award-year">2025</span>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-logo-circle"><img src="https://pizzeriadomani.cl/wp-content/uploads/2026/01/tripadvisor-logo.webp" alt="Tripadvisor"></div>
+                        <h4 class="award-title">Tripadvisor Travelers' Choice</h4>
+                        <p class="award-desc">5+ años consecutivos</p>
+                        <span class="award-year">2019-2024</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUTÉNTICA PIZZA NAPOLITANA -->
+        <section id="que-es" class="section-autentica">
+            <div class="autentica-bg"></div>
+            <div class="autentica-content">
+                <h2>AUTÉNTICA<br>PIZZA<br>NAPOLITANA</h2>
+            </div>
+        </section>
+
+        <!-- CINTILLO ARRIBA PROMOCIONES -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="marquee-item">DOMANI • ORIGINAL NAPOLETANA • PROMOCIONES EXCLUSIVAS DELIVERY</span>
+                <span class="marquee-item">DOMANI • ORIGINAL NAPOLETANA • PROMOCIONES EXCLUSIVAS DELIVERY</span>
+                <span class="marquee-item">DOMANI • ORIGINAL NAPOLETANA • PROMOCIONES EXCLUSIVAS DELIVERY</span>
+            </div>
+        </div>
+
+        <!-- PROMOCIONES -->
+        <section id="promociones" class="section-promo">
+            <div class="container">
+                <h2>PROMOCIONES</h2>
+                <div class="promo-wrapper">
+                    <button class="promo-nav promo-prev" onclick="movePromo(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="promo-nav promo-next" onclick="movePromo(1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="promo-carousel" id="promoCarousel">
+                        <article class="promo-slide">
+                            <img src="https://pizzeriadomani.cl/wp-content/uploads/2023/06/margherita.jpg" class="promo-img">
+                            <div class="promo-info">
+                                <h4 class="promo-title">DUE FELICI + PANECILLOS</h4>
+                                <span class="promo-price-old">$29.700</span>
+                                <span class="promo-price-new">$19.900</span>
+                            </div>
+                        </article>
+                        <article class="promo-slide">
+                            <img src="https://pizzeriadomani.cl/wp-content/uploads/2023/06/diavola.jpg" class="promo-img">
+                            <div class="promo-info">
+                                <h4 class="promo-title">COMBO FELICE</h4>
+                                <span class="promo-price-old">$17.800</span>
+                                <span class="promo-price-new">$12.000</span>
+                            </div>
+                        </article>
+                        <article class="promo-slide">
+                            <img src="https://pizzeriadomani.cl/wp-content/uploads/2023/06/tartufo.jpg" class="promo-img">
+                            <div class="promo-info">
+                                <h4 class="promo-title">CHILLI HONEY + PANECILLOS</h4>
+                                <span class="promo-price-old">$18.800</span>
+                                <span class="promo-price-new">$9.900</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div style="margin-top: 40px;">
+                    <a href="https://delivery.pizzeriadomani.cl/" class="btn btn-red" style="padding: 18px 60px; font-size: 1rem;">Pedir Delivery</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CINTILLO ABAJO PROMOCIONES -->
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="marquee-item">DOMANI • ORIGINAL NAPOLETANA • PIZZA A DOMICILIO SANTIAGO</span>
+                <span class="marquee-item">DOMANI • ORIGINAL NAPOLETANA • PIZZA A DOMICILIO SANTIAGO</span>
+                <span class="marquee-item">DOMANI • ORIGINAL NAPOLETANA • PIZZA A DOMICILIO SANTIAGO</span>
+            </div>
+        </div>
+
+        <!-- PRUEBA LA AUTÉNTICA -->
+        <section class="section-prueba">
+            <div class="prueba-text-col">
+                <div class="prueba-content-inner">
+                    <h2>PRUEBA LA AUTÉNTICA PIZZA NAPOLITANA</h2>
+                    <p>En Domani, amamos la Pizza Napolitana. Hacemos nuestra masa fresca todos los días, dejándola fermentar durante 24-48 horas, luego en 90 segundos a 450°C la cocinamos perfectamente. Una masa suave y flexible, tú decides cómo disfrutarla.</p>
+                    <p><strong>¡Te esperamos en Domani!</strong></p>
+                </div>
+            </div>
+            <div class="prueba-img-col"></div>
+        </section>
+
+        <!-- PIZZERÍAS -->
+        <section id="pizzerias" class="section-branches">
+            <div class="container">
+                <h2>Pizzerías</h2>
+                <div class="branches-grid">
+                    <!-- Providencia Granaderos -->
+                    <article class="branch-card">
+                        <div class="map-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13318.808270343457!2d-70.618449!3d-33.431011!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf7cdf3b3a9b%3A0xd4a152ddc8ebd00f!2sGranaderos%201328%2C%20Providencia%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1774542514288!5m2!1ses!2scl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Providencia)</h4>
+                            <div class="info-row"><i class="fas fa-location-dot"></i><span>Granaderos 1328, Providencia, Región Metropolitana</span></div>
+                            <div class="info-row"><i class="fas fa-envelope"></i><span>reservas@pizzeriadomani.cl</span></div>
+                        </div>
+                        <div class="branch-actions">
+                            <a href="https://delivery.pizzeriadomani.cl/" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+
+                    <!-- Las Condes -->
+                    <article class="branch-card">
+                        <div class="map-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13322.727331930404!2d-70.574428!3d-33.405464!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf275902abd3%3A0xcab946023951cdc0!2sDomani%20Pizzeria%20Napolitana%20%26%20Bar%20-%20Las%20Condes!5e0!3m2!1ses!2scl!4v1774542498054!5m2!1ses!2scl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Las Condes)</h4>
+                            <div class="info-row"><i class="fas fa-location-dot"></i><span>Cerro El Plomo 5630, Local 201-202, Las Condes, Región Metropolitana</span></div>
+                            <div class="info-row"><i class="fas fa-envelope"></i><span>lascondes@pizzeriadomani.cl</span></div>
+                        </div>
+                        <div class="branch-actions">
+                            <a href="https://delivery.pizzeriadomani.cl/" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+
+                    <!-- Pedro de Valdivia -->
+                    <article class="branch-card">
+                        <div class="map-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13317.51984939953!2d-70.606928!3d-33.439406!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf9d7838a741%3A0x39a922bf9e0660c8!2sPl.%20Pedro%20de%20Valdivia%202025%2C%207511020%20Santiago%2C%20Providencia%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1774542480820!5m2!1ses!2scl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Pedro de Valdivia)</h4>
+                            <div class="info-row"><i class="fas fa-location-dot"></i><span>Plaza Pedro de Valdivia 2025, Providencia, Región Metropolitana</span></div>
+                            <div class="info-row"><i class="fas fa-envelope"></i><span>pvaldivia@pizzeriadomani.cl</span></div>
+                        </div>
+                        <div class="branch-actions">
+                            <a href="https://delivery.pizzeriadomani.cl/" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+
+                    <!-- Tobalaba -->
+                    <article class="branch-card">
+                        <div class="map-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13319.707616650436!2d-70.592934!3d-33.42515!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662d7a19c8d8a13%3A0xdfa347d4ee499cdb!2sDomani%20Pizzeria%20Napolitana%20%26%20Bar%20-%20Tobalaba!5e0!3m2!1ses!2scl!4v1774542443563!5m2!1ses!2scl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Tobalaba)</h4>
+                            <div class="info-row"><i class="fas fa-location-dot"></i><span>Tobalaba 1145, Providencia, Región Metropolitana</span></div>
+                            <div class="info-row"><i class="fas fa-envelope"></i><span>tobalaba@pizzeriadomani.cl</span></div>
+                        </div>
+                        <div class="branch-actions">
+                            <a href="https://delivery.pizzeriadomani.cl/" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+
+                    <!-- Barrio Italia -->
+                    <article class="branch-card">
+                        <div class="map-wrapper">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13317.104946167508!2d-70.626114!3d-33.442109!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c57f6086a6e7%3A0x4576a5a405102060!2sAv.%20Italia%20758%2C%207501112%20Providencia%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1774542376966!5m2!1ses!2scl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="branch-info">
+                            <h4>Domani (Barrio Italia)</h4>
+                            <div class="info-row"><i class="fas fa-location-dot"></i><span>Av. Italia 758, Providencia, Región Metropolitana</span></div>
+                            <div class="info-row"><i class="fas fa-envelope"></i><span>italia@pizzeriadomani.cl</span></div>
+                        </div>
+                        <div class="branch-actions">
+                            <a href="https://delivery.pizzeriadomani.cl/" class="btn btn-black">Pedir Delivery</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIOS -->
+        <section class="section-reviews">
+            <div class="container reviews-container">
+                <h2>Testimonios</h2>
+                <div class="reviews-track" id="reviewsTrack">
+                    <div class="review-slide">
+                        <div class="review-card">
+                            <div class="stars">★★★★★</div>
+                            <p>"La mejor pizza de Santiago, masa liviana y sabores increíbles."</p>
+                            <p><strong>— Carlos R.</strong></p>
+                        </div>
+                    </div>
+                    <div class="review-slide">
+                        <div class="review-card">
+                            <div class="stars">★★★★★</div>
+                            <p>"Un pedazo de Italia en Providencia. Recomendado 100%."</p>
+                            <p><strong>— María J.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="section-final">
+            <div class="container">
+                <h2>¿Listo para la verdadera experiencia?</h2>
+                <p>Reserva tu mesa hoy o pide para disfrutar en casa.</p>
+                <div class="final-actions">
+                    <a href="#" class="btn btn-red">Reservar Ahora</a>
+                    <a href="https://delivery.pizzeriadomani.cl/?_gl=1*b7kkh2*_gcl_au*MjEzNDUwNzA3MC4xNzY5NDU0NjIy*_ga*NDM5ODU5ODg5LjE3NjA5Njk5NjU.*_ga_C6YQEJ0B5Z*czE3NzQ1NDEwNzAkbzQwJGcxJHQxNzc0NTQxNzA4JGo1OSRsMCRoNDUyNzk2NjQw" class="btn btn-outline">Pedir Delivery</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO WHATSAPP -->
+        <section style="padding: 80px 20px; text-align: center;">
+            <div class="container">
+                <h2>¿Tienes dudas?</h2>
+                <p>Escríbenos directamente y te ayudaremos con tu reserva o pedido.</p>
+                <a href="#" class="btn btn-whatsapp"><i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Hablar por WhatsApp</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <img src="https://pizzeriadomani.cl/wp-content/uploads/2023/06/logo-domani-white.png" style="height: 40px;">
+                <div class="footer-links-inline">
+                    <a href="#" class="footer-link-item">DELIVERY</a>
+                    <a href="#" class="footer-link-item">RESERVA</a>
+                    <a href="#" class="footer-link-item">EVENTOS</a>
+                    <a href="#" class="footer-link-item">GIFT CARD</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Domani Pizzería - Desarrollado por <a href="#" style="color: var(--domani-red);">Grupo Minga</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mobile-sticky">
+        <div class="mobile-sticky-inner">
+            <a href="#" class="btn btn-red">Reservar</a>
+            <a href="https://delivery.pizzeriadomani.cl/" class="btn btn-black" style="background: #fff; color: #000; border: 1px solid #ddd;">Delivery</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+
+        function movePromo(direction) {
+            const carousel = document.getElementById('promoCarousel');
+            const scrollAmount = carousel.offsetWidth;
+            carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        // Testimonios Auto-slide
+        let currentReview = 0;
+        setInterval(() => {
+            const track = document.getElementById('reviewsTrack');
+            const slides = document.querySelectorAll('.review-slide');
+            if(track && slides.length > 0) {
+                currentReview = (currentReview + 1) % slides.length;
+                track.style.transform = `translateX(-${currentReview * 100}%)`;
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
